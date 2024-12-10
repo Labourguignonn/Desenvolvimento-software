@@ -1,8 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import Filtroidade from './Filtroidade.jsx'
-//import App from './App.jsx'
+import Filtroidade from './pages/Home/Filtroidade.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
