@@ -1,5 +1,5 @@
-import api_banco_de_dados
-import IntegracaoAPI
+import Backend.api_banco_de_dados as api_banco_de_dados
+import Backend.IntegracaoAPI as IntegracaoAPI
 
 chave = input()
 tempo = input()
