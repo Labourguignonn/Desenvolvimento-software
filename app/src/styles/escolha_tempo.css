@@ -1,0 +1,140 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 34vh;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 30%;
+  }
+  
+  .logo {
+    margin-bottom: 1rem;
+  }
+  
+  .logo-image {
+    width: 80px; 
+    height: auto;
+  }
+  
+  .title {
+    font-size: 4.5rem;
+    line-height: 1.2;
+    text-decoration: underline;
+  }
+  
+  /* Estilo da seção direita */
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 0%;
+    padding: 350px;
+    position: relative;
+  }
+  
+  .timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 150%;
+    max-width: 600px;
+    position: relative;
+    margin-bottom: 50px;
+  }
+  
+  .time-point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .time-point::before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .time-point.selected::before {
+    background-color: #007bff; /* Cor azul para o selecionado */
+    width: 20px;
+    height: 20px;
+  }
+  
+  .time-label {
+    margin-top: 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: black;
+  }
+  
+  /* Linha entre os pontos */
+  .timeline::after {
+    content: "";
+    position: absolute;
+    top: -2%;
+    left: 0;
+    right: 0;
+    height: 4.5px;
+    background-color: black;
+    transform: translateY(-50%);
+    z-index: -1;
+  }
+  
+  .nav-button-left{
+    position: absolute;
+    bottom: 60px;
+    left: 100px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .nav-button-right {
+    position: absolute;
+    bottom: 60px;
+    right: 100px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .nav-button-left:hover {
+    background-color: #444;
+  }
+  
+  .nav-button-right:hover {
+    background-color: #444;
+  }
