@@ -55,7 +55,7 @@ const TimeSelection = () => {
       </div>
 
       <button className="nav-button-left" 
-      onClick={() => navigate('/escolha_gêneros')}
+      onClick={() => navigate('/escolha_generos')}
       >←</button>
       <button className="nav-button-right">→</button>
 

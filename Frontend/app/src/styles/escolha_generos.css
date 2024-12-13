@@ -1,0 +1,115 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 34vh;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 30%;
+  }
+  
+  .logo {
+    margin-bottom: 1rem;
+  }
+  
+  .logo-image {
+    width: 80px; 
+    height: auto;
+  }
+  
+  .title {
+    font-size: 4.5rem;
+    line-height: 1.2;
+    text-decoration: underline;
+  }
+  
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 0%;
+    padding: 350px;
+    position: relative;
+    max-width: 40vh;
+  }
+  .genres-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem em múltiplas linhas */
+    gap: 10px; /* Espaçamento entre os itens */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Centraliza os itens verticalmente */
+}
+
+.genres-container > * {
+    flex: 0 0 calc(70% - 60px); /* Aumenta a largura dos itens */
+    max-width: calc(70% - 60px); /* Garante que cada item ocupe quase metade da linha */
+    height: 5vh; /* Define a altura fixa dos itens */
+    box-sizing: border-box; /* Inclui padding e borda no cálculo */
+    text-align: center; /* Centraliza o texto dentro do botão */
+}
+  
+  .genre-button {
+    padding: 23px 17px;
+    border: 2px solid black;
+    border-radius: 25px;
+    background-color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .genre-button.selected {
+    background-color: black;
+    color: white;
+    border-color: black;
+  }
+  
+  .genre-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .add-button {
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .add-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .next-button {
+    position: absolute;
+    bottom: 60px;
+    right: 100px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .next-button:hover {
+    background-color: #444;
+  }
