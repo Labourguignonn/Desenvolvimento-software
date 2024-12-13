@@ -1,115 +1,114 @@
-.container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    height: 34vh;
-    background-color: #f9f9f9;
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .left-section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    width: 30%;
-  }
-  
-  .logo {
-    margin-bottom: 1rem;
-  }
-  
-  .logo-image {
-    width: 80px; 
-    height: auto;
-  }
-  
-  .title {
-    font-size: 4.5rem;
-    line-height: 1.2;
-    text-decoration: underline;
-  }
-  
-  .right-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 30%;
-    height: 0%;
-    padding: 350px;
-    position: relative;
-    max-width: 40vh;
-  }
-  .genres-container {
-    display: flex;
-    flex-wrap: wrap; /* Permite que os itens quebrem em múltiplas linhas */
-    gap: 10px; /* Espaçamento entre os itens */
-    justify-content: center; /* Centraliza os itens horizontalmente */
-    align-items: center; /* Centraliza os itens verticalmente */
+/* Borda preta para todas as divs */
+.container,
+.left-section,
+.right-section,
+.genres-container,
+.genre-button,
+.add-button,
+.next-button {
+    border: 2px solid black; /* Adiciona uma borda preta de 2px */
 }
 
-.genres-container > * {
-    flex: 0 0 calc(70% - 60px); /* Aumenta a largura dos itens */
-    max-width: calc(70% - 60px); /* Garante que cada item ocupe quase metade da linha */
-    height: 5vh; /* Define a altura fixa dos itens */
-    box-sizing: border-box; /* Inclui padding e borda no cálculo */
-    text-align: center; /* Centraliza o texto dentro do botão */
+.left-section-genre {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 25%; 
+  padding: 20px;
 }
-  
-  .genre-button {
-    padding: 23px 17px;
-    border: 2px solid black;
-    border-radius: 25px;
-    background-color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .genre-button.selected {
-    background-color: black;
-    color: white;
-    border-color: black;
-  }
-  
-  .genre-button:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .add-button {
-    padding: 10px;
-    width: 50px;
-    height: 50px;
-    border: 2px solid black;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    background-color: white;
-    cursor: pointer;
-  }
-  
-  .add-button:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .next-button {
-    position: absolute;
-    bottom: 60px;
-    right: 100px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .next-button:hover {
-    background-color: #444;
-  }
+
+.logo-genre {
+  margin-bottom: 1rem;
+}
+
+.logo-image-genre {
+  width: 80px; 
+  height: auto;
+}
+
+.title-genre {
+  font-size: 3rem; /* Ajuste no tamanho da fonte */
+  line-height: 1.2;
+  font-weight: bold; /* Destacar o título */
+  text-decoration: underline;
+  color: #333; /* Cor mais suave para o título */
+}
+
+.right-section-genre {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50%; /* Ajustado para ocupar mais espaço à direita */
+  padding: 20px;
+}
+
+.genres-container-genre {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens quebrem em múltiplas linhas */
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Espaçamento abaixo da grade */
+}
+
+.genres-container-genre > * {
+  flex: 0 0 calc(33.33% - 20px); /* Ajusta a largura para 3 itens por linha */
+  max-width: calc(33.33% - 20px); /* Limita o tamanho máximo */
+  text-align: center;
+}
+
+.genre-button-genre {
+  padding: 12px 20px; /* Ajustado para um tamanho menor */
+  border: 2px solid black;
+  border-radius: 20px;
+  background-color: white;
+  font-size: 1.2rem; /* Fonte ajustada */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.genre-button.selected-genre {
+  background-color: black;
+  color: white;
+  border-color: black;
+}
+
+.genre-button-genre:hover {
+  background-color: #e0e0e0;
+}
+
+.add-button-genre {
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  border: 2px solid black;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  background-color: white;
+  cursor: pointer;
+}
+
+.add-button-genre:hover {
+  background-color: #e0e0e0;
+}
+
+.next-button-genre {
+  position: absolute;
+  bottom: 20px; /* Ajuste na posição */
+  right: 50px; /* Ajuste na posição */
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.next-button-genre:hover {
+  background-color: #444;
+}
