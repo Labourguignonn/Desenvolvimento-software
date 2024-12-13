@@ -1,0 +1,89 @@
+/* Estilos para o contêiner principal */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    padding: 5vh;
+    margin: 0 auto;
+    color: white;
+}
+
+/* Contêiner de filme */
+#conteinerFilme {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 74vh;
+    width: calc(60vh * 27 / 40);
+    background-color: #ffffff;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 20px;
+    border: 1px solid #868686; 
+}
+
+/* Estilo da imagem */
+#filmeSelection {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border: 15px;
+}
+
+/* Título do filme */
+#conteinerFilme h3 {
+    font-size: 3vh;
+    margin: 5px 0;
+    color: #000000;
+}
+
+/* Estilo para a seção de pergunta */
+#pergunta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+/* Pergunta */
+#pergunta p {
+    font-size: 2.5vh;
+    margin: 3px 0;
+    text-align: center;
+    color:#000000;
+
+}
+
+/* Estilos dos botões */
+.botao-selecao{
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 2vh 3vh;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 3vh;
+    width: 15vh;
+    font-weight: bold;
+}
+
+.botao-selecao:hover {
+    background-color: #ffffff;
+    color: #000000; 
+    border: 1px solid #868686; 
+}
+
+.botao-selecao:active {
+    background-color: #e0e0e0; 
+    color: #000000;
+
+}
