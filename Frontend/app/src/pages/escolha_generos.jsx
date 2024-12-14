@@ -63,6 +63,10 @@ const GenreSelection = () => {
         <div className="add_button-container">
             <button className="add-button" onClick={addGenres}>+</button>
         </div>
+        <button 
+        className="next-button" 
+        onClick={() => navigate("/escolha_tempo")}
+        >→</button>
       </div>
  
     </div> 
