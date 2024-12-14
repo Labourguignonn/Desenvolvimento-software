@@ -1,0 +1,30 @@
+/* Estilo para o contêiner da última página */
+#conteiner-lastpage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Estilo para o texto "Hora da pipoca" */
+.last-page-text {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Estilo para o iframe do Giphy */
+.giphy-embed {
+  border: none;
+  width: 600px;  /* Força a largura para 600px */
+  height: 600px; /* Força a altura para 600px */
+  margin-bottom: 20px;
+  border-radius: 10px;
+  pointer-events: none;  /* Desabilita a interatividade do GIF */
+}

@@ -37,22 +37,16 @@ const GenreSelection = () => {
   };
   
   return (
-    <div className="container">
+    <div className="main_container">
 
-      <div className="left-section">
-        
-        <div className="logo">
-          <img src={logo} alt="Logo" className="logo-image" />
-        </div>
-
-        <h1 className="title">
+      <div className="left-section_genres">
+        <h1 className="title_genres">
           Escolha <br /> dos <br /> Gêneros
         </h1>
       </div>
       
       
-      <div className="right-section">
-        
+      <div className="right-section-genres"> 
         <div className="genres-container">
           {genres.map((genre, index) => (
             <button 
@@ -66,15 +60,12 @@ const GenreSelection = () => {
             </button>
           ))}
         </div>
-
-        <br />
-          <button className="add-button" onClick={addGenres}>+</button>
+        <div className="add_button-container">
+            <button className="add-button" onClick={addGenres}>+</button>
+        </div>
       </div>
-      <button 
-        className="next-button" 
-        onClick={() => navigate("/escolha_tempo")}
-        >→</button>
-    </div>
+ 
+    </div> 
   );
 };
 

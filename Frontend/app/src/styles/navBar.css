@@ -1,0 +1,28 @@
+/* Estilo do Navbar */
+#navBar {
+    background-color: #ffffff; /* Fundo branco */
+    color: #000000; /* Texto preto */
+    padding: 10px 20px; /* Espaçamento interno */
+    position: fixed; /* Barra fixa no topo */
+    top: 0; /* Alinhado ao topo da página */
+    width: 100%; /* Ocupa toda a largura */
+    z-index: 1000; /* Garantir que fique acima de outros elementos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
+    border-bottom: 1px solid #868686; /* Linha inferior */
+    box-sizing: border-box; /* Inclui bordas e padding no tamanho total */
+    display: flex; /* Torna o container flexível */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: space-between; /* Ajusta a posição do conteúdo dentro da barra */
+}
+
+/* Título do Navbar */
+#navBar h1 {
+    margin: 0; /* Remove margens */
+    font-family: "Alfa Slab One", serif; /* Fonte personalizada */
+    font-style: normal;
+    font-size: 30px; /* Tamanho do texto */
+    color: #000000; /* Cor preta */
+    white-space: nowrap; /* Evita quebra de linha no título */
+    overflow: hidden; /* Impede transbordamento do título */
+    text-overflow: ellipsis; /* Adiciona "..." se o título for muito longo */
+}
