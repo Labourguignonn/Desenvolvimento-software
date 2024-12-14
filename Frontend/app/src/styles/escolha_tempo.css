@@ -58,6 +58,7 @@
     cursor: pointer;
     position: relative;
     /* border: 2px solid black; */
+    z-index: 1;
   }
   
   .time-point::before {
@@ -70,6 +71,7 @@
     top: -10px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 2;
   }
   
   .time-point.selected::before {
@@ -89,13 +91,13 @@
   .timeline::after {
     content: "";
     position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 4.5px;
-    background-color: solid black;
+    top: 0%;
+    left: 5%;
+    right: 5%;
+    height: 5.5px;
+    background-color: black;
     transform: translateY(-50%);
-    z-index: 1;
+    z-index: 0;
   }
   
   .nav-button-left{
