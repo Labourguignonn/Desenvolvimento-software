@@ -68,7 +68,7 @@ const GenreSelection = () => {
         onClick={() => navigate("/escolha_tempo")}
         >→</button>
       </div>
- 
+      <button className="nav-button-right" onClick={() => navigate('/escolha_tempo')}>→</button>
     </div> 
   );
 };

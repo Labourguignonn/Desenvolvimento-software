@@ -123,3 +123,22 @@
 .next-button:hover {
   background-color: #444;
 }
+
+.nav-button-right {
+  position: absolute;
+  bottom: 60px;
+  right: 100px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-button-right:hover {
+  background-color: #444;
+}

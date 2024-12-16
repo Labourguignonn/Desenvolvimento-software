@@ -38,12 +38,8 @@ function Filtroidade() {
       </div>
 
       {/* Botão de navegação */}
-      <button
-        className="arrow-button"
-        onClick={() => navigate("/Selection")}  // Função de navegação
-      >
-        →
-      </button>
+      <button className="nav-button-left" onClick={() => navigate('/escolha_tempo')}>←</button>
+      <button className="nav-button-right" onClick={() => navigate('/carregamento')}>→</button>
     </div>
   );
 }
