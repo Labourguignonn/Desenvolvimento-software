@@ -105,7 +105,7 @@
   background-color: #e0e0e0;
 }
 
-.next-button {
+.nav-button-right {
   position: absolute;
   bottom: 60px;
   right: 100px;
@@ -120,8 +120,23 @@
   align-items: center;
 }
 
-.next-button:hover {
+.nav-button-right:hover {
   background-color: #444;
+}
+
+.nav-button-left{
+  position: absolute;
+  bottom: 60px;
+  left: 100px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-button-right {
@@ -137,6 +152,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.nav-button-left:hover {
+  background-color: #444;
 }
 
 .nav-button-right:hover {
