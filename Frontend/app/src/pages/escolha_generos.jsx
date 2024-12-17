@@ -6,11 +6,18 @@ import "../styles/escolha_generos.css";
 
 const GenreSelection = () => {
   const navigate = useNavigate();
-
-  const [genres, setGenres] = useState([]);
-  const [selectedGenres, setSelectedGenres] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [genres, setGenres] = useState([
+    "Ação",
+    "Aventura",
+    "Comédia",
+    "Drama",
+    "Fantasia",
+    "Ficção Científica",
+    "Mistério",
+    "Romance",
+    "Terror",
+    "Animação"
+  ]);
 
   const newGenres = ["Documentário", "Musical", "Histórico"];
 
@@ -51,17 +58,17 @@ const GenreSelection = () => {
   //   fetchGenres();
   // }, []);
 
-  const handleSubmit = () => {
-    axios
-      .post("/filtro_genero", { selectedGenres })
-      .then((response) => {
-        console.log("Gêneros enviados com sucesso", response.data);
-        navigate("/escolha_tempo");
-      })
-      .catch((error) => {
-        console.error("Erro ao enviar gêneros", error);
-      });
-  };
+  // const handleSubmit = () => {
+  //   axios
+  //     .post("/filtro_genero", { selectedGenres })
+  //     .then((response) => {
+  //       console.log("Gêneros enviados com sucesso", response.data);
+  //       navigate("/escolha_tempo");
+  //     })
+  //     .catch((error) => {
+  //       console.error("Erro ao enviar gêneros", error);
+  //     });
+  // };
 
   return (
     <div className="main_container">
