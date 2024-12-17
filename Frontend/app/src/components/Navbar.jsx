@@ -1,7 +1,7 @@
 import React from "react";
-import '../styles/navBar.css'
+import '../styles/NavBar.css'
 
-function NavBar() {
+function Navbar() {
   return (
     <nav id="navBar">
       <h1>IndicaAI</h1>
@@ -9,4 +9,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default Navbar;

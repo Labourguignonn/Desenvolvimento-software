@@ -1,7 +1,7 @@
 import React from "react";
 // import 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import NavBar from "./components/NavBar.jsx";
+import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer";
 import GenreSelection from "./pages/escolha_generos";
 import TimeSelection from "./pages/escolha_tempo";
@@ -15,7 +15,7 @@ import axios from "axios";
 const App = () => {
   return (
     <Router>
-      <NavBar />
+      <Navbar />
       <Routes>
         <Route path="/" element={<FiltroGenero />} />
         <Route path="/filtro_genero" element={<GenreSelection />} />
