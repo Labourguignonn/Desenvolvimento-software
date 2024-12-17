@@ -5,7 +5,6 @@ import '../styles/selection.css';
 function Selection() {
   const navigate = useNavigate();
   
-  // Lista de filmes
   const filmes = [
     {
       titulo: "Mad Max: Estrada da Fúria",
