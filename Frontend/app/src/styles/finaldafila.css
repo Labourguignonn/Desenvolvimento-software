@@ -1,0 +1,55 @@
+/* Estilos gerais do container */
+.Conteiner-final-da-fila {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Para garantir que o conteúdo ocupe toda a tela */
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100vw;
+    max-width: 1200px;
+  }
+  
+  /* Estilo para a imagem */
+  #flock-triste {
+    height: 40%;  /* Ajuste para o tamanho da imagem */
+    max-width: 400px; /* Limita o tamanho máximo da imagem */
+    margin-bottom: 30px; /* Espaço abaixo da imagem */
+    border-radius: 10px; /* Bordas arredondadas na imagem */
+  }
+
+  #botoes {
+    display: flex;
+    justify-content: center;
+    gap: 8px; /* Reduzido de 10px para 8px */
+  }
+  
+  .botao-refazer-selecao {
+    padding: 10px 20px; /* Reduzi o padding */
+    background-color: black;
+    color: white;
+    border-radius: 6px; /* Bordas menores */
+    font-size: 0.9em; /* Fonte ligeiramente menor */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid black; /* Bordas mais finas */
+  }
+  
+  .botao-refazer-selecao:hover {
+    background-color: #ffffff;
+    border-color: black; /* Mantém a borda preta no hover */
+    color: black; /* Muda a cor da fonte para preto no hover */
+  }
+  
+  .botao-refazer-selecao:focus {
+    outline: none;
+    color: black; /* Cor da fonte quando o botão está em foco */
+  }
+  
+  /* Efeitos visuais ao passar o mouse */
+  .botao-refazer-selecao:active {
+    transform: scale(0.95); /* Redução ligeiramente maior ao clicar */
+  }
+  
+

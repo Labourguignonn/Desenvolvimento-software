@@ -1,139 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .container-tempo {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center; /* Centraliza as seções */
+  align-items: stretch; /* Faz com que as seções ocupem toda a altura */
   height: 100vh;
   width: 96vw;
   background-color: white;
   font-family: Arial, sans-serif;
-  padding: 20px;
   box-sizing: border-box;
-  }
-  
-  .left-section_tempo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 30%;
-    height: 100%;
-    position: relative;
-  }
-  
-  .title {
-    display: center;
-    font-size: 4.5rem;
-    line-height: 1.2;
-    text-decoration: underline;
-  }
-  
-  /* Estilo da seção direita */
-  .right-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 70%;
-    height: 100%;
-    position: relative;
-    /* border: 2px solid black; */
-  }
-  
-  .timeline {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 600px;
-    position: relative;
-    margin-bottom: 20px;
-    /* border: 2px solid black; */
-  }
-  
-  .time-point {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-    /* border: 2px solid black; */
-    z-index: 1;
-  }
-  
-  .time-point::before {
-    content: "";
-    width: 20px;
-    height: 20px;
-    background-color: black;
-    border-radius: 50%;
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-  }
-  
-  .time-point.selected::before {
-    background-color: #007bff; /* Cor azul para o selecionado */
-    width: 25px;
-    height: 25px;
-  }
-  
-  .time-label {
-    margin-top: 20px;
-    font-size: 1.3rem;
-    text-align: center;
-    color: black;
-  }
-  
-  /* Linha entre os pontos */
-  .timeline::after {
-    content: "";
-    position: absolute;
-    top: 0%;
-    left: 5%;
-    right: 5%;
-    height: 5.5px;
-    background-color: black;
-    transform: translateY(-50%);
-    z-index: 0;
-  }
-  
-  .nav-button-left{
-    position: absolute;
-    bottom: 60px;
-    left: 100px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .nav-button-right {
-    position: absolute;
-    bottom: 60px;
-    right: 100px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .nav-button-left:hover {
-    background-color: #444;
-  }
-  
-  .nav-button-right:hover {
-    background-color: #444;
-  }
+  max-width: 1200px; /* Limita a largura máxima */
+}
+
+/* Seção esquerda (30% da largura do container) */
+.left-section_tempo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1; /* 1 parte da proporção 1:2 */
+  height: 100%;
+  position: relative;
+}
+
+/* Título da seção esquerda */
+.title {
+  display: flex;
+  justify-content: center;
+  font-size: 4.5rem;
+  line-height: 1.2;
+  text-decoration: underline;
+}
+
+/* Seção direita (70% da largura do container) */
+.right-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 2; /* 2 partes da proporção 1:2 */
+  height: 100%;
+  position: relative;
+}
+
+/* Linha do timeline */
+.timeline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* Ponto de tempo no timeline */
+.time-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Estilo do ponto de tempo antes de ser selecionado */
+.time-point::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Estilo do ponto de tempo quando selecionado */
+.time-point.selected::before {
+  background-color: #007bff; /* Cor azul para o selecionado */
+  width: 25px;
+  height: 25px;
+}
+
+/* Rótulo de cada ponto de tempo */
+.time-label {
+  margin-top: 20px;
+  font-size: 1.3rem;
+  text-align: center;
+  color: black;
+}
+
+/* Linha do timeline entre os pontos */
+.timeline::after {
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: 5%;
+  right: 5%;
+  height: 5.5px;
+  background-color: black;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+/* Botões de navegação à esquerda e à direita */
+.nav-button-left, .nav-button-right {
+  position: absolute;
+  bottom: 60px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-button-left {
+  left: 100px;
+}
+
+.nav-button-right {
+  right: 100px;
+}
+
+/* Efeito de hover para os botões de navegação */
+.nav-button-left:hover, .nav-button-right:hover {
+  background-color: #444;
+}

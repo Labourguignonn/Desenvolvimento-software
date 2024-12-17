@@ -1,66 +1,74 @@
+/* Remoção de qualquer padding ou margin global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .main_container {
-    display: flex;
+  display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center; /* Centraliza horizontalmente os filhos */
+  align-items: center; /* Centraliza verticalmente os filhos */
   height: 100vh;
-  width: 96vw;
+  width: 100vw; /* Garante que ocupa a largura total */
   background-color: white;
   font-family: Arial, sans-serif;
-  padding: 20px;
   box-sizing: border-box;
+  max-width: 1200px; /* Limita a largura máxima */
 }
 
 .left-section_genres {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; /* Centraliza o conteúdo internamente */
   align-items: center;
-  width: 30%;
-  height: 100%;
+  flex: 1; /* 1 parte da proporção */
+  height: 100%; /* Ocupa toda a altura */
   position: relative;
-}
-
-.title_genres {
-  display: center;
-  font-size: 4.5rem;
-  line-height: 1.2;
-  text-decoration: underline;
 }
 
 .right-section-genres {
   display: flex;
   flex-direction: column;
+  justify-content: center; /* Centraliza o conteúdo internamente */
   align-items: center;
-  justify-content: center;
-  width: 70%;
-  height: 100%;
+  flex: 2; /* 2 partes da proporção */
+  height: 100%; /* Ocupa toda a altura */
   position: relative;
+}
+
+.title_genres {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4.5rem;
+  line-height: 1.2;
+  text-decoration: underline;
 }
 
 .genres-container {
   display: flex;
-  flex-wrap: wrap; 
-  row-gap: 0px;
-  column-gap: 10px; 
-  justify-content: center; 
-  align-items: center; 
-  /* border: 2px solid black; */
+  flex-wrap: wrap;
+  row-gap: 10px;
+  column-gap: 10px;
+  justify-content: center;
+  align-items: center;
   height: 50%;
 }
 
 .genres-container > * {
-    flex: 0 0 calc(33.33% - 20px); /* Ajusta para 3 botões por linha (com o gap) */
-    max-width: calc(33.33% - 20px); /* Limita a largura máxima dos itens */
-    box-sizing: border-box;
-    text-align: center;
-  }
+  flex: 0 0 calc(33.33% - 20px); /* Ajusta para 3 botões por linha */
+  max-width: calc(33.33% - 20px);
+  box-sizing: border-box;
+  text-align: center;
+}
 
 .genre-button {
-  display: flex; /* Habilita o uso de flexbox no botão */
-  justify-content: center; /* Alinha o texto horizontalmente ao centro */
-  align-items: center; /* Alinha o texto verticalmente ao centro */
-  padding: 23px 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px; /* Ajuste o padding se necessário */
   border: 2px solid black;
   border-radius: 25px;
   background-color: white;
@@ -68,7 +76,6 @@
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
-
 
 .genre-button.selected {
   background-color: black;
@@ -78,86 +85,4 @@
 
 .genre-button:hover {
   background-color: #e0e0e0;
-}
-
-.add_button-container {
-    display: flex; 
-    justify-content: center;
-    width: 100%;
-    height: 15%;
-    font-size: 1.5rem;
-    background-color: white;
-    cursor: pointer;
-  }
-
-.add-button {
-  padding: 10px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  background-color: white;
-  cursor: pointer;
-  border: 2px solid black;
-}
-
-.add-button:hover {
-  background-color: #e0e0e0;
-}
-
-.nav-button-right {
-  position: absolute;
-  bottom: 60px;
-  right: 100px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.nav-button-right:hover {
-  background-color: #444;
-}
-
-.nav-button-left{
-  position: absolute;
-  bottom: 60px;
-  left: 100px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.nav-button-right {
-  position: absolute;
-  bottom: 60px;
-  right: 100px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.nav-button-left:hover {
-  background-color: #444;
-}
-
-.nav-button-right:hover {
-  background-color: #444;
 }
