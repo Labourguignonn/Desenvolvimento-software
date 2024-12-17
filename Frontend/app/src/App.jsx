@@ -10,14 +10,15 @@ import Carregamento from "./pages/carregamento.jsx";
 import Selection from "./pages/Selection.jsx";
 import InfoFilmes from "./pages/InfoFilmes.jsx";
 import LastPage from "./pages/LastPage.jsx";
+import axios from "axios";
 
 const App = () => {
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<GenreSelection />} />
-        <Route path="/escolha_generos" element={<GenreSelection />} />
+        <Route path="/" element={<FiltroGenero />} />
+        <Route path="/filtro_genero" element={<GenreSelection />} />
         <Route path="/escolha_tempo" element={<TimeSelection />} />
         <Route path="/Filtroidade" element={<Filtroidade />} />
         <Route path="/carregamento" element={<Carregamento />} />
