@@ -7,7 +7,7 @@ import GenreSelection from "./pages/escolha_generos";
 import TimeSelection from "./pages/escolha_tempo";
 import Filtroidade from "./pages/Filtroidade.jsx";
 import Carregamento from "./pages/carregamento.jsx";
-import Selection from "./pages/Selection.jsx";
+import Selection from "./pages/selection.jsx";
 import InfoFilmes from "./pages/InfoFilmes.jsx";
 import LastPage from "./pages/LastPage.jsx";
 import axios from "axios";
