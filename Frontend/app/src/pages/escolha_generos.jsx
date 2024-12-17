@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from '../utils/axios'; // Importando o axios
+import axios from "../services/axios"; // Importando o axios
 import logo from "../assets/logo.png";
 import "../styles/escolha_generos.css";
 
 const GenreSelection = () => {
   const navigate = useNavigate();
 
-  const [genres, setGenres] = useState([]);  // Mudando para buscar gêneros da API
+  const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
-  const [loading, setLoading] = useState(false);  // Para exibir um indicador de carregamento
-  const [error, setError] = useState(null);  // Para capturar e exibir erros
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const newGenres = ["Documentário", "Musical", "Histórico"];
 
-  // Toggle para selecionar/deselecionar gêneros
   const toggleGenre = (genre) => {
     setSelectedGenres((prevSelected) =>
       prevSelected.includes(genre)
@@ -23,38 +22,44 @@ const GenreSelection = () => {
     );
   };
 
-  // Função para adicionar gêneros à lista
   const addGenres = () => {
-    setGenres((prevGenres) => [...prevGenres, ...newGenres]);
+    setGenres((prevGenres) => {
+      const updatedGenres = [...prevGenres];
+      newGenres.forEach((genre) => {
+        if (!updatedGenres.includes(genre)) {
+          updatedGenres.push(genre);
+        }
+      });
+      return updatedGenres;
+    });
   };
 
-  // Função para buscar gêneros da API (ou backend)
   useEffect(() => {
     const fetchGenres = async () => {
       setLoading(true);
       try {
-        // Requisição para o endpoint da API FastAPI
-        const response = await axios.get('/filtro_genero');
-        setGenres(response.data.genres || []);  // Atualizando a lista de gêneros com a resposta da API
+        const response = await axios.get("/filtro_genero");
+        setGenres(response.data?.genres || []); // Fallback seguro
       } catch (error) {
+        console.error("Erro ao carregar gêneros:", error);
         setError("Erro ao carregar os gêneros");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchGenres(); // Chamada da função para buscar os gêneros
+    fetchGenres();
   }, []);
 
   const handleSubmit = () => {
-    // Enviar os gêneros selecionados para o backend (se necessário)
-    axios.post('/filtro_genero', { selectedGenres })
+    axios
+      .post("/filtro_genero", { selectedGenres })
       .then((response) => {
-        console.log('Gêneros enviados com sucesso', response.data);
-        navigate('/escolha_tempo'); // Redirecionar após enviar
+        console.log("Gêneros enviados com sucesso", response.data);
+        navigate("/escolha_tempo");
       })
       .catch((error) => {
-        console.error('Erro ao enviar gêneros', error);
+        console.error("Erro ao enviar gêneros", error);
       });
   };
 
@@ -69,9 +74,9 @@ const GenreSelection = () => {
       <div className="right-section-genres">
         <div className="genres-container">
           {loading ? (
-            <div>Carregando gêneros...</div>  {/* Indicador de carregamento */}
+            <div>Carregando gêneros...</div>
           ) : error ? (
-            <div>{error}</div>  {/* Exibindo erro se ocorrer */}
+            <div>{error}</div>
           ) : (
             genres.map((genre, index) => (
               <button
@@ -86,12 +91,15 @@ const GenreSelection = () => {
         </div>
 
         <div className="add_button-container">
-          <button className="add-button" onClick={addGenres}>+</button>
+          <button className="add-button" onClick={addGenres}>
+            +
+          </button>
         </div>
       </div>
 
-      {/* Botão de navegação para a próxima página */}
-      <button className="nav-button-right" onClick={handleSubmit}>→</button>
+      <button className="nav-button-right" onClick={handleSubmit}>
+        →
+      </button>
     </div>
   );
 };
