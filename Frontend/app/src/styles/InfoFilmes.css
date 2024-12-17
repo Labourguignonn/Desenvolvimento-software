@@ -1,125 +1,141 @@
 /* Estilos gerais do contêiner principal */
 .container-geral {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 100px;
-    background-color: #ffffff;
-    font-family: Arial, sans-serif;
-    border-radius: 10px; /* Bordas arredondadas */
-    height: 100vh;
-    width: 100vw;
-    justify-content: center
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  max-width: 1200px;
+  padding-top: 20px;
 }
-  
-  /* Estilos para o contêiner das informações do filme */
-  .container-info-filme {
-    max-width: 900px ;
-    height: auto;
-    display: flex;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    border-radius: 10px;
-    border: 1px solid rgb(88, 88, 88); /* Borda verde ao redor das informações do filme */
-  }
-  
-  /* Estilos para a imagem do filme */
-  #poster {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  #filme-selection {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  /* Estilos para a parte de informações do filme */
-  #infos-infofilmes {
-    flex: 2;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  /* Estilos para o título do filme */
-  #titulo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
-  }
-  
-  /* Estilos para a sinopse */
-  #sinopse-texto {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #666;
-    margin-bottom: 20px;
-  }
-  
-  /* Estilos para os detalhes do filme */
-  #detalhes {
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .detalhe-item {
-    margin-bottom: 10px;
-  }
-  
-  .detalhe-item strong {
-    font-weight: bold;
-  }
-  
-  .detalhe-item span {
-    color: #777;
-  }
-  
-  /* Estilos para o contêiner de pergunta */
-  .container-pergunta {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  #pergunta-infofilmes {
-    text-align: center;
-  }
-  
-  #pergunta-infofilmes p {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
-  }
-  
-  /* Estilos para os botões */
-  #botoes {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .botao-infofilmes {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 10vh;
-  }
-  
-  .botao-infofilmes:hover {
-    background-color: #ddd;
-  }
-  
-  .botao-infofilmes:focus {
-    outline: none;
-  }
-  
+
+/* Estilos para o contêiner das informações do filme */
+.container-info-filme {
+  max-width: 600px;
+  height: 60vh;
+  display: flex;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px; /* Reduzido de 20px para 15px */
+  border-radius: 10px;
+  border: 1px solid rgb(88, 88, 88);
+  align-items: center; /* Centraliza verticalmente */
+}
+
+
+/* Estilos para a imagem do filme */
+#poster {
+  flex: 1;
+  padding-left: 15px;
+  max-width: 200px; /* Largura máxima reduzida */
+  max-height: 250px; /* Altura máxima forçada */
+  width: 100%; /* Garante que a largura se ajuste */
+  height: auto; /* Mantém a proporção */
+  object-fit: contain; /* Garante que a imagem não fique distorcida */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  display: block; /* Necessário para funcionar com margin auto */
+}
+
+#filme-selection {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Estilos para a parte de informações do filme */
+#infos-infofilmes {
+  flex: 2;
+  padding: 15px; /* Reduzido de 20px para 15px */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Estilos para o título do filme */
+#titulo {
+  font-size: 20px; /* Corrigido o erro no espaço */
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px; /* Reduzido de 15px para 10px */
+}
+
+/* Estilos para a sinopse */
+#sinopse-texto {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 15px; /* Reduzido de 20px para 15px */
+}
+
+/* Estilos para os detalhes do filme */
+#detalhes {
+  font-size: 12px;
+  color: #333;
+}
+
+.detalhe-item {
+  margin-bottom: 8px; /* Reduzido de 10px para 8px */
+}
+
+.detalhe-item strong {
+  font-weight: bold;
+}
+
+.detalhe-item span {
+  color: #777;
+}
+
+/* Estilos para o contêiner de pergunta */
+.container-pergunta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px; /* Reduzido de 20px para 15px */
+}
+
+#pergunta-infofilmes {
+  text-align: center;
+}
+
+#pergunta-infofilmes p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px; /* Reduzido de 15px para 10px */
+}
+
+/* Estilos para os botões */
+#botoes {
+  display: flex;
+  justify-content: center;
+  gap: 8px; /* Reduzido de 10px para 8px */
+}
+
+.botao-infofilmes {
+  padding: 10px 20px; /* Reduzi o padding */
+  background-color: black;
+  color: white;
+  border-radius: 6px; /* Bordas menores */
+  font-size: 0.9em; /* Fonte ligeiramente menor */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100px; /* Largura menor */
+  border: 2px solid black; /* Bordas mais finas */
+}
+
+.botao-infofilmes:hover {
+  background-color: #ffffff;
+  border-color: black; /* Mantém a borda preta no hover */
+  color: black; /* Muda a cor da fonte para preto no hover */
+}
+
+.botao-infofilmes:focus {
+  outline: none;
+  color: black; /* Cor da fonte quando o botão está em foco */
+}
+
+/* Efeitos visuais ao passar o mouse */
+.botao-infofilmes:active {
+  transform: scale(0.95); /* Redução ligeiramente maior ao clicar */
+}
