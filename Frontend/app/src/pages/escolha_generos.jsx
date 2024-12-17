@@ -34,22 +34,22 @@ const GenreSelection = () => {
     });
   };
 
-  useEffect(() => {
-    const fetchGenres = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get("/filtro_genero");
-        setGenres(response.data?.genres || []); // Fallback seguro
-      } catch (error) {
-        console.error("Erro ao carregar gêneros:", error);
-        setError("Erro ao carregar os gêneros");
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchGenres = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const response = await axios.get("/filtro_genero");
+  //       setGenres(response.data?.genres || []); // Fallback seguro
+  //     } catch (error) {
+  //       console.error("Erro ao carregar gêneros:", error);
+  //       setError("Erro ao carregar os gêneros");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchGenres();
-  }, []);
+  //   fetchGenres();
+  // }, []);
 
   const handleSubmit = () => {
     axios
