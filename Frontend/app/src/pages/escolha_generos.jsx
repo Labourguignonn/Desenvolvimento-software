@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../services/axios"; // Importando o axios
 import logo from "../assets/logo.png";
 import "../styles/escolha_generos.css";
 
 const GenreSelection = () => {
   const navigate = useNavigate();
+
+  // Estados iniciais corrigidos
   const [genres, setGenres] = useState([
     "Ação",
     "Aventura",
@@ -18,6 +19,10 @@ const GenreSelection = () => {
     "Terror",
     "Animação"
   ]);
+
+  const [selectedGenres, setSelectedGenres] = useState([]); // Inicialize como array vazio
+  const [loading, setLoading] = useState(false); // Não há loading agora
+  const [error, setError] = useState(null); // Não há erros no frontend
 
   const newGenres = ["Documentário", "Musical", "Histórico"];
 
@@ -41,34 +46,11 @@ const GenreSelection = () => {
     });
   };
 
-  // useEffect(() => {
-  //   const fetchGenres = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const response = await axios.get("/filtro_genero");
-  //       setGenres(response.data?.genres || []); // Fallback seguro
-  //     } catch (error) {
-  //       console.error("Erro ao carregar gêneros:", error);
-  //       setError("Erro ao carregar os gêneros");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchGenres();
-  // }, []);
-
-  // const handleSubmit = () => {
-  //   axios
-  //     .post("/filtro_genero", { selectedGenres })
-  //     .then((response) => {
-  //       console.log("Gêneros enviados com sucesso", response.data);
-  //       navigate("/escolha_tempo");
-  //     })
-  //     .catch((error) => {
-  //       console.error("Erro ao enviar gêneros", error);
-  //     });
-  // };
+  // Substituí a handleSubmit para evitar erro
+  const handleSubmit = () => {
+    console.log("Gêneros selecionados:", selectedGenres);
+    navigate("/escolha_tempo"); // Apenas navega
+  };
 
   return (
     <div className="main_container">
