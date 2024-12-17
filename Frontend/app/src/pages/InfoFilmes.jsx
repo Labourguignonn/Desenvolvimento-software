@@ -5,9 +5,10 @@ import '../styles/InfoFilmes.css';
 function InfoFilmes() {
   const navigate = useNavigate();
   
-  // Recuperando o filme passado na navegação
+  // Recuperando o filme e o índice passado na navegação
   const location = useLocation();
-  const filme = location.state; // O filme foi passado através de `state`
+  const filme = location.state.filme; // O filme foi passado através de `state`
+  const filmeIndex = location.state.index; // O índice do filme na lista
 
   if (!filme) {
     return <div>Erro: Nenhum filme encontrado!</div>; // Caso o estado não tenha sido passado corretamente
@@ -27,7 +28,6 @@ function InfoFilmes() {
           </div>
 
           <div id="infos-infofilmes">
-            {/* Exibindo as informações do filme */}
             <h3 id="titulo">{filme.titulo}</h3>
             <p id="sinopse-texto">{filme.descricao}</p>
             <div id="detalhes">
@@ -59,7 +59,7 @@ function InfoFilmes() {
               </button>
               <button
                 className="botao-infofilmes"
-                onClick={() => navigate("/Selection")}
+                onClick={() => navigate("/Selection", { state: { index: filmeIndex} })}
               >
                 Não
               </button>
