@@ -19,7 +19,7 @@ def filtro_tempo():
 
 @app.get("/filtro_genero")
 def filtro_genero():
-    return {"message": "Oi"}
+    return {"genres": ["Ação", "Aventura", "Comédia", "Drama", "Fantasia", "Ficção Científica", "Mistério", "Romance", "Terror", "Animação"]}
 
 @app.get("/filtro_classificacao")
 def filtro_classificacao():
