@@ -1,6 +1,7 @@
 import React from "react";
+// import 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar.jsx";
 import GenreSelection from "./pages/escolha_generos";
 import TimeSelection from "./pages/escolha_tempo";
 import Filtroidade from "./pages/Filtroidade.jsx";
@@ -9,6 +10,7 @@ import Selection from "./pages/selection.jsx";
 import InfoFilmes from "./pages/InfoFilmes.jsx";
 import LastPage from "./pages/LastPage.jsx";
 import FinalDaFila from './pages/finaldafila.jsx'; 
+import axios from "axios";
 
 const App = () => {
   return (
@@ -17,7 +19,6 @@ const App = () => {
       <div style={{ paddingTop: "10vh" }}></div>
       <Routes>
         <Route path="/" element={<GenreSelection />} />
-        <Route path="/escolha_generos" element={<GenreSelection />} />
         <Route path="/escolha_tempo" element={<TimeSelection />} />
         <Route path="/Filtroidade" element={<Filtroidade />} />
         <Route path="/carregamento" element={<Carregamento />} />
