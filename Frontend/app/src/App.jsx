@@ -17,8 +17,7 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<FiltroGenero />} />
-        <Route path="/filtro_genero" element={<GenreSelection />} />
+        <Route path="/" element={<GenreSelection />} />
         <Route path="/escolha_tempo" element={<TimeSelection />} />
         <Route path="/Filtroidade" element={<Filtroidade />} />
         <Route path="/carregamento" element={<Carregamento />} />
