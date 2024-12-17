@@ -75,23 +75,28 @@ h3 {
     color: black;
 }
 
-.botao-selecao:focus {
-    outline: none;
-    color: black;
+/* Desabilitando o hover quando o botão for clicado */
+.botao-selecao.clicado:hover {
+    background-color: black;
+    color: white;
+    border-color: black;
 }
 
-.botao-selecao:active {
-    transform: scale(0.95);
-}
-
-/* Estado alterado do botão após clique no "Sim" */
-.botao-selecao.normal {
+/* Botão de seleção normal */
+.botao-selecao {
+    margin-top: 10px;
     padding: 10px 20px;
     background-color: black;
     color: white;
     border-radius: 6px;
     font-size: 0.9em;
     cursor: pointer;
+    transition: all 0.3s ease;
     width: 100px;
     border: 2px solid black;
+}
+
+/* Alteração de estilo ao clicar */
+.botao-selecao:active {
+    transform: scale(0.95);
 }

@@ -49,6 +49,13 @@ function Selection() {
 
   const [currentFilmIndex, setCurrentFilmIndex] = useState(filmeIndex);
 
+  // Verifica se a lista de filmes está vazia e redireciona para o FinalDaFila
+  useEffect(() => {
+    if (filmes.length === 0) {
+      navigate('/FinalDaFila');
+    }
+  }, [filmes, navigate]);
+
   useEffect(() => {
     setCurrentFilmIndex(filmeIndex); // Atualizando o índice do filme quando a página é carregada
   }, [filmeIndex]);
@@ -57,7 +64,9 @@ function Selection() {
     if (currentFilmIndex < filmes.length - 1) {
       setCurrentFilmIndex(currentFilmIndex + 1);
     } else {
-      alert("Você assistiu todos os filmes!");
+      // Aqui removemos a mensagem de "Você assistiu todos os filmes!".
+      // Se necessário, podemos realizar outra ação aqui, como redirecionar para uma página específica.
+      navigate("/FinalDaFila"); // Redireciona para a página FinalDaFila quando acabar a lista de filmes
     }
   };
 

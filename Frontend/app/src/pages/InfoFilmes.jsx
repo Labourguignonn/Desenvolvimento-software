@@ -7,11 +7,12 @@ function InfoFilmes() {
   
   // Recuperando o filme e o índice passado na navegação
   const location = useLocation();
-  const filme = location.state.filme; // O filme foi passado através de `state`
-  const filmeIndex = location.state.index; // O índice do filme na lista
+  const filme = location.state?.filme; // O filme foi passado através de `state`
+  const filmeIndex = location.state?.index; // O índice do filme na lista
 
+  // Caso o filme não tenha sido passado corretamente, exibe um erro
   if (!filme) {
-    return <div>Erro: Nenhum filme encontrado!</div>; // Caso o estado não tenha sido passado corretamente
+    return <div>Erro: Nenhum filme encontrado!</div>;
   }
 
   return (
@@ -59,7 +60,7 @@ function InfoFilmes() {
               </button>
               <button
                 className="botao-infofilmes"
-                onClick={() => navigate("/Selection", { state: { index: filmeIndex} })}
+                onClick={() => navigate("/Selection", { state: { index: filmeIndex } })}
               >
                 Não
               </button>
