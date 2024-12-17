@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles/selection.css';
 
 function Selection() {
   const navigate = useNavigate();
-
+  
+  // Lista de filmes
   const filmes = [
     {
       titulo: "Mad Max: Estrada da Fúria",
@@ -41,14 +42,21 @@ function Selection() {
       diretor: "Roberto Santucci",
       duracao: "99 min",
       ondeAssistir: "Amazon Prime Video, YouTube (aluguel), Globo Play, Apple TV"
-    }       
+    }
   ];
 
-  const [filmeIndex, setFilmeIndex] = useState(0);
+  const location = useLocation();
+  const filmeIndex = location.state?.index || 0; // Pegando o índice passado ou 0 caso não tenha sido passado
+
+  const [currentFilmIndex, setCurrentFilmIndex] = useState(filmeIndex);
+
+  useEffect(() => {
+    setCurrentFilmIndex(filmeIndex); // Atualizando o índice do filme quando a página é carregada
+  }, [filmeIndex]);
 
   const proximoFilme = () => {
-    if (filmeIndex < filmes.length - 1) {
-      setFilmeIndex(filmeIndex + 1);
+    if (currentFilmIndex < filmes.length - 1) {
+      setCurrentFilmIndex(currentFilmIndex + 1);
     } else {
       alert("Você assistiu todos os filmes!");
     }
@@ -59,10 +67,10 @@ function Selection() {
       <div id="conteinerFilme">
         <img
           id="filmeSelection"
-          src={filmes[filmeIndex].imagem}
-          alt={filmes[filmeIndex].titulo}
+          src={filmes[currentFilmIndex].imagem}
+          alt={filmes[currentFilmIndex].titulo}
         />
-        <h3>{filmes[filmeIndex].titulo}</h3>
+        <h3>{filmes[currentFilmIndex].titulo}</h3>
         <div id="pergunta">
           <div>
             <p>Você já assistiu a esse filme?</p>
@@ -76,7 +84,7 @@ function Selection() {
             </button>
             <button
               className="botao-selecao"
-              onClick={() => navigate("/InfoFilmes", { state: filmes[filmeIndex] })}
+              onClick={() => navigate("/InfoFilmes", { state: { filme: filmes[currentFilmIndex], index: currentFilmIndex + 1 } })}
             >
               Não
             </button>
