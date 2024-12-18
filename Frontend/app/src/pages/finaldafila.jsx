@@ -2,8 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import '../styles/finaldafila.css'; 
 
-// Importando a imagem corretamente
-import FinalDaFilaImage from '../assets/final-da-fila.png'; // Caminho relativo para a imagem
+import FinalDaFilaImage from '../assets/final-da-fila.png'; 
 
 const FinalDaFila = () => {
   const navigate = useNavigate(); 
@@ -12,7 +11,7 @@ const FinalDaFila = () => {
     <div className="Conteiner-final-da-fila">
         <img 
           id="flock-triste" 
-          src={FinalDaFilaImage}  // Usando a imagem importada diretamente
+          src={FinalDaFilaImage}  
           alt="Imagem final da fila" 
         />
         
