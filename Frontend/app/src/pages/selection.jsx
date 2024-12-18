@@ -45,28 +45,28 @@ function Selection() {
   ];
 
   const location = useLocation();
-  const filmeIndex = location.state?.index || 0; // Pegando o índice passado ou 0 caso não tenha sido passado
+  const filmeIndex = location.state?.index || 0;
 
   const [currentFilmIndex, setCurrentFilmIndex] = useState(filmeIndex);
+  const [isLastFilm, setIsLastFilm] = useState(false); // Estado para verificar se é o último filme
 
   // Verifica se a lista de filmes está vazia e redireciona para o FinalDaFila
   useEffect(() => {
     if (filmes.length === 0) {
       navigate('/FinalDaFila');
     }
-  }, [filmes, navigate]);
+  }, [navigate]);
 
+  // Atualiza o índice do filme atual e verifica se é o último
   useEffect(() => {
-    setCurrentFilmIndex(filmeIndex); // Atualizando o índice do filme quando a página é carregada
-  }, [filmeIndex]);
+    setIsLastFilm(currentFilmIndex === filmes.length - 1);
+  }, [currentFilmIndex, filmes]);
 
   const proximoFilme = () => {
     if (currentFilmIndex < filmes.length - 1) {
       setCurrentFilmIndex(currentFilmIndex + 1);
     } else {
-      // Aqui removemos a mensagem de "Você assistiu todos os filmes!".
-      // Se necessário, podemos realizar outra ação aqui, como redirecionar para uma página específica.
-      navigate("/FinalDaFila"); // Redireciona para a página FinalDaFila quando acabar a lista de filmes
+      navigate("/FinalDaFila");
     }
   };
 
@@ -92,7 +92,15 @@ function Selection() {
             </button>
             <button
               className="botao-selecao"
-              onClick={() => navigate("/InfoFilmes", { state: { filme: filmes[currentFilmIndex], index: currentFilmIndex + 1 } })}
+              onClick={() =>
+                navigate("/InfoFilmes", { 
+                  state: { 
+                    filme: filmes[currentFilmIndex], 
+                    index: currentFilmIndex + 1,
+                    isLastFilm 
+                  } 
+                })
+              }
             >
               Não
             </button>

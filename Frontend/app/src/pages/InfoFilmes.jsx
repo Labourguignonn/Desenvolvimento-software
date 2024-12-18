@@ -1,14 +1,15 @@
 import React from "react";
-import { useLocation, useNavigate } from 'react-router-dom';
-import '../styles/InfoFilmes.css';
+import { useLocation, useNavigate } from "react-router-dom";
+import "../styles/InfoFilmes.css";
 
 function InfoFilmes() {
   const navigate = useNavigate();
   
-  // Recuperando o filme e o índice passado na navegação
+  // Recuperando o filme e as informações passadas na navegação
   const location = useLocation();
   const filme = location.state?.filme; // O filme foi passado através de `state`
   const filmeIndex = location.state?.index; // O índice do filme na lista
+  const isLastFilm = location.state?.isLastFilm; // Verifica se é o último filme
 
   // Caso o filme não tenha sido passado corretamente, exibe um erro
   if (!filme) {
@@ -60,7 +61,13 @@ function InfoFilmes() {
               </button>
               <button
                 className="botao-infofilmes"
-                onClick={() => navigate("/Selection", { state: { index: filmeIndex } })}
+                onClick={() => {
+                  if (isLastFilm) {
+                    navigate("/FinalDaFila");
+                  } else {
+                    navigate("/Selection", { state: { index: filmeIndex } });
+                  }
+                }}
               >
                 Não
               </button>
