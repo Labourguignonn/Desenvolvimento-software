@@ -14,7 +14,7 @@
 
 /* Estilos para o contêiner das informações do filme */
 .container-info-filme {
-  max-width: 600px;
+  max-width: 80vh;
   height: 50vh;
   display: flex;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -29,8 +29,7 @@
 #poster {
   flex: 1;
   padding-left: 15px;
-  max-width: 200px; /* Largura máxima reduzida */
-  max-height: 250px; /* Altura máxima forçada */
+  max-width: 30vw; /* Largura máxima reduzida */
   width: 100%; /* Garante que a largura se ajuste */
   height: auto; /* Mantém a proporção */
   object-fit: contain; /* Garante que a imagem não fique distorcida */
