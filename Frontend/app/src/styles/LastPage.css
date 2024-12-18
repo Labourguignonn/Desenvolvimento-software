@@ -12,18 +12,15 @@
   max-width: 1200px;
 }
 
-/* Estilo para o texto "Hora da pipoca" */
 .last-page-text {
   font-size: 2rem;
   font-weight: bold;
   color: #333;
 }
 
-/* Estilo para o iframe do Giphy */
-.giphy-embed {
-  border: none;
-  width: auto;  /* Força a largura para 600px */
-  height: 400px; /* Força a altura para 600px */
-  border-radius: 10px;
-  pointer-events: none;  /* Desabilita a interatividade do GIF */
+#flock-comendo-pipoca {
+  height: 50%;  
+  max-width: 400px; 
+  margin-bottom: 30px; 
+  border-radius: 10px; 
 }
