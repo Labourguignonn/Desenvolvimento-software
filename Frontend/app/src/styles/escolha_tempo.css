@@ -1,9 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Container principal */
 .container-tempo {
   display: flex;
   flex-direction: row;
@@ -12,9 +7,9 @@
   height: 100vh;
   width: 96vw;
   background-color: white;
-  font-family: Arial, sans-serif;
-  box-sizing: border-box;
   max-width: 1200px; /* Limita a largura máxima */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  padding: 5px; /* Reduz o padding geral da página */
 }
 
 /* Seção esquerda (30% da largura do container) */
@@ -23,9 +18,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex: 1; /* 1 parte da proporção 1:2 */
+  flex: 1;
   height: 100%;
-  position: relative;
+  padding: 5px; /* Reduz o padding da seção esquerda */
 }
 
 /* Título da seção esquerda */
@@ -35,17 +30,20 @@
   font-size: 4.5rem;
   line-height: 1.2;
   text-decoration: underline;
+  text-align: center;
+  margin-bottom: 10px; /* Adiciona um pequeno espaçamento abaixo do título */
 }
 
 /* Seção direita (70% da largura do container) */
 .right-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Garante que os itens sejam centralizados */
   justify-content: center;
-  flex: 2; /* 2 partes da proporção 1:2 */
+  flex: 2;
   height: 100%;
   position: relative;
+  padding: 5px; /* Reduz o padding da seção direita */
 }
 
 /* Linha do timeline */
@@ -135,4 +133,59 @@
 /* Efeito de hover para os botões de navegação */
 .nav-button-left:hover, .nav-button-right:hover {
   background-color: #444;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 1024px) {
+  .container-tempo {
+    flex-direction: column; /* Muda para coluna em telas menores */
+    width: 100%; /* Faz com que ocupe 100% da largura */
+  }
+
+  .left-section_tempo, .right-section {
+    flex: unset; /* Remove a flexibilidade para que as seções se comportem de forma independente */
+    width: 100%; /* As seções devem ocupar toda a largura disponível */
+  }
+
+  .title {
+    font-size: 3rem; /* Reduz o tamanho da fonte em telas menores */
+  }
+
+  .timeline {
+    max-width: 90%; /* Ajusta a largura da linha do timeline */
+  }
+
+  .nav-button-left, .nav-button-right {
+    bottom: 20px; /* Ajusta a posição dos botões */
+    left: 10px;
+    right: 10px;
+    font-size: 1.2rem; /* Reduz o tamanho da fonte dos botões */
+    padding: 8px 15px; /* Ajusta o padding */
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem; /* Reduz ainda mais o tamanho da fonte */
+  }
+
+  .timeline {
+    max-width: 80%; /* Ajusta a largura do timeline */
+  }
+
+  .nav-button-left, .nav-button-right {
+    font-size: 1.2rem; /* Mantém o tamanho da fonte reduzido */
+    padding: 8px 15px; /* Ajusta o padding */
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem; /* Reduz o tamanho da fonte para telas muito pequenas */
+  }
+
+  .nav-button-left, .nav-button-right {
+    font-size: 1rem; /* Ajusta o tamanho da fonte dos botões para telas pequenas */
+    padding: 8px 12px; /* Ajusta o padding */
+  }
 }

@@ -9,12 +9,13 @@
   width: 100vw;
   max-width: 1200px;
   padding-top: 20px;
+  justify-content: center; /* Centraliza o conteúdo internamente */
 }
 
 /* Estilos para o contêiner das informações do filme */
 .container-info-filme {
   max-width: 600px;
-  height: 60vh;
+  height: 50vh;
   display: flex;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 15px; /* Reduzido de 20px para 15px */

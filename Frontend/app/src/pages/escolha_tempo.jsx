@@ -40,7 +40,7 @@ const TimeSelection = () => {
         </div>
       </div>
 
-      <button className="nav-button-left" onClick={() => navigate('/escolha_generos')}>←</button>
+      <button className="nav-button-left" onClick={() => navigate('/')}>←</button>
       <button className="nav-button-right" onClick={() => navigate('/filtroidade')}>→</button>
     </div>
   );

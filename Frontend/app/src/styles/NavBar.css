@@ -13,6 +13,9 @@
     display: flex; /* Torna o container flexível */
     align-items: center; /* Centraliza verticalmente */
     justify-content: space-between; /* Ajusta a posição do conteúdo dentro da barra */
+    left: 0; /* Garante que ocupe toda a largura da tela */
+    right: 0; /* Garante que ocupe toda a largura da tela */
+    margin: 0; /* Remove qualquer margem que possa interferir com o layout */
 }
 
 /* Título do Navbar */
@@ -25,4 +28,16 @@
     white-space: nowrap; /* Evita quebra de linha no título */
     overflow: hidden; /* Impede transbordamento do título */
     text-overflow: ellipsis; /* Adiciona "..." se o título for muito longo */
+}
+
+/* Para garantir que o conteúdo abaixo do Navbar não seja afetado */
+#content {
+    padding-top: 60px; /* Garante que o conteúdo não fique escondido atrás do Navbar */
+}
+
+/* Estilo para o Body, sem alterar o comportamento do Navbar */
+body {
+    margin: 0; /* Garante que o body não tenha margens externas */
+    padding: 0; /* Garante que o body não tenha padding adicional */
+    font-family: Arial, sans-serif; /* Definindo a fonte do corpo */
 }

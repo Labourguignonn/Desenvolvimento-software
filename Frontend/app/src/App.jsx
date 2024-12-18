@@ -10,13 +10,13 @@ import Selection from "./pages/selection.jsx";
 import InfoFilmes from "./pages/InfoFilmes.jsx";
 import LastPage from "./pages/LastPage.jsx";
 import FinalDaFila from './pages/finaldafila.jsx'; 
+import "./App.css"
 import axios from "axios";
 
 const App = () => {
   return (
     <Router>
       <Navbar />
-      <div style={{ paddingTop: "10vh" }}></div>
       <Routes>
         <Route path="/" element={<GenreSelection />} />
         <Route path="/escolha_tempo" element={<TimeSelection />} />
