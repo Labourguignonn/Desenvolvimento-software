@@ -21,9 +21,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 30%;
+    flex: 1;
     height: 100%;
-    position: relative;
+    padding: 5px;
 }
 h1 {
     font-size: 4.5em;
@@ -33,16 +33,15 @@ h1 {
 .lado_direito {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    width: 70%;
+    flex: 1;
     height: 100%;
+    padding: 5px;
     position: relative;
 }
 .row {
     display: flex;
     align-items: center;
-    gap: 5px; /* Espaço entre os itens */
     margin-bottom: 15px;
     height: 70px;
     width: 350px;

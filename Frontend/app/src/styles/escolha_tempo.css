@@ -2,17 +2,17 @@
 .container-tempo {
   display: flex;
   flex-direction: row;
-  justify-content: center; /* Centraliza as seções */
-  align-items: stretch; /* Faz com que as seções ocupem toda a altura */
+  justify-content: center;
+  align-items: stretch;
   height: 100vh;
   width: 96vw;
   background-color: white;
-  max-width: 1200px; /* Limita a largura máxima */
-  margin: 0 auto; /* Centraliza horizontalmente */
-  padding: 5px; /* Reduz o padding geral da página */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5px;
 }
 
-/* Seção esquerda (30% da largura do container) */
+/* Seção esquerda */
 .left-section_tempo {
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@
   align-items: center;
   flex: 1;
   height: 100%;
-  padding: 5px; /* Reduz o padding da seção esquerda */
+  padding: 5px;
 }
 
 /* Título da seção esquerda */
@@ -31,19 +31,19 @@
   line-height: 1.2;
   text-decoration: underline;
   text-align: center;
-  margin-bottom: 10px; /* Adiciona um pequeno espaçamento abaixo do título */
+  margin-bottom: 10px;
 }
 
-/* Seção direita (70% da largura do container) */
+/* Seção direita */
 .right-section {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Garante que os itens sejam centralizados */
+  align-items: center;
   justify-content: center;
   flex: 2;
   height: 100%;
   position: relative;
-  padding: 5px; /* Reduz o padding da seção direita */
+  padding: 5px;
 }
 
 /* Linha do timeline */
@@ -57,6 +57,19 @@
   margin-bottom: 20px;
 }
 
+/* Linha do timeline entre os pontos */
+.timeline::after {
+  content: "";
+  position: absolute;
+  top: 50%; /* Alinha a linha verticalmente no centro */
+  left: calc(12px + 20px); /* Começa após a primeira bolinha */
+  right: calc(12px + 20px); /* Termina antes da última bolinha */
+  height: 4px; /* Espessura da linha */
+  background-color: black;
+  transform: translateY(-50%);
+  z-index: 0; /* Linha sempre atrás */
+}
+
 /* Ponto de tempo no timeline */
 .time-point {
   display: flex;
@@ -64,47 +77,37 @@
   align-items: center;
   cursor: pointer;
   position: relative;
+  z-index: 1; /* Bolinhas sempre na frente */
 }
 
 /* Estilo do ponto de tempo antes de ser selecionado */
 .time-point::before {
   content: "";
-  width: 20px;
-  height: 20px;
+  width: 4vh;
+  height: 4vh;
   background-color: black;
   border-radius: 50%;
   position: absolute;
-  top: -10px;
+  top: 50%; /* Centraliza a bolinha na linha */
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 /* Estilo do ponto de tempo quando selecionado */
 .time-point.selected::before {
-  background-color: #007bff; /* Cor azul para o selecionado */
-  width: 25px;
-  height: 25px;
+  background-color: #007bff;
+  width: 4vh;
+  height: 4vh;
+  border: 3px solid black;
 }
 
 /* Rótulo de cada ponto de tempo */
 .time-label {
-  margin-top: 20px;
+  margin-top: 10vh; /* Aumenta a distância do texto em relação à bolinha */
   font-size: 1.3rem;
   text-align: center;
   color: black;
-}
-
-/* Linha do timeline entre os pontos */
-.timeline::after {
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 5%;
-  right: 5%;
-  height: 5.5px;
-  background-color: black;
-  transform: translateY(-50%);
-  z-index: 0;
 }
 
 /* Botões de navegação à esquerda e à direita */
@@ -134,4 +137,3 @@
 .nav-button-left:hover, .nav-button-right:hover {
   background-color: #444;
 }
-

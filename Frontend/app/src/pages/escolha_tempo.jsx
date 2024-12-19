@@ -59,7 +59,7 @@ const TimeSelection = () => {
         className="nav-button-right"
         onClick={() => {
           enviarTempoParaBackend(); // Envia o tempo ao backend
-          navigate('/filtroidade'); // Navega para a próxima página
+          navigate('/'); // Navega para a próxima página
         }}
       >
         →
