@@ -1,6 +1,6 @@
 IndicaAi Software development
 
-#PROFESSORES
+##PROFESSORES
 
 O nosso código upado na main não contém a chave api, pois o github não permite. Caso os senhores queiram testar o código, devem colocar a chave da OpenAI api na string vazia do arquivo main.py, que está dentro do subdiretório Backend.
 
