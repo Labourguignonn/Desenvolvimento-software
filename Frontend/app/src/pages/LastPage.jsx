@@ -1,16 +1,17 @@
 import React from "react";
 import '../styles/LastPage.css';
 
+import LastPageImage from '../assets/flork-pipoca.png'; 
+
 const LastPage = () => {
   return (
     <div id="conteiner-lastpage">
       <p className="last-page-text">Hora da pipoca</p>
-      <iframe
-        src="https://giphy.com/embed/pUeXcg80cO8I8"
-        className="giphy-embed"
-        allowFullScreen
-        title="Hora da Pipoca"
-      ></iframe>
+        <img 
+          id="flock-comendo-pipoca" 
+          src={LastPageImage}  
+          alt="Imagem final da fila" 
+        />
     </div>
   );
 };

@@ -52,7 +52,6 @@ const TimeSelection = () => {
           ))}
         </div>
       </div>
-
       <button className="nav-button-left" onClick={() => navigate('/escolha_generos')}>←</button>
       
       {/* Botão que envia o tempo ao backend antes de navegar */}

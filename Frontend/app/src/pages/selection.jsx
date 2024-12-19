@@ -13,6 +13,7 @@ function Selection() {
   const location = useLocation();
   const filmeIndex = location.state?.index || 0;
 
+
   const posterBaseURL = "https://image.tmdb.org/t/p/w500";
 
   useEffect(() => {
@@ -44,9 +45,11 @@ function Selection() {
     }
   }, [loading, dataDict, navigate]);
 
+  // Atualiza o índice do filme atual e verifica se é o último
   useEffect(() => {
     setCurrentFilmIndex(filmeIndex);
   }, [filmeIndex]);
+
 
   const proximoFilme = () => {
     if (dataDict && currentFilmIndex < dataDict.title.length - 1) {

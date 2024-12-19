@@ -1,10 +1,11 @@
 import React from "react";
-import { useLocation, useNavigate } from 'react-router-dom';
-import '../styles/InfoFilmes.css';
+import { useLocation, useNavigate } from "react-router-dom";
+import "../styles/InfoFilmes.css";
 
 function InfoFilmes() {
   const navigate = useNavigate();
   
+
   // Recuperando o filme, o índice e o dicionário de filmes passados na navegação
   const location = useLocation();
   const filme = location.state?.filme; // O filme foi passado através de `state`
