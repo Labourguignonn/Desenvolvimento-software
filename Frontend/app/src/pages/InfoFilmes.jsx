@@ -38,9 +38,6 @@ function InfoFilmes() {
             <p id="sinopse-texto">{filme.overview}</p>
             <div id="detalhes">
               <div className="detalhe-item">
-                <strong>Ano: </strong><span>{filme.runtime}</span>
-              </div>
-              <div className="detalhe-item">
                 <strong>Diretor: </strong><span>{filme.Diretor}</span>
               </div>
               <div className="detalhe-item">
