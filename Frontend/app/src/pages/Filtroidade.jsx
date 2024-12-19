@@ -23,7 +23,7 @@ function Filtroidade() {
   // Função para enviar os dados para o backend
   const enviarDadosParaBackend = (botaoClicado) => {
     axios
-      .post("/api/clicks", {
+      .post("http://localhost:5000/api/clicks", {
         botaoClicado,
       })
       .then((response) => {

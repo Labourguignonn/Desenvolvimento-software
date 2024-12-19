@@ -5,15 +5,19 @@ import '../styles/InfoFilmes.css';
 function InfoFilmes() {
   const navigate = useNavigate();
   
-  // Recuperando o filme e o índice passado na navegação
+  // Recuperando o filme, o índice e o dicionário de filmes passados na navegação
   const location = useLocation();
   const filme = location.state?.filme; // O filme foi passado através de `state`
   const filmeIndex = location.state?.index; // O índice do filme na lista
+  const dataDict = location.state?.dataDict; // O dicionário de filmes completo
 
   // Caso o filme não tenha sido passado corretamente, exibe um erro
   if (!filme) {
     return <div>Erro: Nenhum filme encontrado!</div>;
   }
+
+  // Você pode usar `dataDict` aqui para acessar outros filmes, se necessário
+  console.log("Dicionário de filmes:", dataDict);
 
   return (
     <>
@@ -23,26 +27,23 @@ function InfoFilmes() {
             {/* Exibindo a imagem do filme */}
             <img
               id="filme-selection"
-              src={filme.imagem}
-              alt={filme.titulo}
+              src={filme.poster_path}  // Aqui agora você deve usar o `poster_path` completo
+              alt={filme.title}
             />
           </div>
 
           <div id="infos-infofilmes">
-            <h3 id="titulo">{filme.titulo}</h3>
-            <p id="sinopse-texto">{filme.descricao}</p>
+            <h3 id="titulo">{filme.title}</h3>
+            <p id="sinopse-texto">{filme.overview}</p>
             <div id="detalhes">
               <div className="detalhe-item">
-                <strong>Ano: </strong><span>{filme.ano}</span>
+                <strong>Ano: </strong><span>{filme.runtime}</span>
               </div>
               <div className="detalhe-item">
-                <strong>Diretor: </strong><span>{filme.diretor}</span>
+                <strong>Diretor: </strong><span>{filme.Diretor}</span>
               </div>
               <div className="detalhe-item">
-                <strong>Duração: </strong><span>{filme.duracao}</span>
-              </div>
-              <div className="detalhe-item">
-                <strong>Onde Assistir: </strong><span>{filme.ondeAssistir}</span>
+                <strong>Duração: </strong><span>{filme.runtime}</span>
               </div>
             </div>
           </div>
@@ -60,7 +61,7 @@ function InfoFilmes() {
               </button>
               <button
                 className="botao-infofilmes"
-                onClick={() => navigate("/Selection", { state: { index: filmeIndex } })}
+                onClick={() => navigate("/Selection", { state: { index: filmeIndex, dataDict: dataDict } })}
               >
                 Não
               </button>
