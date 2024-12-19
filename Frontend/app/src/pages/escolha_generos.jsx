@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
+import axios from "axios"; // Para enviar dados para o backend
 import "../styles/escolha_generos.css";
 
 const GenreSelection = () => {
   const navigate = useNavigate();
 
-  // Estados iniciais corrigidos
   const [genres, setGenres] = useState([
     "Ação",
     "Aventura",
@@ -20,18 +19,22 @@ const GenreSelection = () => {
     "Animação"
   ]);
 
-  const [selectedGenres, setSelectedGenres] = useState([]); // Inicialize como array vazio
-  const [loading, setLoading] = useState(false); // Não há loading agora
-  const [error, setError] = useState(null); // Não há erros no frontend
+  const [selectedGenres, setSelectedGenres] = useState([]); // Gêneros selecionados
+  const [loading, setLoading] = useState(false); // Loading
+  const [error, setError] = useState(null); // Erros
 
   const newGenres = ["Documentário", "Musical", "Histórico"];
 
   const toggleGenre = (genre) => {
-    setSelectedGenres((prevSelected) =>
-      prevSelected.includes(genre)
-        ? prevSelected.filter((item) => item !== genre)
-        : [...prevSelected, genre]
-    );
+    if (selectedGenres.includes(genre)) {
+      // Se o gênero já estiver selecionado, remove ele
+      setSelectedGenres((prevSelected) =>
+        prevSelected.filter((item) => item !== genre)
+      );
+    } else if (selectedGenres.length < 3) {
+      // Se não tiver 3 gêneros selecionados, adiciona o gênero
+      setSelectedGenres((prevSelected) => [...prevSelected, genre]);
+    }
   };
 
   const addGenres = () => {
@@ -46,10 +49,23 @@ const GenreSelection = () => {
     });
   };
 
-  // Substituí a handleSubmit para evitar erro
+  // Função para enviar os dados para o backend
   const handleSubmit = () => {
-    console.log("Gêneros selecionados:", selectedGenres);
-    navigate("/escolha_tempo"); // Apenas navega
+    if (selectedGenres.length === 3) {
+      // Se tiver 3 gêneros selecionados, envia para o backend
+      axios
+        .post("http://localhost:5000/api/selecionar_generos", { selectedGenres })
+        .then((response) => {
+          console.log("Gêneros enviados com sucesso:", response.data);
+          navigate("/escolha_tempo"); // Navega após o envio
+        })
+        .catch((error) => {
+          console.error("Erro ao enviar os gêneros:", error);
+          setError("Erro ao enviar os dados.");
+        });
+    } else {
+      setError("Por favor, selecione 3 gêneros.");
+    }
   };
 
   return (
@@ -70,7 +86,9 @@ const GenreSelection = () => {
             genres.map((genre, index) => (
               <button
                 key={index}
-                className={`genre-button ${selectedGenres.includes(genre) ? "selected" : ""}`}
+                className={`genre-button ${
+                  selectedGenres.includes(genre) ? "selected" : ""
+                }`}
                 onClick={() => toggleGenre(genre)}
               >
                 {genre}

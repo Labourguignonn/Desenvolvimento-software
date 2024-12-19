@@ -61,6 +61,6 @@ def collecting_data(films_lists, MaxRuntime):
                 if(iterar[j]["job"] == "Director"):
                     base["Diretor"][len(right_films_list) - 1].append(iterar[j]["name"])
                     break
-    return (base, right_films_list)
+    return (base)
 
 

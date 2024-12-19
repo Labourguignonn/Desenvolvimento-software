@@ -1,112 +1,115 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from 'react-router-dom';
-import '../styles/selection.css';
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
+import "../styles/selection.css";
 
 function Selection() {
   const navigate = useNavigate();
-  
-  const filmes = [
-    {
-      titulo: "Mad Max: Estrada da Fúria",
-      imagem: "https://m.media-amazon.com/images/S/pv-target-images/f751f274cb2835ccc6d09ff239383d3824d90fcca561a23c1480d1eb9bdee362.jpg",
-      descricao: "Após ser capturado por Immortan Joe, um guerreiro das estradas chamado Max (Tom Hardy) se vê no meio de uma guerra mortal, iniciada pela Imperatriz Furiosa (Charlize Theron) na tentativa se salvar um grupo de garotas. Também tentanto fugir, Max aceita ajudar Furiosa em sua luta contra Joe e se vê dividido entre mais uma vez seguir sozinho seu caminho ou ficar com o grupo.",
-      ano: "2015",
-      diretor: "George Miller",
-      duracao: "120 min",
-      ondeAssistir: "Max, Prime Vídeo, Apple TV+",
-    },
-    {
-      titulo: "Interstellar",
-      imagem: "https://cinemaeargumento.com/wp-content/uploads/2014/11/interstellarposter.jpg",
-      descricao: "Após ver a Terra consumindo boa parte de suas reservas naturais, um grupo de astronautas recebe a missão de verificar possíveis planetas para receberem a população mundial, possibilitando a continuação da espécie. Cooper (Matthew McConaughey) é chamado para liderar o grupo e aceita a missão sabendo que pode nunca mais ver os filhos. Ao lado de Brand (Anne Hathaway), Jenkins (Marlon Sanders) e Doyle (Wes Bentley), ele seguirá em busca de uma nova casa. Com o passar dos anos, sua filha Murph (Mackenzie Foy/Jessica Chastain) investirá numa própria jornada para também tentar salvar a população do planeta.",
-      ano: "2014",
-      diretor: "Christopher Nolan",
-      duracao: "169 min",
-      ondeAssistir: "Plataforma X",
-    },
-    {
-      titulo: "Lisbela e o Prisioneiro",
-      imagem: "https://m.media-amazon.com/images/I/616H6Wy5miL._SL1000_.jpg",
-      descricao: "Lisbela é uma jovem sonhadora que adora filmes americanos e sonha com os heróis do cinema. Leléu é um malandro aventureiro e conquistador. Eles se conhecem e se apaixonam, mas Lisbela está noiva de outro homem.",
-      ano: "2021",
-      diretor: "Guel Arraes",
-      duracao: "105 min",
-      ondeAssistir: "Google Play",
-    },
-    {
-      titulo: "Os Farofeiros",
-      imagem: "https://br.web.img3.acsta.net/pictures/18/01/03/19/24/3938254.jpg",
-      descricao: "Quatro colegas de trabalho se programam para curtir o feriado prolongado em uma casa de praia e, chegando lá, descobrem que se meteram em uma tremenda roubada. Para começar o destino não é Búzios, mas Maringuaba; a residência alugada é encontrada caindo aos pedaços, bem diferente do prometido; a praia está sempre cheia; e as confusões são inúmeras.",
-      ano: "2018",
-      diretor: "Roberto Santucci",
-      duracao: "99 min",
-      ondeAssistir: "Amazon Prime Video, YouTube (aluguel), Globo Play, Apple TV"
-    }
-  ];
+
+  const [currentFilmIndex, setCurrentFilmIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [dataDict, setDataDict] = useState(null);
 
   const location = useLocation();
   const filmeIndex = location.state?.index || 0;
 
-  const [currentFilmIndex, setCurrentFilmIndex] = useState(filmeIndex);
-  const [isLastFilm, setIsLastFilm] = useState(false); // Estado para verificar se é o último filme
 
-  // Verifica se a lista de filmes está vazia e redireciona para o FinalDaFila
+  const posterBaseURL = "https://image.tmdb.org/t/p/w500";
+
   useEffect(() => {
-    if (filmes.length === 0) {
-      navigate('/FinalDaFila');
+    const fetchFilmes = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/entregar-filmes");
+        const dataDict = response.data.data_dict;
+
+        if (dataDict && dataDict.title) {
+          setDataDict(dataDict);
+          setLoading(false);
+        } else {
+          console.error("Estrutura de dados inválida ou vazia:", dataDict);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar filmes da API:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchFilmes();
+  }, []);
+
+  useEffect(() => {
+    if (!loading && (!dataDict || !dataDict.title.length)) {
+      console.log("Sem filmes disponíveis. Redirecionando...");
+      navigate("/FinalDaFila");
     }
-  }, [navigate]);
+  }, [loading, dataDict, navigate]);
 
   // Atualiza o índice do filme atual e verifica se é o último
   useEffect(() => {
-    setIsLastFilm(currentFilmIndex === filmes.length - 1);
-  }, [currentFilmIndex, filmes]);
+    setCurrentFilmIndex(filmeIndex);
+  }, [filmeIndex]);
+
 
   const proximoFilme = () => {
-    if (currentFilmIndex < filmes.length - 1) {
+    if (dataDict && currentFilmIndex < dataDict.title.length - 1) {
       setCurrentFilmIndex(currentFilmIndex + 1);
     } else {
+      console.log("Fim da lista de filmes. Redirecionando...");
       navigate("/FinalDaFila");
     }
   };
 
+  const filmeAtual = dataDict && dataDict.title[currentFilmIndex] ? {
+    title: dataDict.title[currentFilmIndex],
+    poster_path: dataDict.poster_path?.[currentFilmIndex]
+      ? posterBaseURL + dataDict.poster_path[currentFilmIndex]
+      : "URL da imagem padrão", // Usa uma URL padrão se o poster_path não for encontrado
+    overview: dataDict.overview?.[currentFilmIndex] || "Descrição não disponível",
+    Diretor: dataDict.Diretor?.[currentFilmIndex]?.[0] || "Diretor não informado",
+    runtime: dataDict.runtime?.[currentFilmIndex] || "Duração não informada",
+  } : null;
+
   return (
     <div className="home-container">
-      <div id="conteinerFilme">
-        <img
-          id="filmeSelection"
-          src={filmes[currentFilmIndex].imagem}
-          alt={filmes[currentFilmIndex].titulo}
-        />
-        <h3>{filmes[currentFilmIndex].titulo}</h3>
-        <div id="pergunta">
-          <div>
-            <p>Você já assistiu a esse filme?</p>
-          </div>
-          <div>
-            <button
-              className="botao-selecao"
-              onClick={proximoFilme}
-            >
-              Sim
-            </button>
-            <button
-              className="botao-selecao"
-              onClick={() =>
-                navigate("/InfoFilmes", { 
-                  state: { 
-                    filme: filmes[currentFilmIndex], 
-                    index: currentFilmIndex + 1,
-                    isLastFilm 
-                  } 
-                })
-              }
-            >
-              Não
-            </button>
+      {loading ? (
+        <p>Carregando filmes...</p>
+      ) : filmeAtual ? (
+        <div id="conteinerFilme">
+          <img
+            id="filmeSelection"
+            src={filmeAtual.poster_path}
+            alt={filmeAtual.title}
+          />
+          <h3>{filmeAtual.title}</h3>
+          <div id="pergunta">
+            <div>
+              <p>Você já assistiu a esse filme?</p>
+            </div>
+            <div>
+              <button className="botao-selecao" onClick={proximoFilme}>
+                Sim
+              </button>
+              <button
+                className="botao-selecao"
+                onClick={() =>
+                  navigate("/InfoFilmes", {
+                    state: {
+                      filme: filmeAtual,
+                      index: currentFilmIndex + 1,
+                      dataDict: dataDict,
+                    },
+                  })
+                }
+              >
+                Não
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        navigate("/FinalDaFila")
+      )}
     </div>
   );
 }
