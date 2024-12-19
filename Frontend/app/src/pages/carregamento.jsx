@@ -37,13 +37,12 @@ function Carregamento() {
     return (
         <div className="central">
             <div id="container_carregamento">
-                <iframe 
-                    src="https://giphy.com/embed/feN0YJbVs0fwA" 
-                    width="50" 
-                    height="auto" 
-                    className="giphy-embed" 
-                    allowFullScreen
-                ></iframe>
+                <img  src="https://media.tenor.com/wpSo-8CrXqUAAAAj/loading-loading-forever.gif"
+                width="100" 
+                height="auto" 
+                className="giphy-embed" 
+                ></img>
+                <br ></br>
                 <p className="last-page-text">Carregando seus filmes...</p>
                 {isLoading && <p>Aguardando resposta do servidor...</p>} {/* Mensagem de carregamento */}
             </div>         
