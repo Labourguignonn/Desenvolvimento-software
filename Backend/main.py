@@ -3,8 +3,8 @@ from flask_cors import CORS
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from utils import IntegracaoAPI
-from utils import BancoFilmes
+import IntegracaoAPI
+import BancoFilmes
 
 app = Flask(__name__)
 CORS(app)
