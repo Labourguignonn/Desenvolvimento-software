@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import api_banco_de_dados
+import BancoFilmes
 import IntegracaoAPI 
 import os
 
@@ -70,7 +70,7 @@ def processar_filmes():
         generos = ', '.join(generos)
         # Assegure-se de que a função call_openai e collecting_data sejam chamadas corretamente
         print(f"Processando filmes com os dados: classificação={classificacao}, tempo={tempo}, gêneros={generos}")
-        data_dict = api_banco_de_dados.collecting_data(
+        data_dict = BancoFilmes.collecting_data(
             IntegracaoAPI.call_openai(chave, generos, tempo, classificacao), int(tempo)
         )
 
