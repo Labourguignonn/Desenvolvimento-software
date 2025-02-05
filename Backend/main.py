@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import BancoFilmes
+import BancoFilme
 import IntegracaoAPI 
 import os
 
