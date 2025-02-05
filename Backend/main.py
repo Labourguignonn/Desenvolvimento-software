@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import IntegracaoAPI
-import BancoFilmes
+from utils import IntegracaoAPI
+from utils import BancoFilmes
 import os
 
 app = Flask(__name__)
