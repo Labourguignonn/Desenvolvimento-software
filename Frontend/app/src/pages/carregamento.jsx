@@ -16,7 +16,7 @@ function Carregamento() {
             // Verifica se o processamento foi concluído com sucesso
             if (processamento_concluido) {
                 console.log("Filmes processados com sucesso:", data_dict);
-                navigate("/selection");// Armazena os filmes recebidos
+                navigate("/seleção");// Armazena os filmes recebidos
             } else {
                 console.error("Erro no processamento dos filmes.");
                 // Tratar falha de processamento aqui

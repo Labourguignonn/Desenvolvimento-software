@@ -18,14 +18,14 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<GenreSelection />} />
+        <Route path="/escolha_generos" element={<GenreSelection />} />
         <Route path="/escolha_tempo" element={<TimeSelection />} />
-        <Route path="/Filtroidade" element={<Filtroidade />} />
+        <Route path="/escolha_classificacao" element={<Filtroidade />} />
         <Route path="/carregamento" element={<Carregamento />} />
-        <Route path="/InfoFilmes" element={<InfoFilmes />} />
-        <Route path="/Selection" element={<Selection />} />
-        <Route path="/finaldafila" element={<FinalDaFila />} /> 
-        <Route path="/LastPage" element={<LastPage />} />
+        <Route path="/info_filmes" element={<InfoFilmes />} />
+        <Route path="/seleção" element={<Selection />} />
+        <Route path="/final_da_fila" element={<FinalDaFila />} /> 
+        <Route path="/ultima_pagina" element={<LastPage />} />
       </Routes>
     </Router>
   );

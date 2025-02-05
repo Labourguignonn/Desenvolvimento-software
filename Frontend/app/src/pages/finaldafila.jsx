@@ -17,7 +17,7 @@ const FinalDaFila = () => {
         
         <button
           className="botao-refazer-selecao"
-          onClick={() => navigate("/")} 
+          onClick={() => navigate("/escolha_generos")} 
         >
           Clique aqui para refazer a seleção
         </button>

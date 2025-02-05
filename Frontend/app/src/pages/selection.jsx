@@ -41,7 +41,7 @@ function Selection() {
   useEffect(() => {
     if (!loading && (!dataDict || !dataDict.title.length)) {
       console.log("Sem filmes disponíveis. Redirecionando...");
-      navigate("/FinalDaFila");
+      navigate("/final_da_fila");
     }
   }, [loading, dataDict, navigate]);
 
@@ -56,7 +56,7 @@ function Selection() {
       setCurrentFilmIndex(currentFilmIndex + 1);
     } else {
       console.log("Fim da lista de filmes. Redirecionando...");
-      navigate("/FinalDaFila");
+      navigate("/final_da_fila");
     }
   };
 
@@ -93,7 +93,7 @@ function Selection() {
               <button
                 className="botao-selecao"
                 onClick={() =>
-                  navigate("/InfoFilmes", {
+                  navigate("/info_filmes", {
                     state: {
                       filme: filmeAtual,
                       index: currentFilmIndex + 1,
@@ -108,7 +108,7 @@ function Selection() {
           </div>
         </div>
       ) : (
-        navigate("/FinalDaFila")
+        navigate("/final_da_fila")
       )}
     </div>
   );

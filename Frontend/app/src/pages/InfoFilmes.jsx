@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../styles/InfoFilmes.css";
+import "../styles/info_filmes.css";
 
 function InfoFilmes() {
   const navigate = useNavigate();
@@ -53,13 +53,13 @@ function InfoFilmes() {
             <div id="botoes">
               <button
                 className="botao-infofilmes"
-                onClick={() => navigate("/LastPage")}
+                onClick={() => navigate("/ultima_pagina")}
               >
                 Sim
               </button>
               <button
                 className="botao-infofilmes"
-                onClick={() => navigate("/Selection", { state: { index: filmeIndex, dataDict: dataDict } })}
+                onClick={() => navigate("/seleção", { state: { index: filmeIndex, dataDict: dataDict } })}
               >
                 Não
               </button>

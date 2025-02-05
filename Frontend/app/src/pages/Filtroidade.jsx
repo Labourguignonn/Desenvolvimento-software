@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"; // Importe o Axios para enviar os dados
-import "../styles/stylefiltroidade.css";
+import "../styles/filtro_idade.css";
 
 function Filtroidade() {
   const navigate = useNavigate(); // Hook para navegação
@@ -23,7 +23,7 @@ function Filtroidade() {
   // Função para enviar os dados para o backend
   const enviarDadosParaBackend = (botaoClicado) => {
     axios
-      .post("http://localhost:5000/api/clicks", {
+      .post("http://localhost:5000/api/selecionar_classificacao", {
         botaoClicado,
       })
       .then((response) => {

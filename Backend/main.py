@@ -11,18 +11,6 @@ tempo = None
 generos = None
 classificacao = None
 
-# Rota para receber dados do frontend
-@app.route("/api/clicks", methods=["POST"])
-def receber_classificacao():
-    global classificacao  # Para atualizar a variável global
-    data = request.json  # Recebe os dados enviados no body da requisição
-    classificacao = data.get("botaoClicado")  # Obtém o valor do botão clicado
-    if classificacao:
-        print(f"Classificacao recebida: {classificacao}")
-        return jsonify({"message": "Classificação recebida com sucesso!", "classificacao": classificacao}), 200
-    else:
-        return jsonify({"error": "Classificação não enviada!"}), 400
-
 @app.route("/api/tempo", methods=["POST"])
 def receber_tempo():
     global tempo  # Use uma variável global para armazenar o valor
@@ -43,6 +31,18 @@ def selecionar_generos():
         return jsonify({"message": "Gêneros recebidos com sucesso", "selectedGenres": generos}), 200
     else:
         return jsonify({"error": "Selecione exatamente 3 gêneros"}), 400
+    
+# Rota para receber dados do frontend
+@app.route("/api/selecionar_classificacao", methods=["POST"])
+def receber_classificacao():
+    global classificacao  # Para atualizar a variável global
+    data = request.json  # Recebe os dados enviados no body da requisição
+    classificacao = data.get("botaoClicado")  # Obtém o valor do botão clicado
+    if classificacao:
+        print(f"Classificacao recebida: {classificacao}")
+        return jsonify({"message": "Classificação recebida com sucesso!", "classificacao": classificacao}), 200
+    else:
+        return jsonify({"error": "Classificação não enviada!"}), 400
 
 @app.route("/processar-filmes", methods=["GET"])
 def processar_filmes():
