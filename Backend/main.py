@@ -3,6 +3,7 @@ from flask_cors import CORS
 import api_banco_de_dados
 import IntegracaoAPI 
 import os
+
 app = Flask(__name__)
 CORS(app)
 
