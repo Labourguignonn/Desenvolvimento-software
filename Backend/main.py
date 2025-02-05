@@ -11,6 +11,10 @@ tempo = None
 generos = None
 classificacao = None
 
+@app.route("/")
+def home():
+    return "<h1>Deu tudo certo</h1>"
+
 @app.route("/api/receber_chave", methods=["POST"])
 def receber_chave():
     global chave  # Use uma variável global para armazenar o valor
