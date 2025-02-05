@@ -1,0 +1,25 @@
+
+.center_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza horizontalmente os filhos */
+    align-items: center; /* Centraliza verticalmente os filhos */
+    height: 100%; /* Garante que ocupe toda a altura do body */
+    gap: 20px; /* Espaço entre seções */
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 0 auto; /* Centraliza o contêiner horizontalmente */
+    border: 2px solid black;
+}
+
+.input_box {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 300px;
+    outline: none;
+    transition: border-color 0.3s ease;
+   
+}

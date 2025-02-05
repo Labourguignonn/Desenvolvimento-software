@@ -1,9 +1,8 @@
 {
   "builds": [
-    { "src": "index.html", "use": "@vercel/static" }
+    { "src": "Backend/main.py", "use": "@vercel/python" }
   ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "routes": [
+    { "source": "/(.*)", "destination": "Backend/main.py" }
   ]
 }
-

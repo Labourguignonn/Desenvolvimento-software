@@ -2,7 +2,8 @@ import React from "react";
 // import 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar.jsx";
-import GenreSelection from "./pages/escolha_generos";
+import UsuarioSenha from "./pages/usuario_senha";
+import GenreSelection from "./pages/escolha_generos"
 import TimeSelection from "./pages/escolha_tempo";
 import Filtroidade from "./pages/Filtroidade.jsx";
 import Carregamento from "./pages/carregamento.jsx";
@@ -18,6 +19,7 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
+        <Route path="/" element={<UsuarioSenha />} />
         <Route path="/escolha_generos" element={<GenreSelection />} />
         <Route path="/escolha_tempo" element={<TimeSelection />} />
         <Route path="/escolha_classificacao" element={<Filtroidade />} />

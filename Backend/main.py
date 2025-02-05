@@ -2,14 +2,22 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import api_banco_de_dados
 import IntegracaoAPI 
-
+import os
 app = Flask(__name__)
 CORS(app)
 
-chave = ""
+chave = None
 tempo = None
 generos = None
 classificacao = None
+
+@app.route("/api/receber_chave", methods=["POST"])
+def receber_chave():
+    global chave  # Use uma variável global para armazenar o valor
+    data = request.json  # Recebe o JSON enviado pelo frontend
+    chave = data.get("key")  # Atualiza o valor de tempo globalmente
+    print(f"Chave recebida: {chave}")  # Debug: imprime o valor recebido
+    return jsonify({"message": "Tempo recebido com sucesso!", "chave": chave})
 
 @app.route("/api/tempo", methods=["POST"])
 def receber_tempo():
@@ -18,7 +26,7 @@ def receber_tempo():
     time = data.get("time")  # Extrai o valor do tempo
     tempo = time  # Atualiza o valor de tempo globalmente
     print(f"Tempo recebido: {tempo}")  # Debug: imprime o valor recebido
-    return jsonify({"message": "Tempo recebido com sucesso!", "time": tempo})
+    return jsonify({"message": "Chave recebida com sucesso!", "time": tempo})
 
 @app.route("/api/selecionar_generos", methods=["POST"])
 def selecionar_generos():
@@ -53,7 +61,7 @@ def processar_filmes():
         return jsonify({"error": "Faltando dados: classificação, tempo ou gêneros."}), 400
 
     # Caso todos os dados estejam presentes, processa os filmes
-    try:
+    try: 
         generos = ', '.join(generos)
         # Assegure-se de que a função call_openai e collecting_data sejam chamadas corretamente
         print(f"Processando filmes com os dados: classificação={classificacao}, tempo={tempo}, gêneros={generos}")
@@ -93,4 +101,5 @@ def entregar_filmes():
 
 
 if __name__ == "__main__":
+    port = int(os.getenv("PORT", 5000))
     app.run(debug=True, port=5000)
