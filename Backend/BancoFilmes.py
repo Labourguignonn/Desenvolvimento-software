@@ -14,7 +14,7 @@ def getPoster(indice):
     return base["poster_path"][indice]
     
 def getDiretor(indice):
-    return base["Diretor"][indice]
+    return base["director"][indice]
 
 def collecting_data(films_lists, MaxRuntime):
     headers = {

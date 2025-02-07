@@ -38,10 +38,10 @@ function InfoFilmes() {
             <p id="sinopse-texto">{filme.overview}</p>
             <div id="detalhes">
               <div className="detalhe-item">
-                <strong>Diretor: </strong><span>{filme.Diretor}</span>
+                <strong>director: </strong><span>{filme.director}</span>
               </div>
               <div className="detalhe-item">
-                <strong>Duração: </strong><span>{filme.runtime}</span>
+                <strong>runtime: </strong><span>{filme.runtime}</span>
               </div>
             </div>
           </div>

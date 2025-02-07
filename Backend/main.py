@@ -45,7 +45,7 @@ def getSelectedGenres():
     return jsonify({"error": "Selecione de 1 a 3 gêneros"}), 400
     
 @app.route("/selecionar_classificacao", methods=["POST"])
-def receber_classificacao():
+def getSelectedRating():
     global selected_rating 
     
     selected_rating = (request.json).get("botaoClicado")  
