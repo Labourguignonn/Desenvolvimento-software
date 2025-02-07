@@ -22,6 +22,7 @@ const GenreSelection = () => {
   const [selectedGenres, setSelectedGenres] = useState([]); // Gêneros selecionados
   const [loading, setLoading] = useState(false); // Loading
   const [error, setError] = useState(null); // Erros
+  const [showRefazer, setShowRefazer] = useState(false); // Controla a exibição do refazer seleção
 
   const newGenres = ["Documentário", "Musical", "Histórico"];
 
@@ -51,8 +52,8 @@ const GenreSelection = () => {
 
   // Função para enviar os dados para o backend
   const handleSubmit = () => {
-    if (selectedGenres.length === 3) {
-      // Se tiver 3 gêneros selecionados, envia para o backend
+    if (selectedGenres.length <= 3 && selectedGenres.length > 0) {
+      // Se tiver 1,2,3 gêneros selecionados, envia para o backend
       axios
         .post("http://localhost:5000/api/selecionar_generos", { selectedGenres })
         .then((response) => {
@@ -64,8 +65,14 @@ const GenreSelection = () => {
           setError("Erro ao enviar os dados.");
         });
     } else {
-      setError("Por favor, selecione 3 gêneros.");
+      // Se nenhum gênero for selecionado, mostra a opção de refazer a seleção
+      setShowRefazer(true);
     }
+  };
+
+  const handleRefazerSelection = () => {
+    setShowRefazer(false); // Esconde a div de refazer seleção
+    setSelectedGenres([]); // Limpa a seleção de gêneros
   };
 
   return (
@@ -103,6 +110,15 @@ const GenreSelection = () => {
           </button>
         </div>
       </div>
+
+      {showRefazer && (
+        <div className="refazer-container">
+          <p>Por favor, selecione ao menos um gênero para continuar.</p>
+          <button className="refazer-button" onClick={handleRefazerSelection}>
+            Refazer Seleção
+          </button>
+        </div>
+      )}
 
       <button className="nav-button-right" onClick={handleSubmit}>
         →

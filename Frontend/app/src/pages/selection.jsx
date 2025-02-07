@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "../styles/selection.css";
+import { baseURL } from "../config";
 
 function Selection() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function Selection() {
   useEffect(() => {
     const fetchFilmes = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/entregar-filmes");
+        const response = await axios.get(`${baseURL}/entregar-filmes`);
         const dataDict = response.data.data_dict;
 
         if (dataDict && dataDict.title) {

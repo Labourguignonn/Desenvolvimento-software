@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/usuario_senha.css";
+import { baseURL } from "../config";
+
 
 function UsuarioSenha() {
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ function UsuarioSenha() {
     }
 
     axios
-      .post("http://localhost:5000/api/receber_chave", {
+      .post(`${baseURL}/receber_chave`, {
         key: text, // Enviando o valor digitado
       })
       .then((response) => {

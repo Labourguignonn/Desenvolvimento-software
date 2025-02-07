@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import "../styles/escolha_tempo.css";
+import { baseURL } from "../config";
 
 const TimeSelection = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const TimeSelection = () => {
   // Função para enviar o tempo ao backend
   const enviarTempoParaBackend = () => {
     axios
-      .post("http://localhost:5000/api/tempo", { time: selectedTime }) // Envia o tempo ao backend
+      .post(`${baseURL}/tempo`, { time: selectedTime }) // Envia o tempo ao backend
       .then((response) => {
         console.log("Tempo enviado com sucesso:", response.data);
       })

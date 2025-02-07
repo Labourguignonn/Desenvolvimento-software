@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Importando axios para fazer requisições HTTP
 import '../styles/stylecarregamento.css';
+import { baseURL } from "../config";
+
 
 function Carregamento() {
     const [isLoading, setIsLoading] = useState(true); // Estado para controlar o carregamento
@@ -10,7 +12,7 @@ function Carregamento() {
     // Função para chamar o backend e processar filmes
     const processarFilmes = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/processar-filmes');
+            const response = await axios.get(`${baseURL}/processar-filmes`);
             const { data_dict, processamento_concluido } = response.data; // Acessa o dicionário de filmes e o status
 
             // Verifica se o processamento foi concluído com sucesso

@@ -2,79 +2,75 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import IntegracaoAPI
 import BancoFilmes
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 app = Flask(__name__)
 CORS(app)
 CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
-chave = None
-tempo = None
-generos = None
-classificacao = None
+api_key = None
+selected_runtime = None 
+selected_genres = None
+selected_rating = None
 
 @app.route("/")
 def home():
     return "<h1>Deu tudo certo</h1>"
 
-@app.route("/api/receber_chave", methods=["POST"])
-def receber_chave():
-    global chave  # Use uma variável global para armazenar o valor
-    data = request.json  # Recebe o JSON enviado pelo frontend
-    chave = data.get("key")  # Atualiza o valor de tempo globalmente
-    print(f"Chave recebida: {chave}")  # Debug: imprime o valor recebido
-    return jsonify({"message": "Tempo recebido com sucesso!", "chave": chave})
+@app.route("/receber_chave", methods=["POST"])
+def getApiKey():
+    global api_key  # Use uma variável global para armazenar o valor
+    api_key = (request.json ).get("key")  # Atualiza o valor de tempo globalmente
+    if api_key:
+        return jsonify({"message": "Chave recebido com sucesso!", "chave": api_key})
+    return jsonify({"error": "Escolha uma chave para acessar a OpenAI API"}), 400
 
-@app.route("/api/tempo", methods=["POST"])
-def receber_tempo():
-    global tempo  # Use uma variável global para armazenar o valor
-    data = request.json  # Recebe o JSON enviado pelo frontend
-    time = data.get("time")  # Extrai o valor do tempo
-    tempo = time  # Atualiza o valor de tempo globalmente
-    print(f"Tempo recebido: {tempo}")  # Debug: imprime o valor recebido
-    return jsonify({"message": "Chave recebida com sucesso!", "time": tempo})
-
-@app.route("/api/selecionar_generos", methods=["POST"])
-def selecionar_generos():
-    global generos  # Armazenar os gêneros globalmente
-    data = request.json
-    generos = data.get("selectedGenres")
+@app.route("/tempo", methods=["POST"])
+def getSelectedRuntime():
+    global selected_runtime  # Use uma variável global para armazenar o valor
+    selected_runtime = (request.json).get("time")  # Extrai o valor do tempo
+    if selected_runtime:
+        return jsonify({"message": "Tempo recebida com sucesso!", "time": selected_runtime})
+    return jsonify({"error": "Escolha uma duração máxima para seu filme"}), 400
+     
+@app.route("/selecionar_generos", methods=["POST"])
+def getSelectedGenres():
+    global selected_genres
+    selected_genres = (request.json).get("selectedGenres")
     
-    if generos and len(generos) == 3:
-        print(f"Gêneros recebidos: {generos}")
-        return jsonify({"message": "Gêneros recebidos com sucesso", "selectedGenres": generos}), 200
-    else:
-        return jsonify({"error": "Selecione exatamente 3 gêneros"}), 400
+    if selected_genres and len(selected_genres) <= 3 and len(selected_genres) > 0:
+        return jsonify({"message": "Gêneros recebidos com sucesso", "selectedGenres": selected_genres}), 200
+    
+    return jsonify({"error": "Selecione de 1 a 3 gêneros"}), 400
     
 # Rota para receber dados do frontend
-@app.route("/api/selecionar_classificacao", methods=["POST"])
+@app.route("/selecionar_classificacao", methods=["POST"])
 def receber_classificacao():
-    global classificacao  # Para atualizar a variável global
-    data = request.json  # Recebe os dados enviados no body da requisição
-    classificacao = data.get("botaoClicado")  # Obtém o valor do botão clicado
-    if classificacao:
-        print(f"Classificacao recebida: {classificacao}")
-        return jsonify({"message": "Classificação recebida com sucesso!", "classificacao": classificacao}), 200
-    else:
-        return jsonify({"error": "Classificação não enviada!"}), 400
+    global selected_rating 
+    
+    selected_rating = (request.json).get("botaoClicado")  # Obtém o valor do botão clicado
+    if selected_rating:
+        return jsonify({"message": "Classificação recebida com sucesso!", "classificação": selected_rating}), 200
+    
+    return jsonify({"error": "Classificação não enviada!"}), 400
 
 @app.route("/processar-filmes", methods=["GET"])
 def processar_filmes():
-    global classificacao, tempo, generos, data_dict_global
+    global selected_rating, selected_runtime, selected_genres, data_dict_global
 
     # Verifique se todos os dados necessários estão presentes
-    if not classificacao or not tempo or not generos:
+    if not selected_rating or not selected_runtime or not selected_genres:
         return jsonify({"error": "Faltando dados: classificação, tempo ou gêneros."}), 400
 
     # Caso todos os dados estejam presentes, processa os filmes
     try: 
-        generos = ', '.join(generos)
+        selected_genres = ', '.join(selected_genres)
         # Assegure-se de que a função call_openai e collecting_data sejam chamadas corretamente
-        print(f"Processando filmes com os dados: classificação={classificacao}, tempo={tempo}, gêneros={generos}")
+        print(f"Processando filmes com os dados: classificação={selected_rating}, tempo={selected_runtime}, gêneros={selected_genres}")
         data_dict = BancoFilmes.collecting_data(
-            IntegracaoAPI.call_openai(chave, generos, tempo, classificacao), int(tempo)
+            IntegracaoAPI.call_openai(api_key, selected_genres, selected_runtime, selected_rating), int(selected_runtime)
         )
 
         data_dict_global = data_dict
@@ -102,10 +98,10 @@ def entregar_filmes():
         return jsonify({
             "data_dict": data_dict_global
         }), 200
-    else:
-        return jsonify({
-            "error": "Os filmes ainda não foram processados. Execute /processar-filmes primeiro."
-        }), 400
+        
+    return jsonify({
+        "error": "Os filmes ainda não foram processados. Execute processar_filmes primeiro."
+    }), 400
 
 
 if __name__ == "__main__":
