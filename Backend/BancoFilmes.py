@@ -2,7 +2,6 @@ import requests
 import re
 
 def getTitle(indice):
-    #definir como vai ser a chamada de cada titulo
     return base["title"][indice]
 
 def getOverview(indice):
@@ -25,7 +24,7 @@ def collecting_data(films_lists, MaxRuntime):
 
     right_films_list = []
     #local onde ficam armazenados os dados dos filmes
-    base = {"title" : [], "overview" : [], 'runtime' : [], 'poster_path' : [], "Diretor" : []}
+    base = {"title" : [], "overview" : [], 'runtime' : [], 'poster_path' : [], "director" : []}
     id_filmes = []
 
 
@@ -46,7 +45,7 @@ def collecting_data(films_lists, MaxRuntime):
         if chamada.json()["runtime"] <= MaxRuntime + 10:
             right_films_list.append(films_lists[i])
             
-            ##adicionando no dicionário
+            #adicionando no dicionário
             base["title"].append(chamada.json()["title"])
             base["overview"].append(chamada.json()["overview"])
             base["runtime"].append(chamada.json()["runtime"])
@@ -56,10 +55,10 @@ def collecting_data(films_lists, MaxRuntime):
             url_diretor = f"https://api.themoviedb.org/3/movie/{id_filmes[i]}/credits?language=en-US"
             chamada_casting = requests.get(url_diretor, headers=headers)
             iterar = chamada_casting.json()["crew"]
-            base["Diretor"].append([])
+            base["director"].append([])
             for j in range(len(iterar)):
-                if(iterar[j]["job"] == "Director"):
-                    base["Diretor"][len(right_films_list) - 1].append(iterar[j]["name"])
+                if(iterar[j]["job"] == "director"):
+                    base["director"][len(right_films_list) - 1].append(iterar[j]["name"])
                     break
     return (base)
 

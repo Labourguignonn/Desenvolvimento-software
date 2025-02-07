@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"; // Para enviar dados para o backend
 import "../styles/escolha_generos.css";
+import { baseURL } from "../config";
+
 
 const GenreSelection = () => {
   const navigate = useNavigate();
@@ -55,7 +57,7 @@ const GenreSelection = () => {
     if (selectedGenres.length <= 3 && selectedGenres.length > 0) {
       // Se tiver 1,2,3 gêneros selecionados, envia para o backend
       axios
-        .post("http://localhost:5000/api/selecionar_generos", { selectedGenres })
+        .post(`${baseURL}/selecionar_generos`, { selectedGenres })
         .then((response) => {
           console.log("Gêneros enviados com sucesso:", response.data);
           navigate("/escolha_tempo"); // Navega após o envio

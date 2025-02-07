@@ -1,12 +1,12 @@
 import openai
 
-def call_openai(key, genre, runtime, classificacao):
+def call_openai(key, genre, runtime, rating):
     openai.api_key = key
 
     #mensagem pra API
     mensagens = [
         {'role': 'system', 'content': 'Você é um indicador de filmes.'},
-        {'role': 'user', 'content': f'Retorne, sem números e separados com ponto e vírgula, apenas o título de 5 filmes do gênero {genre}, classificação indicativa {classificacao} ou menor, de no máximo {runtime} de duração'}
+        {'role': 'user', 'content': f'Retorne, sem números e separados com ponto e vírgula, apenas o título de 5 filmes do gênero {genre}, classificação indicativa {rating} ou menor, de no máximo {runtime} de duração'}
     ]
 
     ##Config. Resposta do GPT

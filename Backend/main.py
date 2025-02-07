@@ -8,7 +8,6 @@ import BancoFilmes
 
 app = Flask(__name__)
 CORS(app)
-CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 api_key = None
 selected_runtime = None 
@@ -21,16 +20,16 @@ def home():
 
 @app.route("/receber_chave", methods=["POST"])
 def getApiKey():
-    global api_key  # Use uma variável global para armazenar o valor
-    api_key = (request.json ).get("key")  # Atualiza o valor de tempo globalmente
+    global api_key 
+    api_key = (request.json ).get("key")  
     if api_key:
         return jsonify({"message": "Chave recebido com sucesso!", "chave": api_key})
     return jsonify({"error": "Escolha uma chave para acessar a OpenAI API"}), 400
 
 @app.route("/tempo", methods=["POST"])
 def getSelectedRuntime():
-    global selected_runtime  # Use uma variável global para armazenar o valor
-    selected_runtime = (request.json).get("time")  # Extrai o valor do tempo
+    global selected_runtime  
+    selected_runtime = (request.json).get("time")  
     if selected_runtime:
         return jsonify({"message": "Tempo recebida com sucesso!", "time": selected_runtime})
     return jsonify({"error": "Escolha uma duração máxima para seu filme"}), 400
@@ -45,12 +44,11 @@ def getSelectedGenres():
     
     return jsonify({"error": "Selecione de 1 a 3 gêneros"}), 400
     
-# Rota para receber dados do frontend
 @app.route("/selecionar_classificacao", methods=["POST"])
 def receber_classificacao():
     global selected_rating 
     
-    selected_rating = (request.json).get("botaoClicado")  # Obtém o valor do botão clicado
+    selected_rating = (request.json).get("botaoClicado")  
     if selected_rating:
         return jsonify({"message": "Classificação recebida com sucesso!", "classificação": selected_rating}), 200
     
@@ -60,7 +58,7 @@ def receber_classificacao():
 def processar_filmes():
     global selected_rating, selected_runtime, selected_genres, data_dict_global
 
-    # Verifique se todos os dados necessários estão presentes
+# Verifique se todos os dados necessários estão presentes
     if not selected_rating or not selected_runtime or not selected_genres:
         return jsonify({"error": "Faltando dados: classificação, tempo ou gêneros."}), 400
 
@@ -75,20 +73,18 @@ def processar_filmes():
 
         data_dict_global = data_dict
         
-        # Adiciona um campo `processamento_concluido` para informar o frontend
         return jsonify({
             "data_dict": data_dict,
             "processamento_concluido": True  # Indica que o processamento foi bem-sucedido
         }), 200
 
     except Exception as e:
-        # Adiciona mais detalhes no log para diagnóstico
         print(f"Erro ao processar filmes: {str(e)}")
         return jsonify({
             "error": f"Erro ao processar filmes: {str(e)}",
             "processamento_concluido": False  # Se ocorrer erro, também retorna False
         }), 500
-
+        
 @app.route("/entregar-filmes", methods=["GET"])
 def entregar_filmes():
     global data_dict_global
