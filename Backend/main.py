@@ -2,9 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sys
 import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import IntegracaoAPI
 import BancoFilmes
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 app = Flask(__name__)
 CORS(app)
