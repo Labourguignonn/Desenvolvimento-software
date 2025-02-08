@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"; // Para enviar dados para o backend
-import "../styles/escolha_generos.css";
-import { baseURL } from "../config";
+import "../styles/GenreSelection.css";
+import { baseURL } from "../services/config";
 
 
 const GenreSelection = () => {

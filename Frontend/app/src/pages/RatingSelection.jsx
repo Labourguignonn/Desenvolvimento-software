@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"; // Importe o Axios para enviar os dados
-import "../styles/filtro_idade.css";
-import { baseURL } from "../config";
+import "../styles/RatingSelection.css";
+import { baseURL } from "../services/config";
 
 
-function Filtroidade() {
+function RatingSelection() {
   const navigate = useNavigate(); // Hook para navegação
   const [botaoSelecionado, setBotaoSelecionado] = useState(null); // Estado para armazenar o botão clicado
 
@@ -104,4 +104,4 @@ function Filtroidade() {
   );
 }
 
-export default Filtroidade;
+export default RatingSelection;

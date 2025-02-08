@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Importando axios para fazer requisições HTTP
-import '../styles/stylecarregamento.css';
-import { baseURL } from "../config";
+import '../styles/Loading.css';
+import { baseURL } from "../services/config";
 
 
-function Carregamento() {
+function Loading() {
     const [isLoading, setIsLoading] = useState(true); // Estado para controlar o carregamento
     const navigate = useNavigate(); // Hook para navegar entre páginas
 
@@ -52,4 +52,4 @@ function Carregamento() {
     );
 }
 
-export default Carregamento;
+export default Loading;

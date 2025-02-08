@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../styles/info_filmes.css";
+import "../styles/InfoMovies.css";
 
-function InfoFilmes() {
+function InfoMovies() {
   const navigate = useNavigate();
   
 
@@ -71,4 +71,4 @@ function InfoFilmes() {
   );
 }
 
-export default InfoFilmes;
+export default InfoMovies;

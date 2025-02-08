@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/ultima_pagina.css';
+import '../styles/LastPage.css';
 
 import LastPageImage from '../assets/flork-pipoca.png'; 
 
