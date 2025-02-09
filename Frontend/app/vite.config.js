@@ -1,12 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  base: './', // Garante caminhos relativos para Netlify
+  base: './', // Mantém os caminhos relativos para funcionar no Netlify
   build: {
-    outDir: 'dist',
+    outDir: 'dist', // Garante que o build vá para a pasta correta
   },
-  publicDir: resolve(__dirname, 'public'), // Garante que `public/` seja copiado para `dist/`
+  server: {
+    headers: {
+      'Cache-Control': 'no-store', // Evita caching de arquivos antigos
+    },
+  },
 });
