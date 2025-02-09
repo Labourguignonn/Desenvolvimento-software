@@ -6,10 +6,5 @@ export default defineConfig({
   base: './', // Mantém os caminhos relativos para funcionar no Netlify
   build: {
     outDir: 'dist', // Garante que o build vá para a pasta correta
-  },
-  server: {
-    headers: {
-      'Cache-Control': 'no-store', // Evita caching de arquivos antigos
-    },
-  },
+  }
 });
