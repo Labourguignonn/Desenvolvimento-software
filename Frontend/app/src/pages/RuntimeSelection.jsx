@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import "../styles/escolha_tempo.css";
-import { baseURL } from "../config";
+import "../styles/RuntimeSelection.css";
+import { baseURL } from "../services/config";
 
-const TimeSelection = () => {
+const RuntimeSelection = () => {
   const navigate = useNavigate();
 
   const times = [
@@ -35,7 +35,7 @@ const TimeSelection = () => {
   };
 
   return (
-    <div className="container-tempo">
+    <div className="container_runtime_selection">
       <div className="left-section_tempo">
         <h1 className="title">Escolha <br /> do Tempo <br /> Disponível</h1>
       </div>
@@ -69,4 +69,4 @@ const TimeSelection = () => {
   );
 };
 
-export default TimeSelection;
+export default RuntimeSelection;

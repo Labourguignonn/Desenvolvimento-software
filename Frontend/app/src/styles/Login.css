@@ -1,5 +1,4 @@
-
-.center_container {
+.container_login {
     display: flex;
     flex-direction: column;
     justify-content: center; /* Centraliza horizontalmente os filhos */

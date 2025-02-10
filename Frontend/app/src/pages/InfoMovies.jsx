@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../styles/info_filmes.css";
+import "../styles/InfoMovies.css";
 
-function InfoFilmes() {
+function InfoMovies() {
   const navigate = useNavigate();
   
 
@@ -22,7 +22,7 @@ function InfoFilmes() {
 
   return (
     <>
-      <div className="container-geral">
+      <div className="container_info_movies">
         <div className="container-info-filme">
           <div id="poster">
             {/* Exibindo a imagem do filme */}
@@ -38,10 +38,10 @@ function InfoFilmes() {
             <p id="sinopse-texto">{filme.overview}</p>
             <div id="detalhes">
               <div className="detalhe-item">
-                <strong>director: </strong><span>{filme.director}</span>
+                <strong>Diretor: </strong><span>{filme.director}</span>
               </div>
               <div className="detalhe-item">
-                <strong>runtime: </strong><span>{filme.runtime}</span>
+                <strong>Duração: </strong><span>{filme.runtime}</span>
               </div>
             </div>
           </div>
@@ -71,4 +71,4 @@ function InfoFilmes() {
   );
 }
 
-export default InfoFilmes;
+export default InfoMovies;

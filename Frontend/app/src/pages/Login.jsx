@@ -1,11 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../styles/usuario_senha.css";
-import { baseURL } from "../config";
+import "../styles/Login.css";
+import { baseURL } from "../services/config";
 
 
-function UsuarioSenha() {
+function Login() {
   const navigate = useNavigate();
   const [text, setText] = useState("");
 
@@ -30,7 +30,7 @@ function UsuarioSenha() {
   };
 
   return (
-      <div className="center_container">
+      <div className="container_login">
         <p className="mt-2">SENHA API </p>
         <input
             type="text"
@@ -49,4 +49,4 @@ function UsuarioSenha() {
   );
 }
 
-export default UsuarioSenha;
+export default Login;

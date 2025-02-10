@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import "../styles/selection.css";
-import { baseURL } from "../config";
+import "../styles/MovieSelection.css";
+import { baseURL } from "../services/config";
 
-function Selection() {
+function MovieSelection() {
   const navigate = useNavigate();
 
   const [currentFilmIndex, setCurrentFilmIndex] = useState(0);
@@ -67,12 +67,12 @@ function Selection() {
       ? posterBaseURL + dataDict.poster_path[currentFilmIndex]
       : "URL da imagem padrão", // Usa uma URL padrão se o poster_path não for encontrado
     overview: dataDict.overview?.[currentFilmIndex] || "Descrição não disponível",
-    Diretor: dataDict.Diretor?.[currentFilmIndex]?.[0] || "Diretor não informado",
+    director: dataDict.director?.[currentFilmIndex]?.[0] || "Diretor não informado",
     runtime: dataDict.runtime?.[currentFilmIndex] || "Duração não informada",
   } : null;
 
   return (
-    <div className="home-container">
+    <div className="container_movie_selection">
       {loading ? (
         <p>Carregando filmes...</p>
       ) : filmeAtual ? (
@@ -115,4 +115,4 @@ function Selection() {
   );
 }
 
-export default Selection;
+export default MovieSelection;

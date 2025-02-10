@@ -2,31 +2,30 @@ import React from "react";
 // import 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar.jsx";
-import UsuarioSenha from "./pages/usuario_senha";
-import GenreSelection from "./pages/escolha_generos"
-import TimeSelection from "./pages/escolha_tempo";
-import Filtroidade from "./pages/Filtroidade.jsx";
-import Carregamento from "./pages/carregamento.jsx";
-import Selection from "./pages/selection.jsx";
-import InfoFilmes from "./pages/InfoFilmes.jsx";
+import Login from "./pages/Login.jsx";
+import GenreSelection from "./pages/GenreSelection.jsx"
+import RuntimeSelection from "./pages/RuntimeSelection.jsx";
+import RatingSelection from "./pages/RatingSelection.jsx";
+import Loading from "./pages/Loading.jsx";
+import MovieSelection from "./pages/MovieSelection.jsx";
+import InfoMovies from "./pages/InfoMovies.jsx";
 import LastPage from "./pages/LastPage.jsx";
-import FinalDaFila from './pages/finaldafila.jsx'; 
+import EmptyLine from './pages/EmptyLine.jsx'; 
 import "./App.css"
-import axios from "axios";
 
 const App = () => {
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<UsuarioSenha />} />
+        <Route path="/" element={<Login />} />
         <Route path="/escolha_generos" element={<GenreSelection />} />
-        <Route path="/escolha_tempo" element={<TimeSelection />} />
-        <Route path="/escolha_classificacao" element={<Filtroidade />} />
-        <Route path="/carregamento" element={<Carregamento />} />
-        <Route path="/info_filmes" element={<InfoFilmes />} />
-        <Route path="/seleção" element={<Selection />} />
-        <Route path="/final_da_fila" element={<FinalDaFila />} /> 
+        <Route path="/escolha_tempo" element={<RuntimeSelection />} />
+        <Route path="/escolha_classificacao" element={<RatingSelection />} />
+        <Route path="/carregamento" element={<Loading />} />
+        <Route path="/info_filmes" element={<InfoMovies />} />
+        <Route path="/seleção" element={<MovieSelection />} />
+        <Route path="/final_da_fila" element={<EmptyLine />} /> 
         <Route path="/ultima_pagina" element={<LastPage />} />
       </Routes>
     </Router>

@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import '../styles/finaldafila.css'; 
+import '../styles/EmptyLine.css'; 
 
 import FinalDaFilaImage from '../assets/final-da-fila.png'; 
 
-const FinalDaFila = () => {
+const EmptyLine = () => {
   const navigate = useNavigate(); 
 
   return (
@@ -25,4 +25,4 @@ const FinalDaFila = () => {
   );
 }
 
-export default FinalDaFila;
+export default EmptyLine;
