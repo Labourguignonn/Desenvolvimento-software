@@ -58,7 +58,6 @@ def getSelectedRating():
 @app.route("/processar-filmes", methods=["GET"])
 def processar_filmes():
     global selected_rating, selected_runtime, selected_genres, data_dict_global
-    time.sleep(1.5)
 
 # Verifique se todos os dados necessários estão presentes
     if not selected_rating or not selected_runtime or not selected_genres:
