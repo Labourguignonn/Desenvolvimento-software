@@ -45,13 +45,13 @@ function RatingSelection() {
         <div className="row">
           <button
             className="button-option-livre"
-            onClick={() => handleClick("L")}>L</button>
+            onClick={() => handleClick("G")}>L</button>
           <button className="button-option">Livre para todos os públicos</button>
         </div>
         <div className="row">
           <button
             className="button-option-10"
-            onClick={() => handleClick("10")}>10</button>
+            onClick={() => handleClick("G")}>10</button>
           <button className="button-option">
             Não recomendado p/ menores de 10 anos
           </button>
@@ -59,7 +59,7 @@ function RatingSelection() {
         <div className="row">
           <button
             className="button-option-12"
-            onClick={() => handleClick("12")}>12</button>
+            onClick={() => handleClick("PG")}>12</button>
           <button className="button-option">
             Não recomendado p/ menores de 12 anos
           </button>
@@ -67,7 +67,7 @@ function RatingSelection() {
         <div className="row">
           <button
             className="button-option-14"
-            onClick={() => handleClick("14")}>14</button>
+            onClick={() => handleClick("PG-13")}>14</button>
           <button className="button-option">
             Não recomendado p/ menores de 14 anos
           </button>
@@ -75,7 +75,7 @@ function RatingSelection() {
         <div className="row">
           <button
             className="button-option-16"
-            onClick={() => handleClick("16")}>16</button>
+            onClick={() => handleClick("R")}>16</button>
           <button className="button-option">
             Não recomendado p/ menores de 16 anos
           </button>
@@ -83,7 +83,7 @@ function RatingSelection() {
         <div className="row">
           <button
             className="button-option-18"
-            onClick={() => handleClick("18")}>18</button>
+            onClick={() => handleClick("R")}>18</button>
           <button className="button-option">
             Não recomendado p/ menores de 18 anos
           </button>

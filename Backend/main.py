@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import time
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -57,6 +58,7 @@ def getSelectedRating():
 @app.route("/processar-filmes", methods=["GET"])
 def processar_filmes():
     global selected_rating, selected_runtime, selected_genres, data_dict_global
+    time.sleep(1.5)
 
 # Verifique se todos os dados necessários estão presentes
     if not selected_rating or not selected_runtime or not selected_genres:
@@ -70,7 +72,7 @@ def processar_filmes():
         data_dict = BancoFilmes.collecting_data(
             IntegracaoAPI.call_openai(api_key, selected_genres, selected_runtime, selected_rating), int(selected_runtime)
         )
-
+        print(data_dict)
         data_dict_global = data_dict
         
         return jsonify({
@@ -91,7 +93,6 @@ def entregar_filmes():
 
     # Verifica se o data_dict_global já foi gerado
     if data_dict_global:
-        print (data_dict_global)
         return jsonify({
             "data_dict": data_dict_global
         }), 200

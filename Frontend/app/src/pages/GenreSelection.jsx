@@ -9,16 +9,15 @@ const GenreSelection = () => {
   const navigate = useNavigate();
 
   const [genres, setGenres] = useState([
-    "Ação",
-    "Aventura",
-    "Comédia",
-    "Drama",
-    "Fantasia",
-    "Ficção Científica",
-    "Mistério",
-    "Romance",
-    "Terror",
-    "Animação"
+    { label: "Ação", value: "Action" },
+    { label: "Aventura", value: "Adventure" },
+    { label: "Comédia", value: "Comedy" },
+    { label: "Drama", value: "Drama" },
+    { label: "Ficção Científica", value: "Science Fiction" },
+    { label: "Mistério", value: "Mistery" },
+    { label: "Romance", value: "Romance" },
+    { label: "Terror", value: "Horror" },
+    { label: "Animação", value: "Animation" },
   ]);
 
   const [selectedGenres, setSelectedGenres] = useState([]); // Gêneros selecionados
@@ -26,31 +25,43 @@ const GenreSelection = () => {
   const [error, setError] = useState(null); // Erros
   const [showRefazer, setShowRefazer] = useState(false); // Controla a exibição do refazer seleção
 
-  const newGenres = ["Documentário", "Musical", "Histórico"];
+  const newGenres = [
+    { label: "Documentário", value: "Documentary" },
+    { label: "Musical", value: "Musical" },
+    { label: "Histórico", value: "Historical" },
+    { label: "Guerra", value: "War" },
+    { label: "Suspense", value: "Thriller" },
+    { label: "Crime", value: "Crime" },
+    { label: "Biografia", value: "Biography" },
+    { label: "Faroeste", value: "Western" },
+  ];
 
-  const toggleGenre = (genre) => {
-    if (selectedGenres.includes(genre)) {
-      // Se o gênero já estiver selecionado, remove ele
-      setSelectedGenres((prevSelected) =>
-        prevSelected.filter((item) => item !== genre)
-      );
-    } else if (selectedGenres.length < 3) {
-      // Se não tiver 3 gêneros selecionados, adiciona o gênero
-      setSelectedGenres((prevSelected) => [...prevSelected, genre]);
-    }
+  const toggleGenre = (genreValue) => {
+    setSelectedGenres((prevSelected) => {
+      if (prevSelected.includes(genreValue)) {
+        return prevSelected.filter((value) => value !== genreValue);
+      } else if (prevSelected.length < 3) {
+        return [...prevSelected, genreValue];
+      }
+      return prevSelected;
+    });
+  
+    console.log("Gêneros selecionados:", selectedGenres);
   };
-
+  
   const addGenres = () => {
     setGenres((prevGenres) => {
-      const updatedGenres = [...prevGenres];
-      newGenres.forEach((genre) => {
-        if (!updatedGenres.includes(genre)) {
-          updatedGenres.push(genre);
-        }
-      });
-      return updatedGenres;
+      const availableGenres = newGenres.filter(
+        (newGenre) => !prevGenres.some((g) => g.value === newGenre.value)
+      );
+      
+      const shuffledGenres = availableGenres.sort(() => 0.5 - Math.random());
+      const selectedNewGenres = shuffledGenres.slice(0, 3);
+      
+      return [...prevGenres, ...selectedNewGenres];
     });
   };
+  
 
   // Função para enviar os dados para o backend
   const handleSubmit = () => {
@@ -96,11 +107,11 @@ const GenreSelection = () => {
             <button
               key={index}
               className={`genre-button ${
-                selectedGenres.includes(genre) ? "selected" : ""
+                selectedGenres.includes(genre.value) ? "selected" : ""
               }`}
-              onClick={() => toggleGenre(genre)}
+              onClick={() => toggleGenre(genre.value)}
             >
-              {genre}
+              {genre.label}
             </button>
           ))
         )}
