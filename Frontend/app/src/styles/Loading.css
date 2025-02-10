@@ -30,7 +30,7 @@
     width: 100vw;
 }
 
-#container_carregamento{
+#container_loading{
     display: flex;
     flex-direction: column;
     justify-content: center; /* Centraliza horizontalmente */

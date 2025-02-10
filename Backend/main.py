@@ -91,7 +91,7 @@ def entregar_filmes():
 
     # Verifica se o data_dict_global já foi gerado
     if data_dict_global:
-        print data_dict_global
+        print (data_dict_global)
         return jsonify({
             "data_dict": data_dict_global
         }), 200

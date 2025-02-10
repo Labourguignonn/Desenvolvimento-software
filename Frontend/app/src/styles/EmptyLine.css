@@ -1,5 +1,5 @@
 /* Estilos gerais do container */
-.Conteiner-final-da-fila {
+.conteiner_empty_line {
     display: flex;
     flex-direction: column;
     align-items: center;

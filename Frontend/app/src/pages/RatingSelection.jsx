@@ -37,7 +37,7 @@ function RatingSelection() {
   };
 
   return (
-    <div className="central">
+    <div className="container_rating_selection">
       <div className="lado_esquerdo">
         <h1 className="titulo"> Restrição <br /> de <br /> Idade</h1>
       </div>

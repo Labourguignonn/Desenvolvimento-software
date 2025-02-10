@@ -72,7 +72,7 @@ function MovieSelection() {
   } : null;
 
   return (
-    <div className="home-container">
+    <div className="container_movie_selection">
       {loading ? (
         <p>Carregando filmes...</p>
       ) : filmeAtual ? (

@@ -1,16 +1,15 @@
 /* Layout Principal */
-.main_container {
+.container_genre_selection {
   display: flex;
   flex-direction: row;
-  justify-content: center; /* Centraliza horizontalmente os filhos */
-  align-items: center; /* Centraliza verticalmente os filhos */
-  height: 100%; /* Garante que ocupe toda a altura do body */
-  width: 100%; /* Garante que ocupe toda a largura da tela */
-  max-width: 1200px; /* Limita a largura máxima */
-  gap: 20px; /* Espaço entre seções */
+  justify-content: center; 
+  align-items: center; 
+  height: 100%;
+  width: 90%; 
+  gap: 20px; 
   padding: 10px;
   box-sizing: border-box;
-  margin: 0 auto; /* Centraliza o contêiner horizontalmente */
+  margin: 0 auto; 
 }
 
 /* Seção Esquerda */

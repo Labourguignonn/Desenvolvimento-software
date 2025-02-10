@@ -78,54 +78,54 @@ const GenreSelection = () => {
   };
 
   return (
-    <div className="main_container">
-      <div className="left-section_genres">
-        <h1 className="title_genres">
-          Escolha <br /> dos <br /> Gêneros
-        </h1>
-      </div>
-
-      <div className="right-section-genres">
-        <div className="genres-container">
-          {loading ? (
-            <div>Carregando gêneros...</div>
-          ) : error ? (
-            <div>{error}</div>
-          ) : (
-            genres.map((genre, index) => (
-              <button
-                key={index}
-                className={`genre-button ${
-                  selectedGenres.includes(genre) ? "selected" : ""
-                }`}
-                onClick={() => toggleGenre(genre)}
-              >
-                {genre}
-              </button>
-            ))
-          )}
-        </div>
-
-        <div className="add_button-container">
-          <button className="add-button" onClick={addGenres}>
-            +
-          </button>
-        </div>
-      </div>
-
-      {showRefazer && (
-        <div className="refazer-container">
-          <p>Por favor, selecione ao menos um gênero para continuar.</p>
-          <button className="refazer-button" onClick={handleRefazerSelection}>
-            Refazer Seleção
-          </button>
-        </div>
-      )}
-
-      <button className="nav-button-right" onClick={handleSubmit}>
-        →
-      </button>
+  <div className="container_genre_selection">
+    <div className="left-section_genres">
+      <h1 className="title_genres">
+        Escolha <br /> dos <br /> Gêneros
+      </h1>
     </div>
+
+    <div className="right-section-genres">
+      <div className="genres-container">
+        {loading ? (
+          <div>Carregando gêneros...</div>
+        ) : error ? (
+          <div>{error}</div>
+        ) : (
+          genres.map((genre, index) => (
+            <button
+              key={index}
+              className={`genre-button ${
+                selectedGenres.includes(genre) ? "selected" : ""
+              }`}
+              onClick={() => toggleGenre(genre)}
+            >
+              {genre}
+            </button>
+          ))
+        )}
+      </div>
+
+      <div className="add_button-container">
+        <button className="add-button" onClick={addGenres}>
+          +
+        </button>
+      </div>
+    </div>
+
+    {showRefazer && (
+      <div className="refazer-container">
+        <p>Por favor, selecione ao menos um gênero para continuar.</p>
+        <button className="refazer-button" onClick={handleRefazerSelection}>
+          Refazer Seleção
+        </button>
+      </div>
+    )}
+
+    <button className="nav-button-right" onClick={handleSubmit}>
+      →
+    </button>
+  </div>
   );
 };
 

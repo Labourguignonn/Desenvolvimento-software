@@ -22,7 +22,7 @@ function InfoMovies() {
 
   return (
     <>
-      <div className="container-geral">
+      <div className="container_info_movies">
         <div className="container-info-filme">
           <div id="poster">
             {/* Exibindo a imagem do filme */}
@@ -38,10 +38,10 @@ function InfoMovies() {
             <p id="sinopse-texto">{filme.overview}</p>
             <div id="detalhes">
               <div className="detalhe-item">
-                <strong>director: </strong><span>{filme.director}</span>
+                <strong>Diretor: </strong><span>{filme.director}</span>
               </div>
               <div className="detalhe-item">
-                <strong>runtime: </strong><span>{filme.runtime}</span>
+                <strong>Duração: </strong><span>{filme.runtime}</span>
               </div>
             </div>
           </div>

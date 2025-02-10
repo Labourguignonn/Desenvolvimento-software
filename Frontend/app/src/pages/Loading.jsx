@@ -38,7 +38,7 @@ function Loading() {
 
     return (
         <div className="central">
-            <div id="container_carregamento">
+            <div id="container_loading">
                 <img  src="https://media.tenor.com/wpSo-8CrXqUAAAAj/loading-loading-forever.gif"
                 width="100" 
                 height="auto" 

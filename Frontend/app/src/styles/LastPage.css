@@ -1,5 +1,5 @@
 /* Estilo para o contêiner da última página */
-#conteiner-lastpage {
+#conteiner_last_page {
   display: flex;
   flex-direction: column;
   align-items: center;

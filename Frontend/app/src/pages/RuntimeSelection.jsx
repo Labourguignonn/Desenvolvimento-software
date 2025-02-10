@@ -35,7 +35,7 @@ const RuntimeSelection = () => {
   };
 
   return (
-    <div className="container-tempo">
+    <div className="container_runtime_selection">
       <div className="left-section_tempo">
         <h1 className="title">Escolha <br /> do Tempo <br /> Disponível</h1>
       </div>

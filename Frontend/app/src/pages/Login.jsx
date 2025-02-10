@@ -30,7 +30,7 @@ function Login() {
   };
 
   return (
-      <div className="center_container">
+      <div className="container_login">
         <p className="mt-2">SENHA API </p>
         <input
             type="text"
