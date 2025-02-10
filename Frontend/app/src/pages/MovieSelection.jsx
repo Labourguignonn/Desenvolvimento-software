@@ -67,7 +67,7 @@ function MovieSelection() {
       ? posterBaseURL + dataDict.poster_path[currentFilmIndex]
       : "URL da imagem padrão", // Usa uma URL padrão se o poster_path não for encontrado
     overview: dataDict.overview?.[currentFilmIndex] || "Descrição não disponível",
-    diretor: dataDict.diretor?.[currentFilmIndex]?.[0] || "Diretor não informado",
+    director: dataDict.director?.[currentFilmIndex]?.[0] || "Diretor não informado",
     runtime: dataDict.runtime?.[currentFilmIndex] || "Duração não informada",
   } : null;
 
