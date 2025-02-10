@@ -24,7 +24,7 @@ def collecting_data(films_lists, MaxRuntime):
 
     right_films_list = []
     #local onde ficam armazenados os dados dos filmes
-    base = {"title" : [], "overview" : [], 'runtime' : [], 'poster_path' : [], "director" : []}
+    base = {"title" : [], "overview" : [], 'runtime' : [], 'poster_path' : [], "diretor" : []}
     id_filmes = []
 
 
@@ -55,10 +55,10 @@ def collecting_data(films_lists, MaxRuntime):
             url_diretor = f"https://api.themoviedb.org/3/movie/{id_filmes[i]}/credits?language=en-US"
             chamada_casting = requests.get(url_diretor, headers=headers)
             iterar = chamada_casting.json()["crew"]
-            base["director"].append([])
+            base["diretor"].append([])
             for j in range(len(iterar)):
-                if(iterar[j]["job"] == "director"):
-                    base["director"][len(right_films_list) - 1].append(iterar[j]["name"])
+                if(iterar[j]["job"] == "diretor"):
+                    base["diretor"][len(right_films_list) - 1].append(iterar[j]["name"])
                     break
     return (base)
 
