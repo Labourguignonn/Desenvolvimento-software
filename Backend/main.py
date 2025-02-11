@@ -71,7 +71,7 @@ def process_movies():
         # Assegure-se de que a função call_openai e collecting_data sejam chamadas corretamente
         print(f"Processando filmes com os dados: classificação={selected_rating}, tempo={selected_runtime}, gêneros={selected_genres}")
         data_dict = BancoFilmes.collecting_data(
-            IntegracaoAPI.call_openai(api_key, selected_genres, selected_runtime, selected_rating), int(selected_runtime)
+            IntegracaoAPI.call_openai(api_key, selected_genres, selected_runtime, selected_rating), int(selected_runtime), selected_genres
         )
         data_dict_global = data_dict
         
