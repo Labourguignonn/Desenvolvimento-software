@@ -7,8 +7,30 @@
     gap: 20px; /* Espaço entre seções */
     padding: 10px;
     box-sizing: border-box;
+    border: 1px solid black;
     margin: 0 auto; /* Centraliza o contêiner horizontalmente */
-    border: 2px solid black;
+}
+
+.container_informations {
+    display: flex;
+    height: 70%;
+    width: 35%;
+    gap: 5%;
+    flex-direction: column;
+    justify-content: center; /* Centraliza horizontalmente os filhos */
+    align-items: center;
+    border: 1px solid rgb(88, 88, 88);
+    border-radius: 10px;
+    margin: 0 auto /* Centraliza verticalmente os filhos */
+}
+
+.container_title_input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza horizontalmente os filhos */
+    align-items: left; /* Centraliza verticalmente os filhos */
+    gap:10%;
+    width: 90%;
 }
 
 .input_box {
@@ -17,8 +39,9 @@
     border: 2px solid #ccc;
     border-radius: 4px;
     width: 100%;
-    max-width: 300px;
     outline: none;
     transition: border-color 0.3s ease;
    
 }
+
+

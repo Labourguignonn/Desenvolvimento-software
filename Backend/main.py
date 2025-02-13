@@ -65,7 +65,8 @@ def processar_filmes():
 
     # Caso todos os dados estejam presentes, processa os filmes
     try: 
-        selected_genres = ', '.join(selected_genres)
+        if len(selected_genres) > 1:
+            selected_genres = ', '.join(selected_genres)
         # Assegure-se de que a função call_openai e collecting_data sejam chamadas corretamente
         print(f"Processando filmes com os dados: classificação={selected_rating}, tempo={selected_runtime}, gêneros={selected_genres}")
         data_dict = BancoFilmes.collecting_data(
