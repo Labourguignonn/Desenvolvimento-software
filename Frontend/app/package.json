@@ -12,6 +12,7 @@
     "vercel-build": "npm install && npm run build"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.13.0",
     "axios": "^1.7.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

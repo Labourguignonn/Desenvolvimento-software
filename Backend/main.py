@@ -73,7 +73,6 @@ def process_movies():
         data_dict = BancoFilmes.collecting_data(
             IntegracaoAPI.call_openai(api_key, selected_genres, selected_runtime, selected_rating), int(selected_runtime)
         )
-        print(data_dict)
         data_dict_global = data_dict
         
         return jsonify({
