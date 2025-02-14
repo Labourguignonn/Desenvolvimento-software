@@ -1,1 +1,1 @@
-export const baseURL = "https://desenvolvimento-software-ayeh.vercel.app";
+export const baseURL = "http://localhost:5000";

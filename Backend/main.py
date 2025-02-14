@@ -6,7 +6,7 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import IntegracaoAPI
 import BancoFilmes
-import Crud
+import crud
 
 app = Flask(__name__)
 CORS(app)
@@ -110,7 +110,7 @@ def register_user():
     if not username or not password:
         return jsonify({"error": "Os parâmetros 'username' e 'password' são obrigatórios!"}), 400
 
-    resultado = Crud.inserir_usuario(username, password)
+    resultado = crud.inserir_usuario(username, password)
     return jsonify(resultado)
 
 @app.route("/verificar-usuario", methods=["GET"])
@@ -121,7 +121,7 @@ def verify_user():
     if not username:
         return jsonify({"error": "O parâmetro 'username' é obrigatório!"}), 400
 
-    resultado = Crud.buscar_usuario(username)
+    resultado = crud.buscar_usuario(username)
     print(f"Resultado da busca: {resultado}")  # Depuração
 
     return jsonify(resultado)
@@ -135,7 +135,7 @@ def verify_login():
     if not username or not password:
         return jsonify({"error": "Os parâmetros 'username' e 'password' são obrigatórios!"}), 400
 
-    resultado = Crud.buscar_login(username, password)
+    resultado = crud.buscar_login(username, password)
     return jsonify(resultado)
 
 if __name__ == "__main__":
