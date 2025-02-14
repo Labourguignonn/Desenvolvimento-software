@@ -6,6 +6,7 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import IntegracaoAPI
 import BancoFilmes
+import Crud
 
 app = Flask(__name__)
 CORS(app)
@@ -56,7 +57,7 @@ def getSelectedRating():
     return jsonify({"error": "Classificação não enviada!"}), 400
 
 @app.route("/processar-filmes", methods=["GET"])
-def processar_filmes():
+def process_movies():
     global selected_rating, selected_runtime, selected_genres, data_dict_global
 
 # Verifique se todos os dados necessários estão presentes
@@ -65,13 +66,13 @@ def processar_filmes():
 
     # Caso todos os dados estejam presentes, processa os filmes
     try: 
-        selected_genres = ', '.join(selected_genres)
+        if len(selected_genres) > 1:
+            selected_genres = ', '.join(selected_genres)
         # Assegure-se de que a função call_openai e collecting_data sejam chamadas corretamente
         print(f"Processando filmes com os dados: classificação={selected_rating}, tempo={selected_runtime}, gêneros={selected_genres}")
         data_dict = BancoFilmes.collecting_data(
             IntegracaoAPI.call_openai(api_key, selected_genres, selected_runtime, selected_rating), int(selected_runtime)
         )
-        print(data_dict)
         data_dict_global = data_dict
         
         return jsonify({
@@ -87,7 +88,7 @@ def processar_filmes():
         }), 500
         
 @app.route("/entregar-filmes", methods=["GET"])
-def entregar_filmes():
+def send_movies():
     global data_dict_global
 
     # Verifica se o data_dict_global já foi gerado
@@ -100,6 +101,42 @@ def entregar_filmes():
         "error": "Os filmes ainda não foram processados. Execute processar_filmes primeiro."
     }), 400
 
+@app.route("/registrar-usuario", methods=["POST"])
+def register_user():
+    data = request.json  # Captura os dados do corpo da requisição
+    username = data.get("username")
+    password = data.get("password")
+
+    if not username or not password:
+        return jsonify({"error": "Os parâmetros 'username' e 'password' são obrigatórios!"}), 400
+
+    resultado = Crud.inserir_usuario(username, password)
+    return jsonify(resultado)
+
+@app.route("/verificar-usuario", methods=["GET"])
+def verify_user():
+    username = request.args.get("username")  # Captura o parâmetro via URL
+    print(f"Verificando usuário: {username}")  # Depuração
+
+    if not username:
+        return jsonify({"error": "O parâmetro 'username' é obrigatório!"}), 400
+
+    resultado = Crud.buscar_usuario(username)
+    print(f"Resultado da busca: {resultado}")  # Depuração
+
+    return jsonify(resultado)
+
+@app.route("/verificar-login", methods=["POST"])
+def verify_login():
+    data = request.json
+    username = data.get("username")
+    password = data.get("password")
+
+    if not username or not password:
+        return jsonify({"error": "Os parâmetros 'username' e 'password' são obrigatórios!"}), 400
+
+    resultado = Crud.buscar_login(username, password)
+    return jsonify(resultado)
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))

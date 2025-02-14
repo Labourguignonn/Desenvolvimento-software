@@ -5,15 +5,14 @@
     position: fixed; /* Barra fixa no topo */
     top: 0; /* Alinhado ao topo da página */
     width: 100%; /* Ocupa toda a largura */
-    z-index: 1000; /* Garantir que fique acima de outros elementos */
+    height: 8vh;
+    /*z-index: 1000; /* Garantir que fique acima de outros elementos */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
     border-bottom: 1px solid #868686; /* Linha inferior */
     box-sizing: border-box; /* Inclui bordas e padding no tamanho total */
     display: flex; /* Torna o container flexível */
     align-items: center; /* Centraliza verticalmente */
     justify-content: space-between; /* Ajusta a posição do conteúdo dentro da barra */
-    left: 0; /* Garante que ocupe toda a largura da tela */
-    right: 0; /* Garante que ocupe toda a largura da tela */
     margin: 0; /* Remove qualquer margem que possa interferir com o layout */
 }
 

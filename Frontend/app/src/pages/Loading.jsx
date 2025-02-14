@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Importando axios para fazer requisições HTTP
+import { DotLottieReact} from "@lottiefiles/dotlottie-react"
 import '../styles/Loading.css';
 import { baseURL } from "../services/config";
 
@@ -39,11 +40,9 @@ function Loading() {
     return (
         <div className="central">
             <div id="container_loading">
-                <img  src="https://media.tenor.com/wpSo-8CrXqUAAAAj/loading-loading-forever.gif"
-                width="100" 
-                height="auto" 
-                className="giphy-embed" 
-                ></img>
+                <DotLottieReact src="https://lottie.host/8d9b894b-c790-42c9-88c9-dea79266e08d/FQNAmMRH0q.lottie" loop autoplay style={{ width: 400, height: 400
+                    
+                 }} />
                 <br ></br>
                 <p className="last-page-text">Carregando seus filmes...</p>
                 {isLoading && <p>Aguardando resposta do servidor...</p>} {/* Mensagem de carregamento */}
