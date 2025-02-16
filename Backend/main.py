@@ -6,7 +6,7 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import IntegracaoAPI
 import BancoFilmes
-import Crud
+import crud
 
 app = Flask(__name__)
 CORS(app)
@@ -73,6 +73,15 @@ def process_movies():
         data_dict = BancoFilmes.collecting_data(
             IntegracaoAPI.call_openai(api_key, selected_genres, selected_runtime, selected_rating), int(selected_runtime)
         )
+        while len(data_dict["title"]) < 5:
+            
+            print(f"Menos de 5 filmes encontrados ({len(data_dict["title"])}). Buscando mais...")
+            refactored_movies_list = IntegracaoAPI.call_openai_extra(api_key, selected_genres, selected_runtime, selected_rating, data_dict["title"])
+            # Atualiza o banco de filmes com os novos dados
+            novos_filmes_dict = BancoFilmes.collecting_data(refactored_movies_list, int(selected_runtime))
+            print(f"lista de filmes após filtragem do bd: {novos_filmes_dict}")
+            data_dict = novos_filmes_dict
+        
         data_dict_global = data_dict
         
         return jsonify({
@@ -121,7 +130,7 @@ def verify_user():
     if not username:
         return jsonify({"error": "O parâmetro 'username' é obrigatório!"}), 400
 
-    resultado = Crud.buscar_usuario(username)
+    resultado = crud.buscar_usuario(username)
     print(f"Resultado da busca: {resultado}")  # Depuração
 
     return jsonify(resultado)
@@ -135,7 +144,7 @@ def verify_login():
     if not username or not password:
         return jsonify({"error": "Os parâmetros 'username' e 'password' são obrigatórios!"}), 400
 
-    resultado = Crud.buscar_login(username, password)
+    resultado = crud.buscar_login(username, password)
     return jsonify(resultado)
 
 if __name__ == "__main__":
