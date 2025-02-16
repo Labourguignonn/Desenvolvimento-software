@@ -45,6 +45,9 @@ def collecting_data(films_lists, MaxRuntime, selected_genres):
             movie_response.raise_for_status()
             movie_data = movie_response.json()
 
+            if movie_data["overview"] == "":
+                continue
+
             # Validar gênero
             movie_genres = [g["id"] for g in movie_data.get("genres", [])]
             if not any(g in selected_genres_id for g in movie_genres):
