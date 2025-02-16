@@ -79,7 +79,6 @@ def process_movies():
             refactored_movies_list = IntegracaoAPI.call_openai_extra(api_key, selected_genres, selected_runtime, selected_rating, data_dict["title"])
             # Atualiza o banco de filmes com os novos dados
             novos_filmes_dict = BancoFilmes.collecting_data(refactored_movies_list, int(selected_runtime))
-            print(f"lista de filmes após filtragem do bd: {novos_filmes_dict}")
             data_dict = novos_filmes_dict
         
         data_dict_global = data_dict
