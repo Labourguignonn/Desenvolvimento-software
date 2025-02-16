@@ -1,7 +1,7 @@
 import sqlite3
 
 def buscar_usuario(username):
-    conn = sqlite3.connect("usuarios.db")
+    conn = sqlite3.connect("/tmp/usuarios.db")
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM usuarios WHERE username = ?", (username,))
