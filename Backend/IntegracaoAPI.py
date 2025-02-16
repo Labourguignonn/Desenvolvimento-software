@@ -22,3 +22,29 @@ def call_openai(key, genre, runtime, rating):
     films_list = mensagem_resp.split(";")
 
     return films_list
+
+def call_openai_extra(key, genre, runtime, rating, existing_movies):
+    openai.api_key = key
+
+    # Criar mensagem para evitar filmes repetidos
+    mensagens = [
+        {'role': 'system', 'content': 'You are a movie critic giving recommendations'},
+        {'role': 'user', 'content': f'Return, without numbers and separated by semicolons, only {5 - len(existing_movies)} new movie titles of the genre {genre}, that has a {rating} rating or less, with at most {runtime} minutes of runtime. Do NOT repeat any of these movies: {", ".join(existing_movies)}'}
+    ]
+
+    # Chamar OpenAI
+    resposta = openai.ChatCompletion.create(
+        model='gpt-4o-mini',
+        messages=mensagens,
+        max_tokens=100,
+        temperature=0.7,
+    )
+
+    # Converter texto para lista
+    mensagem_resp = resposta['choices'][0]['message']['content']
+    new_films = [film.strip() for film in mensagem_resp.split(";")]
+
+    complete_movies_list = existing_movies + new_films
+    print(f"lista completa de filmes com extras: {complete_movies_list}")
+
+    return complete_movies_list
