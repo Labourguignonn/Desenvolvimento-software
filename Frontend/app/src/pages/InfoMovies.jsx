@@ -32,12 +32,12 @@ function InfoMovies() {
             <img
               id="filme-selection"
               src={filme.poster_path}  // Aqui agora você deve usar o `poster_path` completo
-              alt={filme.title}
+              alt={filme.title_pt}
             />
           </div>
 
           <div id="infos-infofilmes">
-            <h3 id="titulo">{filme.title}</h3>
+            <h3 id="titulo">{filme.title_pt}</h3>
             <p id="sinopse-texto">{filme.overview}</p>
             <div id="detalhes">
               <div className="detalhe-item">

@@ -23,7 +23,7 @@ function MovieSelection() {
         const response = await axios.get(`${baseURL}/entregar-filmes`);
         const dataDict = response.data.data_dict;
 
-        if (dataDict && dataDict.title) {
+        if (dataDict && dataDict.title_pt) {
           setDataDict(dataDict);
           setLoading(false);
         } else {
@@ -40,7 +40,7 @@ function MovieSelection() {
   }, []);
 
   useEffect(() => {
-    if (!loading && (!dataDict || !dataDict.title.length)) {
+    if (!loading && (!dataDict || !dataDict.title_pt.length)) {
       console.log("Sem filmes disponíveis. Redirecionando...");
       navigate("/final_da_fila");
     }
@@ -53,7 +53,7 @@ function MovieSelection() {
 
 
   const proximoFilme = () => {
-    if (dataDict && currentFilmIndex < dataDict.title.length - 1) {
+    if (dataDict && currentFilmIndex < dataDict.title_pt.length - 1) {
       setCurrentFilmIndex(currentFilmIndex + 1);
     } else {
       console.log("Fim da lista de filmes. Redirecionando...");
@@ -61,8 +61,8 @@ function MovieSelection() {
     }
   };
 
-  const filmeAtual = dataDict && dataDict.title[currentFilmIndex] ? {
-    title: dataDict.title[currentFilmIndex],
+  const filmeAtual = dataDict && dataDict.title_pt[currentFilmIndex] ? {
+    title_pt: dataDict.title_pt[currentFilmIndex],
     poster_path: dataDict.poster_path?.[currentFilmIndex]
       ? posterBaseURL + dataDict.poster_path[currentFilmIndex]
       : "URL da imagem padrão", // Usa uma URL padrão se o poster_path não for encontrado
@@ -81,9 +81,9 @@ function MovieSelection() {
           <img
             id="filmeSelection"
             src={filmeAtual.poster_path}
-            alt={filmeAtual.title}
+            alt={filmeAtual.title_pt}
           />
-          <h3>{filmeAtual.title}</h3>
+          <h3>{filmeAtual.title_pt}</h3>
           <div id="pergunta">
             <div>
               <p>Você já assistiu a esse filme?</p>

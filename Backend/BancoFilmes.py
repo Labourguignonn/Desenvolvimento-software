@@ -7,7 +7,7 @@ def collecting_data(films_lists, MaxRuntime, selected_genres):
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YjJlZjM0MWRhOWM1NTM3ZThmOGRlNzA0ZDJhM2M2ZiIsIm5iZiI6MTczMzQyNzUyMS44NjcsInN1YiI6IjY3NTIwMTQxYWIzN2ZjZDNlODg1MTMzMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.iVq091IX6ZNnQeht3EhzNOotU61iFU8mcyFq7a2INQQ"
     }
 
-    base = {"title": [], "overview": [], "runtime": [], "poster_path": [], "director": [], "review": []}
+    base = {"title_pt": [], "title_en": [],  "overview": [], "runtime": [], "poster_path": [], "director": [], "review": []}
     id_filmes = []
     
     #Conferir se filmes repetidos foram fornecidos
@@ -64,11 +64,12 @@ def collecting_data(films_lists, MaxRuntime, selected_genres):
             if runtime > MaxRuntime + 10:
                 continue
             
-            base["title"].append(movie_data["title"])
+            base["title_pt"].append(movie_data["title_pt"])
             base["overview"].append(movie_data["overview"])
             base["runtime"].append(runtime)
             base["poster_path"].append(movie_data["poster_path"])
             base["review"].append(str(movie_data.get("vote_average", "N/A")))
+            base["title_en"].append(movie_data["original_title"])
 
             # Buscar diretor
             credits_url = f"https://api.themoviedb.org/3/movie/{film_id}/credits?language=en-US"

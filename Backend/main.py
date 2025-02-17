@@ -71,17 +71,17 @@ def process_movies():
         )
 
         # Garante que a chave "title" existe e é uma lista
-        if "title" not in data_dict or not isinstance(data_dict["title"], list):
+        if "title_en" not in data_dict or not isinstance(data_dict["title_en"], list):
             return jsonify({"error": "Erro ao buscar filmes: resposta inesperada da API"}), 500
 
         max_attempts = 3
         attempts = 0
 
-        while len(data_dict["title"]) < 5 and attempts < max_attempts:
+        while len(data_dict["title_en"]) < 5 and attempts < max_attempts:
             print(f"Tentativa {attempts + 1} de {max_attempts} para encontrar mais filmes...")
 
             refactored_movies_list = IntegracaoAPI.call_openai_extra(
-                api_key, selected_genres, selected_runtime, selected_rating, data_dict["title"]
+                api_key, selected_genres, selected_runtime, selected_rating, data_dict["title_en"]
             )
 
             # Verifica se `refactored_movies_list` tem algum dado válido
@@ -92,7 +92,7 @@ def process_movies():
             novos_filmes_dict = BancoFilmes.collecting_data(refactored_movies_list, int(selected_runtime), selected_genres)
 
             # Verifica se a nova tentativa retornou filmes
-            if "title" in novos_filmes_dict and isinstance(novos_filmes_dict["title"], list):
+            if "title_en" in novos_filmes_dict and isinstance(novos_filmes_dict["title_en"], list):
                 data_dict = novos_filmes_dict # Adiciona novos filmes sem sobrescrever
             else:
                 print("Erro: Nenhum novo filme foi encontrado. Parando tentativas adicionais.")
