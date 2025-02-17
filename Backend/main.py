@@ -104,7 +104,7 @@ def process_movies():
         data_dict_global = data_dict  # Salva o resultado final
 
         return jsonify({
-            "data_dict": data_dict_global
+            "data_dict": data_dict_global,
             "processamento_concluido": True
         }), 200
 
