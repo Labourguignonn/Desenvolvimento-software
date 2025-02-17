@@ -99,6 +99,7 @@ def process_movies():
                 break
 
             attempts += 1
+            print (data_dict)
 
         data_dict_global = data_dict  # Salva o resultado final
 
