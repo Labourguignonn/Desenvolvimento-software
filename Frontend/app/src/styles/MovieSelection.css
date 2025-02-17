@@ -9,6 +9,7 @@
   width: 100%;
   box-sizing: border-box;
   margin: 0 auto;
+  padding-top: 8vh;
 }
 
 /* Contêiner do filme */
@@ -18,43 +19,40 @@
   align-items: center;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  width: 350px; /* Largura fixa do card */
+  width: 270px; /* Largura fixa do card */
   max-height: 85vh;
   text-align: center;
   border: 2px solid #161616;
-  padding: 0; /* Remover padding para garantir que a imagem fique colada */
   overflow: hidden; /* Esconder qualquer conteúdo que ultrapasse o limite do contêiner */
 }
 
-/* Imagem do filme */
 #filmeSelection {
-  width: 350px; /* A imagem ocupa toda a largura do card */
-  height: 50vh; /* Altura fixa */
+  width: 270px;
+  height: 60vh;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  object-fit: cover; /* A imagem cobre a área definida */
-  object-position: center; /* Centraliza a imagem caso precise ser cortada */
-  margin: 0; /* Remover qualquer margem */
-  top: -1;
+  object-fit: cover;
+  object-position: center 90%; /* Move a imagem um pouco para baixo */
+  margin: 0;
 }
 
+/* Seção de seleção */
 .selecao {
   background-color: #161616;
   width: 100%;
   height: 100%;
   border-bottom-left-radius: 15px; 
   border-bottom-right-radius: 15px; 
-  margin-top: -4px;
-  padding: 20px 10px; 
+  margin-top: -20px;
+  padding: 10px 10px; 
   padding-top: 0;
 }
 
-
 /* Título do filme */
 h3 {
-  font-size: 1.4em;
+  font-size: 1em;
   color: #ffffff;
-  margin: 10px 0;
+  padding: 15px;
 }
 
 /* Texto da pergunta */
@@ -64,27 +62,51 @@ h3 {
 }
 
 /* Contêiner dos botões */
+/* Contêiner dos botões */
 #pergunta div {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: stretch; /* Garante que todos os botões tenham a mesma altura */
   gap: 10px;
+  width: 100%;
+}
+
+.p #pergunta {
+  margin-top: 10px;
 }
 
 /* Estilos dos botões de seleção */
 .botao-selecao {
-  margin-top: 10px;
-  padding: 10px 20px;
+  flex: 1; /* Faz com que todos os botões ocupem o mesmo espaço */
+  min-width: 20%; /* Define um tamanho mínimo */
+  height: 45px; /* Altura fixa para padronização */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centraliza o texto */
+  padding: 10px;
   background-color: black;
   color: white;
   border-radius: 6px;
   font-size: 0.9em;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 100px;
   border: 2px solid black;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-
+  text-align: center;
 }
+
+/* Efeito ao passar o mouse */
+.botao-selecao:hover {
+  background-color: #161616;
+  border-color: blueviolet;
+  color: blueviolet;
+}
+
+/* Alteração de estilo ao clicar no botão */
+.botao-selecao:active {
+  transform: scale(0.95);
+}
+
 
 /* Efeitos de hover nos botões */
 .botao-selecao:hover {
