@@ -10,30 +10,59 @@
     margin: 0 auto; /* Centraliza o contêiner horizontalmente */
 }
 
-.container_informations {
+.container_informations, .container_register {
+    color: white;
     display: flex;
+    font-weight: bold;
     flex-direction: column;
     justify-content: center;
-    gap:5%; /* Centraliza horizontalmente os filhos */
-    height: 70%;
+    gap:4%; 
+    height: 80%;
     width: 35%;
     align-items: center;
-    border: 1px solid rgb(88, 88, 88);
     border-radius: 10px;
- /* Centraliza verticalmente os filhos */
+    background: #161616;
+    padding-top: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
-.container_register {
+.field_with_eye {
+    position: relative;
     display: flex;
-    height: 70%;
-    width: 35%;
-    gap:5%;
-    flex-direction: column;
-    justify-content: center; /* Centraliza horizontalmente os filhos */
     align-items: center;
-    border: 1px solid rgb(88, 88, 88);
-    border-radius: 10px;
-    margin: 0 auto /* Centraliza verticalmente os filhos */
+    width: 100%;
+}
+
+.input_box {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    padding-left: 40px; 
+}
+
+.eye-icon {
+    position: absolute;
+    right: 10px; 
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.eye-icon img {
+    width: 20px;
+    height: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.eye-icon:active img {
+    opacity: 0.6;
 }
 
 .container_title_input {
@@ -48,7 +77,6 @@
 .input_box {
     padding: 10px;
     font-size: 16px;
-    border: 2px solid #ccc;
     border-radius: 4px;
     width: 100%;
     outline: none;
@@ -67,4 +95,21 @@
     text-decoration: underline;
   }
 
+.button_config{
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
 
+.button_config:hover {
+    background-color: blueviolet;
+    border-color: blueviolet;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
