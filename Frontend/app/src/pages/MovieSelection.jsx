@@ -69,6 +69,7 @@ function MovieSelection() {
     overview: dataDict.overview?.[currentFilmIndex] || "Descrição não disponível",
     director: dataDict.director?.[currentFilmIndex] || "Diretor não informado",
     runtime: dataDict.runtime?.[currentFilmIndex] || "Duração não informada",
+    review: dataDict.review?.[currentFilmIndex] || "Nota não informada",
   } : null;
 
   return (

@@ -12,6 +12,9 @@ function InfoMovies() {
   const filmeIndex = location.state?.index; // O índice do filme na lista
   const dataDict = location.state?.dataDict; // O dicionário de filmes completo
 
+  console.log("Filme recebido:", filme);
+
+
   // Caso o filme não tenha sido passado corretamente, exibe um erro
   if (!filme) {
     return <div>Erro: Nenhum filme encontrado!</div>;
@@ -42,6 +45,9 @@ function InfoMovies() {
               </div>
               <div className="detalhe-item">
                 <strong>Duração: </strong><span>{filme.runtime}</span>
+              </div>
+              <div className="detalhe-item">
+                <strong>Nota: </strong><span>{filme.review}</span>
               </div>
             </div>
           </div>

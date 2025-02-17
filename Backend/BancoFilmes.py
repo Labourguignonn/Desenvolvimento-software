@@ -10,6 +10,12 @@ def collecting_data(films_lists, MaxRuntime, selected_genres):
     base = {"title": [], "overview": [], "runtime": [], "poster_path": [], "director": [], "review": []}
     id_filmes = []
     
+    #Conferir se filmes repetidos foram fornecidos
+    for filme in films_lists:
+        if films_lists.count(filme) > 1:
+            films_lists.remove(filme)
+
+
     # Pegar o ID de cada filme
     for film in films_lists:
         search = re.sub(' ', '%20', film.lower())
@@ -62,7 +68,7 @@ def collecting_data(films_lists, MaxRuntime, selected_genres):
             base["overview"].append(movie_data["overview"])
             base["runtime"].append(runtime)
             base["poster_path"].append(movie_data["poster_path"])
-            base["review"].append(movie_data.get("vote_average", "N/A"))
+            base["review"].append(str(movie_data.get("vote_average", "N/A")))
 
             # Buscar diretor
             credits_url = f"https://api.themoviedb.org/3/movie/{film_id}/credits?language=en-US"
@@ -76,6 +82,7 @@ def collecting_data(films_lists, MaxRuntime, selected_genres):
                     break
             base["director"].append(director_name)
             print(base["director"])
+            print(base["review"])
 
         except requests.exceptions.RequestException as e:
             print(f"Erro ao processar filme ID {film_id}: {e}")
