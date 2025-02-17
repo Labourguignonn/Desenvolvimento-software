@@ -104,8 +104,7 @@ def process_movies():
         data_dict_global = data_dict  # Salva o resultado final
 
         return jsonify({
-            "data_dict": data_dict_global,
-            "processamento_concluido": len(data_dict_global["title"]) >= 5
+            "data_dict": data_dict_global
         }), 200
 
     except Exception as e:
