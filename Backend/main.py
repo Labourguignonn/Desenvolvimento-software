@@ -93,7 +93,7 @@ def process_movies():
 
             # Verifica se a nova tentativa retornou filmes
             if "title" in novos_filmes_dict and isinstance(novos_filmes_dict["title"], list):
-                data_dict["title"].extend(novos_filmes_dict["title"])  # Adiciona novos filmes sem sobrescrever
+                data_dict = novos_filmes_dict # Adiciona novos filmes sem sobrescrever
             else:
                 print("Erro: Nenhum novo filme foi encontrado. Parando tentativas adicionais.")
                 break
