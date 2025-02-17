@@ -56,39 +56,47 @@ def getSelectedRating():
 def process_movies():
     global selected_rating, selected_runtime, selected_genres, data_dict_global
 
-# Verifique se todos os dados necessários estão presentes
     if not selected_rating or not selected_runtime or not selected_genres:
         return jsonify({"error": "Faltando dados: classificação, tempo ou gêneros."}), 400
 
-    # Caso todos os dados estejam presentes, processa os filmes
-    try: 
+    try:
         if len(selected_genres) > 1:
             selected_genres = ', '.join(selected_genres)
-        # Assegure-se de que a função call_openai e collecting_data sejam chamadas corretamente
+
         print(f"Processando filmes com os dados: classificação={selected_rating}, tempo={selected_runtime}, gêneros={selected_genres}")
+
         data_dict = BancoFilmes.collecting_data(
-            IntegracaoAPI.call_openai(api_key, selected_genres, selected_runtime, selected_rating), int(selected_runtime)
+            IntegracaoAPI.call_openai(api_key, selected_genres, selected_runtime, selected_rating),
+            int(selected_runtime)
         )
-        while len(data_dict["title"]) < 5:
-            
-            print(f"Menos de 5 filmes encontrados ({len(data_dict["title"])}). Buscando mais...")
-            refactored_movies_list = IntegracaoAPI.call_openai_extra(api_key, selected_genres, selected_runtime, selected_rating, data_dict["title"])
-            # Atualiza o banco de filmes com os novos dados
+
+        max_attempts = 3  # Máximo de tentativas
+        attempts = 0
+
+        while len(data_dict["title"]) < 5 and attempts < max_attempts:
+            print(f"Menos de 5 filmes encontrados ({len(data_dict['title'])}). Tentativa {attempts + 1} de {max_attempts}...")
+
+            refactored_movies_list = IntegracaoAPI.call_openai_extra(
+                api_key, selected_genres, selected_runtime, selected_rating, data_dict["title"]
+            )
+
             novos_filmes_dict = BancoFilmes.collecting_data(refactored_movies_list, int(selected_runtime))
             data_dict = novos_filmes_dict
-        
-        data_dict_global = data_dict
-        
+
+            attempts += 1  # Incrementa a tentativa
+
+        data_dict_global = data_dict  # Armazena globalmente os filmes encontrados
+
         return jsonify({
             "data_dict": data_dict,
-            "processamento_concluido": True  # Indica que o processamento foi bem-sucedido
+            "processamento_concluido": len(data_dict["title"]) >= 5
         }), 200
 
     except Exception as e:
         print(f"Erro ao processar filmes: {str(e)}")
         return jsonify({
             "error": f"Erro ao processar filmes: {str(e)}",
-            "processamento_concluido": False  # Se ocorrer erro, também retorna False
+            "processamento_concluido": False
         }), 500
         
 @app.route("/entregar-filmes", methods=["GET"])
