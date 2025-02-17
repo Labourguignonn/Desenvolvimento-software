@@ -45,6 +45,5 @@ def call_openai_extra(key, genre, runtime, rating, existing_movies):
     new_films = [film.strip() for film in mensagem_resp.split(";")]
 
     complete_movies_list = existing_movies + new_films
-    print(f"lista completa de filmes com extras: {complete_movies_list}")
 
     return complete_movies_list

@@ -74,7 +74,6 @@ def process_movies():
         attempts = 0
 
         while len(data_dict["title_en"]) < 5 and attempts < max_attempts:
-            print(f"Tentativa {attempts + 1} de {max_attempts} para encontrar mais filmes...")
 
             refactored_movies_list = IntegracaoAPI.call_openai_extra(
                 api_key, selected_genres, selected_runtime, selected_rating, data_dict["title_en"]
@@ -88,7 +87,6 @@ def process_movies():
             novos_filmes_dict = BancoFilmes.collecting_data(refactored_movies_list, int(selected_runtime), selected_genres)
 
             attempts += 1
-            print (data_dict)
 
         data_dict_global = data_dict  # Salva o resultado final
 

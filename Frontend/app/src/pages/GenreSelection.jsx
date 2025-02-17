@@ -7,6 +7,11 @@ import { baseURL } from "../services/config";
 
 const GenreSelection = () => {
   const navigate = useNavigate();
+  
+  const [selectedGenres, setSelectedGenres] = useState([]); // Gêneros selecionados
+  const [loading, setLoading] = useState(false); // Loading
+  const [error, setError] = useState(null); // Erros
+  const [showRefazer, setShowRefazer] = useState(false); // Controla a exibição do refazer seleção
 
   const [genres, setGenres] = useState([
     { label: "Ação", value: "Action" },
@@ -14,16 +19,11 @@ const GenreSelection = () => {
     { label: "Comédia", value: "Comedy" },
     { label: "Drama", value: "Drama" },
     { label: "Ficção Científica", value: "Science Fiction" },
-    { label: "Mistério", value: "Mistery" },
+    { label: "Mistério", value: "Mystery" },
     { label: "Romance", value: "Romance" },
     { label: "Terror", value: "Horror" },
     { label: "Animação", value: "Animation" },
   ]);
-
-  const [selectedGenres, setSelectedGenres] = useState([]); // Gêneros selecionados
-  const [loading, setLoading] = useState(false); // Loading
-  const [error, setError] = useState(null); // Erros
-  const [showRefazer, setShowRefazer] = useState(false); // Controla a exibição do refazer seleção
 
   const newGenres = [
     { label: "Documentário", value: "Documentary" },
@@ -33,6 +33,7 @@ const GenreSelection = () => {
     { label: "Suspense", value: "Thriller" },
     { label: "Crime", value: "Crime" },
     { label: "Faroeste", value: "Western" },
+    { label: "Fantasia", value: "Fantasy" },
   ];
 
   const toggleGenre = (genreValue) => {
