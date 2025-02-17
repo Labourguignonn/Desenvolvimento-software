@@ -1,6 +1,6 @@
 #navBar {
     background-color: var(--col-1); /* Fundo branco */
-    color: #931dce; /* Texto preto */
+    color: white; /* Texto preto */
     padding: 10px 20px; /* Espaçamento interno */
     position: fixed; /* Barra fixa no topo */
     top: 0; /* Alinhado ao topo da página */
