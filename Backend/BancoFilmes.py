@@ -81,8 +81,6 @@ def collecting_data(films_lists, MaxRuntime, selected_genres):
                     director_name = crew["name"]
                     break
             base["director"].append(director_name)
-            print(base["director"])
-            print(base["review"])
 
         except requests.exceptions.RequestException as e:
             print(f"Erro ao processar filme ID {film_id}: {e}")
