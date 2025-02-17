@@ -4,10 +4,11 @@ body {
     justify-content: center; /* Centraliza horizontalmente o conteúdo */
     align-items: center; /* Centraliza verticalmente o conteúdo */
     height: 100vh; /* Garante que o body ocupe toda a altura da tela */
-    background-color: white;
+    background-color: #1B1F3A;
 }
 
 * {
     margin: 0;
     box-sizing: border-box;
 }
+

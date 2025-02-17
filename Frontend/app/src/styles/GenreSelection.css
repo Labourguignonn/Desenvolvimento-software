@@ -21,6 +21,7 @@
   flex: 1; /* 1 parte da proporção */
   height: 100%; /* Ocupa toda a altura */
   position: relative;
+  color:#ffffff;
 }
 
 /* Seção Direita */
@@ -70,35 +71,56 @@
   justify-content: center;
   align-items: center;
   padding: 15px; /* Ajuste o padding se necessário */
-  border: 2px solid black;
+  border: 2px solid #3D348B;
   border-radius: 25px;
-  background-color: white;
+  background-color: #1B1F3A;
   font-size: 1.5rem;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+  color: white;
 }
 
 .genre-button.selected {
-  background-color: black;
-  color: white;
-  border-color: black;
+  background-color: rgb(167, 169, 209);
+  color: #1B1F3A;
+  border-color: #1B1F3A;
 }
 
 .genre-button:hover {
-  background-color: #e0e0e0;
+  background-color: #3D348B;
 }
 
 .add-button {
   padding: 10px;
   width: 50px;
   height: 50px;
-  border: 2px solid black;
+  border: 2px solid #3D348B;
   border-radius: 50%;
   font-size: 1.5rem;
-  background-color: white;
+  background-color: #1B1F3A;
   cursor: pointer;
+  color: white;
 }
 
 .add-button:hover {
-  background-color: #e0e0e0;
+  background-color: #3D348B;
+}
+
+.nav-button-right {
+  color: white;
+  background-color: #1B1F3A;
+  border: #3D348B;
+}
+
+.nav-button-right:hover {
+  background-color: #3D348B;
+}
+
+.refazer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  color: white;
+  flex-direction: column;
 }

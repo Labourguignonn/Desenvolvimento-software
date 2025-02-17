@@ -62,7 +62,6 @@ const GenreSelection = () => {
     });
   };
   
-
   // Função para enviar os dados para o backend
   const handleSubmit = () => {
     if (selectedGenres.length <= 3 && selectedGenres.length > 0) {
@@ -127,6 +126,7 @@ const GenreSelection = () => {
     {showRefazer && (
       <div className="refazer-container">
         <p>Por favor, selecione ao menos um gênero para continuar.</p>
+
         <button className="refazer-button" onClick={handleRefazerSelection}>
           Refazer Seleção
         </button>

@@ -22,7 +22,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 15px; /* Reduzido de 20px para 15px */
   border-radius: 10px;
-  border: 1px solid rgb(88, 88, 88);
+  border: 1px solid #3D348B;
   align-items: center; /* Centraliza verticalmente */
 }
 
@@ -58,7 +58,7 @@
 #titulo {
   font-size: 20px; /* Corrigido o erro no espaço */
   font-weight: bold;
-  color: #333;
+  color: white;
   margin-bottom: 10px; /* Reduzido de 15px para 10px */
 }
 
@@ -67,14 +67,17 @@
   font-size: 14px;
   text-align: justify;
   line-height: 1.6;
-  color: #666;
+  color: white;
   margin-bottom: 15px; /* Reduzido de 20px para 15px */
+  max-height: 220px; /* Define um limite de altura */
+  overflow-y: auto; /* Adiciona rolagem vertical quando necessário */
+  padding-right: 15px;  /* Empurra o texto para longe da barra */
 }
 
 /* Estilos para os detalhes do filme */
 #detalhes {
   font-size: 12px;
-  color: #333;
+  color: rgb(167, 169, 209);
 }
 
 .detalhe-item {
@@ -86,7 +89,7 @@
 }
 
 .detalhe-item span {
-  color: #777;
+  color: rgb(154, 146, 146);
 }
 
 /* Estilos para o contêiner de pergunta */
@@ -104,7 +107,7 @@
 #pergunta-infofilmes p {
   font-size: 18px;
   font-weight: bold;
-  color: #333;
+  color: white;
   margin-bottom: 10px; /* Reduzido de 15px para 10px */
 }
 
@@ -117,20 +120,18 @@
 
 .botao-infofilmes {
   padding: 10px 20px; /* Reduzi o padding */
-  background-color: black;
+  background-color: #1B1F3A;
   color: white;
   border-radius: 6px; /* Bordas menores */
   font-size: 0.9em; /* Fonte ligeiramente menor */
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100px; /* Largura menor */
-  border: 2px solid black; /* Bordas mais finas */
+  border: 2px solid #3D348B; /* Bordas mais finas */
 }
 
 .botao-infofilmes:hover {
-  background-color: #ffffff;
-  border-color: black; /* Mantém a borda preta no hover */
-  color: black; /* Muda a cor da fonte para preto no hover */
+  background-color: #3D348B;
 }
 
 .botao-infofilmes:focus {
