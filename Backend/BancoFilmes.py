@@ -64,7 +64,7 @@ def collecting_data(films_lists, MaxRuntime, selected_genres):
             if runtime > MaxRuntime + 10:
                 continue
             
-            base["title_pt"].append(movie_data["title_pt"])
+            base["title_pt"].append(movie_data["title"])
             base["overview"].append(movie_data["overview"])
             base["runtime"].append(runtime)
             base["poster_path"].append(movie_data["poster_path"])
