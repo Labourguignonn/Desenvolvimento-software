@@ -105,6 +105,7 @@ def process_movies():
 
         return jsonify({
             "data_dict": data_dict_global
+            "processamento_concluido": True
         }), 200
 
     except Exception as e:
