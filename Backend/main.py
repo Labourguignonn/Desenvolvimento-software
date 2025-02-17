@@ -67,8 +67,7 @@ def process_movies():
 
         # Chamada inicial para obter filmes
         data_dict = BancoFilmes.collecting_data(
-            IntegracaoAPI.call_openai(api_key, selected_genres, selected_runtime, selected_rating),
-            int(selected_runtime)
+            IntegracaoAPI.call_openai(api_key, selected_genres, selected_runtime, selected_rating), int(selected_runtime), selected_genres
         )
 
         # Garante que a chave "title" existe e é uma lista
