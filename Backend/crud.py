@@ -6,7 +6,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Diretório do arquivo a
 ORIGINAL_DB = os.path.join(BASE_DIR, "usuarios.db")   # Caminho correto do banco
 TMP_DB = "/tmp/usuarios.db"  # Caminho temporário no Vercel
 
-Verifica se o banco já foi copiado para /tmp, senão copia
+##Verifica se o banco já foi copiado para /tmp, senão copia
 if not os.path.exists(TMP_DB):
     if os.path.exists(ORIGINAL_DB):  
         shutil.copy(ORIGINAL_DB, TMP_DB)
