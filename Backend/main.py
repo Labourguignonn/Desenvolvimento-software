@@ -60,36 +60,52 @@ def process_movies():
         return jsonify({"error": "Faltando dados: classificação, tempo ou gêneros."}), 400
 
     try:
-        if len(selected_genres) > 1:
+        if isinstance(selected_genres, list) and len(selected_genres) > 1:
             selected_genres = ', '.join(selected_genres)
 
         print(f"Processando filmes com os dados: classificação={selected_rating}, tempo={selected_runtime}, gêneros={selected_genres}")
 
+        # Chamada inicial para obter filmes
         data_dict = BancoFilmes.collecting_data(
             IntegracaoAPI.call_openai(api_key, selected_genres, selected_runtime, selected_rating),
             int(selected_runtime)
         )
 
-        max_attempts = 3  # Máximo de tentativas
+        # Garante que a chave "title" existe e é uma lista
+        if "title" not in data_dict or not isinstance(data_dict["title"], list):
+            return jsonify({"error": "Erro ao buscar filmes: resposta inesperada da API"}), 500
+
+        max_attempts = 3
         attempts = 0
 
         while len(data_dict["title"]) < 5 and attempts < max_attempts:
-            print(f"Menos de 5 filmes encontrados ({len(data_dict['title'])}). Tentativa {attempts + 1} de {max_attempts}...")
+            print(f"Tentativa {attempts + 1} de {max_attempts} para encontrar mais filmes...")
 
             refactored_movies_list = IntegracaoAPI.call_openai_extra(
                 api_key, selected_genres, selected_runtime, selected_rating, data_dict["title"]
             )
 
+            # Verifica se `refactored_movies_list` tem algum dado válido
+            if not refactored_movies_list or not isinstance(refactored_movies_list, list):
+                print("Erro: Lista de filmes extra vazia ou inválida. Parando tentativas adicionais.")
+                break  # Sai do loop se a resposta for inválida
+
             novos_filmes_dict = BancoFilmes.collecting_data(refactored_movies_list, int(selected_runtime))
-            data_dict = novos_filmes_dict
 
-            attempts += 1  # Incrementa a tentativa
+            # Verifica se a nova tentativa retornou filmes
+            if "title" in novos_filmes_dict and isinstance(novos_filmes_dict["title"], list):
+                data_dict["title"].extend(novos_filmes_dict["title"])  # Adiciona novos filmes sem sobrescrever
+            else:
+                print("Erro: Nenhum novo filme foi encontrado. Parando tentativas adicionais.")
+                break
 
-        data_dict_global = data_dict  # Armazena globalmente os filmes encontrados
+            attempts += 1
+
+        data_dict_global = data_dict  # Salva o resultado final
 
         return jsonify({
-            "data_dict": data_dict,
-            "processamento_concluido": len(data_dict["title"]) >= 5
+            "data_dict": data_dict_global,
+            "processamento_concluido": len(data_dict_global["title"]) >= 5
         }), 200
 
     except Exception as e:
@@ -98,6 +114,7 @@ def process_movies():
             "error": f"Erro ao processar filmes: {str(e)}",
             "processamento_concluido": False
         }), 500
+
         
 @app.route("/entregar-filmes", methods=["GET"])
 def send_movies():
