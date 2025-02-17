@@ -89,7 +89,7 @@ def process_movies():
                 print("Erro: Lista de filmes extra vazia ou inválida. Parando tentativas adicionais.")
                 break  # Sai do loop se a resposta for inválida
 
-            novos_filmes_dict = BancoFilmes.collecting_data(refactored_movies_list, int(selected_runtime))
+            novos_filmes_dict = BancoFilmes.collecting_data(refactored_movies_list, int(selected_runtime), selected_genres)
 
             # Verifica se a nova tentativa retornou filmes
             if "title" in novos_filmes_dict and isinstance(novos_filmes_dict["title"], list):
