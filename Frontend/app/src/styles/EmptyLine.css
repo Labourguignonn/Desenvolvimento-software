@@ -1,20 +1,20 @@
 /* Estilos gerais do container */
-.Conteiner-final-da-fila {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh; /* Para garantir que o conteúdo ocupe toda a tela */
-    box-sizing: border-box;
-    height: 100vh;
-    width: 100vw;
-    max-width: 1200px;
-    margin: 0 auto; 
+.conteiner_empty_line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  max-width: 1200px;
+  margin: 0 auto; 
   }
   
   /* Estilo para a imagem */
   #flock-triste {
-    height: 40%;  
+    height: 50%;  
     max-width: 400px; 
     margin-bottom: 30px; 
     border-radius: 10px; 
@@ -39,6 +39,8 @@
   
   .botao-refazer-selecao:hover {
     background-color: #3D348B;
+    border-color: black; /* Mantém a borda preta no hover */
+    color: black; /* Muda a cor da fonte para preto no hover */
   }
   
   .botao-refazer-selecao:focus {
