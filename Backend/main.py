@@ -3,6 +3,7 @@ from flask_cors import CORS
 import time
 import sys
 import os
+
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import IntegracaoAPI
 import BancoFilmes
@@ -10,11 +11,6 @@ import crud
 
 app = Flask(__name__)
 CORS(app)
-
-api_key = None
-selected_runtime = None 
-selected_genres = None
-selected_rating = None
 
 @app.route("/")
 def home():

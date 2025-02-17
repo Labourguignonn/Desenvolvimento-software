@@ -62,7 +62,6 @@ const GenreSelection = () => {
     });
   };
   
-
   // Função para enviar os dados para o backend
   const handleSubmit = () => {
     if (selectedGenres.length <= 3 && selectedGenres.length > 0) {
