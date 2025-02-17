@@ -1,0 +1,69 @@
+.button-right {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  border: 4px solid;
+  border-color: transparent;
+  font-size: 1rem;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  bottom: 60px;
+  color: blueviolet;
+  box-shadow: 0 0 0 2px blueviolet;
+  justify-content: center;
+  cursor: pointer;
+  right: 100px;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.button-right .arrow {
+  width: 0;
+  height: 0;
+  border-left: 10px solid blueviolet;  /* A seta é feita com bordas */
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.button-right .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: blueviolet;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.button-right .text {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-12px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.button-right:hover {
+  box-shadow: 0 0 0 12px transparent;
+  color: #212121;
+  border-radius: 12px;
+  background-color: blueviolet;
+}
+
+.button-right:hover .arrow {
+  transform: translateX(10px);  /* A seta vai se mover ao passar o mouse */
+}
+
+.button-right:hover .circle {
+  opacity: 1;  /* O círculo aparece ao passar o mouse */
+}
+
+.button-right:active {
+  scale: 0.95;
+  box-shadow: 0 0 0 4px blueviolet;
+}
