@@ -68,7 +68,7 @@ def collecting_data(films_lists, MaxRuntime, selected_genres):
             base["overview"].append(movie_data["overview"])
             base["runtime"].append(runtime)
             base["poster_path"].append(movie_data["poster_path"])
-            base["review"].append(str(movie_data.get("vote_average", "N/A")))
+            base["review"].append(f"{str(movie_data.get("vote_average", "N/A")):.2f}")
             base["title_en"].append(movie_data["original_title"])
 
             # Buscar diretor
