@@ -1,140 +1,175 @@
-.container_rating_selection{
-    display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: #1B1F3A;
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  box-sizing: border-box;
+/* Container principal */
+:root {
+    --cor-L: #00A44Eff;
+    --cor-10: #0095D9ff;
+    --cor-12: #FECA03ff;
+    --cor-14: #F5811Eff;
+    --cor-16: #EC1A23ff;
+    --cor-18: #000000ff;
 }
-.titulo {
+
+.container_rating_selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Título */
+.titulo,
+h1 {
     font-size: 4.5em;
     text-align: center;
     margin-bottom: 20px;
     text-decoration: underline;
     color: white;
 }
+
+/* Lado esquerdo */
 .lado_esquerdo {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex: 1;
     height: 100%;
-    padding: 5px;
+    width: 100%;
+    color: white;
+    margin: 0;
 }
-h1 {
-    font-size: 4.5em;
-    text-align: center;
-    margin-bottom: 20px;
-}
+
+/* Lado direito */
 .lado_direito {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex: 1;
+    align-items: left;
     height: 100%;
-    padding: 5px;
-    position: relative;
-}
-.row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    height: 70px;
-    width: 350px;
+    width: 100%;
 }
 
 .button-option {
-    width: 300px; /* Largura fixada */
-    height: 60px; /* Altura fixada */
-    color: white;
-    border: 2px solid #3D348B;
-    border-radius: 8px;
-    padding: 8px;
-    background-color: #1B1F3A;
-    font-size: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: 0.5vh;
+    height: 9vh;
+    font-size: 1rem;
     cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease;
+    padding: auto;
+    background-color: transparent;
+    border: transparent;
 }
 
-.button-option-livre,
-.button-option-10,
-.button-option-12,
-.button-option-14,
-.button-option-16,
-.button-option-18 {
-    width: 200px; /* Largura fixada */
-    height: 60px; /* Altura fixada */
+.value {
     color: white;
-    border: 2px solid #3D348B;
-    border-radius: 8px;
-    padding: 10px;
-    background-color: #fff;
-    font-size: 1.5em;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    font-size: 2em;
 }
 
-.button-option-livre {
-    background-color: green;
+/* Class para opções no lado esquerdo */
+.option {
+    background-color: #161616;
+    color: white;
+    flex: 5;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition:
+        background-color 0.3s ease,
+        border-color 0.4s ease,
+        transform 0.4s ease;
 }
 
-.button-option-livre:hover {
-    background-color: rgb(0, 96, 0);
+/* Estilos gerais para o background */
+#value-L, #value-10, #value-12, #value-14, #value-16, #value-18 {
+    background-color: var(--cor-L);
 }
 
-.button-option-10 {
-    background-color: blue;
-}
+#value-10 { background-color: var(--cor-10); }
+#value-12 { background-color: var(--cor-12); }
+#value-14 { background-color: var(--cor-14); }
+#value-16 { background-color: var(--cor-16); }
+#value-18 { background-color: var(--cor-18); }
 
-.button-option-10:hover {
-    background-color: rgb(2, 2, 148);
-}
-
-.button-option-12 {
-    background-color: rgba(255,204,0,255);
-}
-
-.button-option-12:hover {
-    background-color: yellow;
-}
-
-.button-option-14 {
-    background-color: rgb(248,132,36);
-}
-
-.button-option-14:hover {
-    background-color: rgb(171, 87, 18);
-}
-
-.button-option-16 {
-    background-color: red;
-}
-
-.button-option-16:hover {
-    background-color: rgb(165, 5, 5);
-}
-
-.button-option-18 {
-    background-color: black;
-}
-
-.button-option-18:hover {
-    background-color: rgb(57, 55, 55);
-}
-
+/* Estilos para o hover */
 .button-option:hover {
-    background-color: #e0e0e0;
+    border-left: none;
+    font-weight: bold;
+    transform: scale(1.05);
 }
 
-.button-option.selected {
-    background-color: rgb(167, 169, 209);
-    color: #1B1F3A;
-    border-color: #1B1F3A;
+.button-option:hover #option-L { 
+    border: 1px solid var(--cor-L);
+    color: var(--cor-L);
+}
+.button-option:hover #option-10 { 
+    border: 1px solid var(--cor-10);
+    color: var(--cor-10);
+}
+.button-option:hover #option-12 { 
+    border: 1px solid var(--cor-12);
+    color: var(--cor-12);
+}
+.button-option:hover #option-14 { 
+    border: 1px solid var(--cor-14);
+    color: var(--cor-14);
+}
+.button-option:hover #option-16 { 
+    border: 1px solid var(--cor-16);
+    color: var(--cor-16);
+}
+.button-option:hover #option-18 { 
+    border: 1px solid var(--cor-18);
+    color: var(--cor-18);
+}
+
+/* Estilos para a opção selecionada */
+.button-option.selected #option-L, 
+.button-option.selected #option-10, 
+.button-option.selected #option-12, 
+.button-option.selected #option-14, 
+.button-option.selected #option-16, 
+.button-option.selected #option-18 {
+    box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+}
+
+.button-option.selected #option-L { background-color: var(--cor-L); }
+.button-option.selected #option-10 { background-color: var(--cor-10); }
+.button-option.selected #option-12 { background-color: var(--cor-12); }
+.button-option.selected #option-14 { background-color: var(--cor-14); }
+.button-option.selected #option-16 { background-color: var(--cor-16); }
+.button-option.selected #option-18 { background-color: var(--cor-18); }
+
+
+@media screen and (max-width: 768px) {
+    .button-option {
+        width: 80%;
+    }
 }

@@ -5,7 +5,6 @@
   align-items: stretch;
   height: 100vh;
   width: 96vw;
-  background-color: #1B1F3A;
   max-width: 1200px;
   margin: 0 auto;
   padding: 5px;
@@ -13,6 +12,7 @@
 
 /* Seção esquerda */
 .left-section_tempo {
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -64,8 +64,8 @@
   top: 50%; /* Alinha a linha verticalmente no centro */
   left: calc(12px + 20px); /* Começa após a primeira bolinha */
   right: calc(12px + 20px); /* Termina antes da última bolinha */
-  height: 4px; /* Espessura da linha */
-  background-color: rgb(167, 169, 209);
+  height: 2px; /* Espessura da linha */
+  background-color: white;
   transform: translateY(-50%);
   z-index: 0; /* Linha sempre atrás */
 }
@@ -85,7 +85,7 @@
   content: "";
   width: 4vh;
   height: 4vh;
-  background-color: rgb(167, 169, 209);
+  background-color: white;
   border-radius: 50%;
   position: absolute;
   top: 50%; /* Centraliza a bolinha na linha */
@@ -96,10 +96,10 @@
 
 /* Estilo do ponto de tempo quando selecionado */
 .time-point.selected::before {
-  background-color: #2c3b9e;
+  background-color: blueviolet;
   width: 4vh;
   height: 4vh;
-  border: 3px solid rgb(167, 169, 209);
+  border: none;
 }
 
 /* Rótulo de cada ponto de tempo */
@@ -110,32 +110,132 @@
   color: white;
 }
 
-.nav-button-left, .nav-button-right {
+
+.button-left, .button-right {
   position: absolute;
-  bottom: 60px;
-  background-color: #1B1F3A;
-  color: white;
-  border: 2px solid #3D348B;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1.5rem;
   display: flex;
-  justify-content: center;
   align-items: center;
+  width: 150px;
+  gap: 4px;
+  padding: 16px 36px;
+  border: 4px solid;
+  border-color: transparent;
+  font-size: 1rem; /* pode dá erro */
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  bottom: 60px;
+  color:blueviolet;
+  box-shadow: 0 0 0 1px blueviolet;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.nav-button-right:hover {
-  background-color: #3D348B;
-}
-
-.nav-button-left:hover {
-  background-color: #3D348B;
-}
-
-.nav-button-left {
+.button-left{
   left: 100px;
 }
 
-.nav-button-right {
+.button-right{
   right: 100px;
 }
+
+.button-right svg, .button-left svg {
+  position: absolute;
+  width: 24px;
+  fill: blueviolet;
+  z-index: 9;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+
+.button-left .arr-1 {
+  left: 16px; 
+  transform: scaleX(-1); 
+}
+
+.button-left .arr-2 {
+  right: -25%;
+  transform: scaleX(-1);
+}
+
+.button-right .arr-1 {
+  right: 16px;
+}
+
+.button-right .arr-2 {
+  left: -25%;
+}
+
+.button-left .circle, .button-right .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: blueviolet;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.button-right .text {
+  transform: translateX(-12px);
+}
+
+.button-left .text {
+  transform: translateX(12px); 
+}
+
+.button-left .text, .button-right .text {
+  position: relative;
+  z-index: 1;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.button-left:hover, .button-right:hover {
+  box-shadow: none;
+  color: #212121;
+  background-color: blueviolet;
+}
+
+
+.button-left:hover .arr-1 {
+  left: -25%; 
+}
+
+.button-left:hover .arr-2 {
+  right: 16px; 
+}
+
+.button-left:hover .text {
+  transform: translateX(-12px); 
+}
+
+.button-left:hover svg {
+  fill: #212121;
+}
+
+.button-right:hover .arr-1 {
+  right: -25%;
+}
+
+.button-right:hover .arr-2 {
+  left: 16px;
+}
+
+.button-right:hover .text {
+  transform: translateX(12px);
+}
+
+.button-right:hover svg {
+  fill: #212121;
+}
+
+.button-left:active, .button-left:active {
+  scale: 0.95;
+  box-shadow: 0 0 0 4px blueviolet;
+}
+

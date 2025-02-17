@@ -1,14 +1,12 @@
 #navBar {
-    background-color: #1B1F3A; /* Fundo branco */
-    color: #000000; /* Texto preto */
+    background-color: var(--col-1); /* Fundo branco */
+    color: white; /* Texto preto */
     padding: 10px 20px; /* Espaçamento interno */
     position: fixed; /* Barra fixa no topo */
     top: 0; /* Alinhado ao topo da página */
     width: 100%; /* Ocupa toda a largura */
     height: 8vh;
-    /*z-index: 1000; /* Garantir que fique acima de outros elementos */
-    box-shadow: 0 4px 8px rgb(74, 74, 147); /* Sombra para destaque */
-    border-bottom: 1px solid #868686; /* Linha inferior */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
     box-sizing: border-box; /* Inclui bordas e padding no tamanho total */
     display: flex; /* Torna o container flexível */
     align-items: center; /* Centraliza verticalmente */
@@ -22,7 +20,6 @@
     font-family: "Alfa Slab One", serif; /* Fonte personalizada */
     font-style: normal;
     font-size: 30px; /* Tamanho do texto */
-    color: #ffffff; /* Cor preta */
     white-space: nowrap; /* Evita quebra de linha no título */
     overflow: hidden; /* Impede transbordamento do título */
     text-overflow: ellipsis; /* Adiciona "..." se o título for muito longo */
