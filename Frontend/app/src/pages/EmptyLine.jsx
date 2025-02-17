@@ -8,7 +8,8 @@ const EmptyLine = () => {
   const navigate = useNavigate(); 
 
   return (
-    <div className="Conteiner-final-da-fila">
+    <div className="conteiner_empty_line">
+      
         <img 
           id="flock-triste" 
           src={FinalDaFilaImage}  
