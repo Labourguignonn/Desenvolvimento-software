@@ -105,20 +105,20 @@ function MovieSelection() {
               </div>
               <div>
                 <button
-                  className={`botao-selecao ${hoveredButton === 'proximo' ? 'hover' : ''}`}
-                  onClick={proximoFilme}
-                  onMouseEnter={() => handleMouseEnter('proximo')}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  Próximo Filme
-                </button>
-                <button
                   className={`botao-selecao ${hoveredButton === 'anterior' ? 'hover' : ''}`}
                   onClick={filmeAnterior}
                   onMouseEnter={() => handleMouseEnter('anterior')}
                   onMouseLeave={handleMouseLeave}
                 >
                   Filme Anterior
+                </button>
+                <button
+                  className={`botao-selecao ${hoveredButton === 'proximo' ? 'hover' : ''}`}
+                  onClick={proximoFilme}
+                  onMouseEnter={() => handleMouseEnter('proximo')}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  Próximo Filme
                 </button>
                 <button
                   className={`botao-selecao ${hoveredButton === 'nao' ? 'hover' : ''}`}
@@ -137,9 +137,9 @@ function MovieSelection() {
                   Não
                 </button>
               </div>
-            </div>
-            <div className="indicador">
-              <p>{currentFilmIndex + 1} de {dataDict.title.length}</p>
+              <div className="indicador">
+                <p>{currentFilmIndex + 1} de {dataDict.title.length}</p>
+              </div>
             </div>
           </div>
         </div>
