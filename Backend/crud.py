@@ -27,7 +27,7 @@ def buscar_usuario(username):
     if usuario:
         return {"usuario_existe": True, "dados": {"id": usuario[0], "username": usuario[1], "password": usuario[2]}}
     else:
-        # return {"usuario_existe": False}
+        return {"usuario_existe": False}
 
 def inserir_usuario(username, password):
     resultado = buscar_usuario(username)
