@@ -1,104 +1,111 @@
+/* Container principal para seleção de filmes */
 .container_movie_selection {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;
-    font-family: Arial, sans-serif;
-    height: 100%;
-    width: 90%; 
-    max-width: 1200px;
-    padding: 10px;
-    gap: 20px; 
-    box-sizing: border-box;
-    margin: 0 auto; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 /* Contêiner do filme */
 #conteinerFilme {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    max-width: 45vw;
-    max-height: 80vh;
-    text-align: center;
-    border: 1px solid #868686;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  width: 350px; /* Largura fixa do card */
+  max-height: 85vh;
+  text-align: center;
+  border: 2px solid #161616;
+  padding: 0; /* Remover padding para garantir que a imagem fique colada */
+  overflow: hidden; /* Esconder qualquer conteúdo que ultrapasse o limite do contêiner */
 }
 
 /* Imagem do filme */
 #filmeSelection {
-    width: 80%; /* Ajustado para diminuir o tamanho */
-    max-height: 60vh;
-    border-radius: 6px;
-    object-fit: cover;
+  width: 350px; /* A imagem ocupa toda a largura do card */
+  height: 50vh; /* Altura fixa */
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  object-fit: cover; /* A imagem cobre a área definida */
+  object-position: center; /* Centraliza a imagem caso precise ser cortada */
+  margin: 0; /* Remover qualquer margem */
+  top: -1;
 }
+
+.selecao {
+  background-color: #161616;
+  width: 100%;
+  height: 100%;
+  border-bottom-left-radius: 15px; 
+  border-bottom-right-radius: 15px; 
+  margin-top: -4px;
+  padding: 20px 10px; 
+  padding-top: 0;
+}
+
 
 /* Título do filme */
 h3 {
-    font-size: 1.4em;
-    color: #0f0f0f;
-    margin: 10px 0;
+  font-size: 1.4em;
+  color: #ffffff;
+  margin: 10px 0;
 }
 
 /* Texto da pergunta */
 #pergunta p {
-    font-size: 1em;
-    color: #555;
+  font-size: 1em;
+  color: #bab4b4;
 }
 
 /* Contêiner dos botões */
 #pergunta div {
-    display: flex;
-    justify-content: space-around;
-    gap: 10px;
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
 }
 
-/* Botões de seleção */
+/* Estilos dos botões de seleção */
 .botao-selecao {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: black;
-    color: white;
-    border-radius: 6px;
-    font-size: 0.9em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 10vw;
-    border: 2px solid black;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border-radius: 6px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100px;
+  border: 2px solid black;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
 }
 
-/* Hover e efeitos de interação */
+/* Efeitos de hover nos botões */
 .botao-selecao:hover {
-    background-color: #ffffff;
-    border-color: black;
-    color: black;
+  background-color: #161616;
+  border-color: blueviolet;
+  color: blueviolet;
 }
 
 /* Desabilitando o hover quando o botão for clicado */
 .botao-selecao.clicado:hover {
-    background-color: black;
-    color: white;
-    border-color: black;
+  background-color: blueviolet;
+  color: white;
+  border-color: none;
 }
 
-/* Botão de seleção normal */
-.botao-selecao {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: black;
-    color: white;
-    border-radius: 6px;
-    font-size: 0.9em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100px;
-    border: 2px solid black;
-}
-
-/* Alteração de estilo ao clicar */
+/* Alteração de estilo ao clicar no botão */
 .botao-selecao:active {
-    transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.indicador {
+  padding-top: 10px;
+  padding-bottom: 0px;
 }
