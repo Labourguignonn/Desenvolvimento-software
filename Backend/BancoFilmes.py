@@ -1,65 +1,90 @@
 import requests
 import re
 
-def getTitle(indice):
-    return base["title"][indice]
-
-def getOverview(indice):
-    return base["overview"][indice]
-
-def getRuntime(indice):
-    return base["runtime"][indice]
-
-def getPoster(indice):
-    return base["poster_path"][indice]
-    
-def getDirector(indice):
-    return base["director"][indice]
-
-def collecting_data(films_lists, MaxRuntime):
+def collecting_data(films_lists, MaxRuntime, selected_genres):
     headers = {
         "accept": "application/json",
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YjJlZjM0MWRhOWM1NTM3ZThmOGRlNzA0ZDJhM2M2ZiIsIm5iZiI6MTczMzQyNzUyMS44NjcsInN1YiI6IjY3NTIwMTQxYWIzN2ZjZDNlODg1MTMzMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.iVq091IX6ZNnQeht3EhzNOotU61iFU8mcyFq7a2INQQ"
     }
 
-    right_films_list = []
-    #local onde ficam armazenados os dados dos filmes
-    base = {"title" : [], "overview" : [], 'runtime' : [], 'poster_path' : [], "director" : []}
+    base = {"title_pt": [], "title_en": [],  "overview": [], "runtime": [], "poster_path": [], "director": [], "review": []}
     id_filmes = []
+    
+    #Conferir se filmes repetidos foram fornecidos
+    for filme in films_lists:
+        if films_lists.count(filme) > 1:
+            films_lists.remove(filme)
 
 
-    #Pegar o id de cada filme
-    for i in range(len(films_lists)):
-        films_lists[i].lower()
-        search = re.sub(' ', '%20', films_lists[i])
+    # Pegar o ID de cada filme
+    for film in films_lists:
+        search = re.sub(' ', '%20', film.lower())
         url = f"https://api.themoviedb.org/3/search/movie?query={search}&include_adult=false&language=en-US&page=1"
-        chamada = requests.get(url, headers=headers)
-        filme = chamada.json()["results"][0]
-        id_filmes.append(filme["id"])
-
-
-    #Pegar os dados de cada filme
-    for i in range(len(films_lists)):
-        url_id = f"https://api.themoviedb.org/3/movie/{id_filmes[i]}?language=pt-BR"
-        chamada = requests.get(url_id, headers=headers)
-        if chamada.json()["runtime"] <= MaxRuntime + 10:
-            right_films_list.append(films_lists[i])
+        
+        try:
+            response = requests.get(url, headers=headers)
+            response.raise_for_status()
+            results = response.json().get("results", [])
             
-            #adicionando no dicionário
-            base["title"].append(chamada.json()["title"])
-            base["overview"].append(chamada.json()["overview"])
-            base["runtime"].append(chamada.json()["runtime"])
-            base["poster_path"].append(chamada.json()["poster_path"])
+            if results:
+                id_filmes.append(results[0]["id"])
+        except requests.exceptions.RequestException as e:
+            print(f"Erro ao buscar {film}: {e}")
+            continue
+
+    # Pegar os IDs dos gêneros selecionados
+    try:
+        genre_response = requests.get("https://api.themoviedb.org/3/genre/movie/list?language=en", headers=headers)
+        genre_response.raise_for_status()
+        genres_list = genre_response.json().get("genres", [])
+        
+        selected_genres_id = [genre["id"] for genre in genres_list if genre["name"] in selected_genres]
+    except requests.exceptions.RequestException as e:
+        print(f"Erro ao buscar gêneros: {e}")
+        return base
+
+    # Buscar dados dos filmes
+    for i, film_id in enumerate(id_filmes):
+        try:
+            movie_url = f"https://api.themoviedb.org/3/movie/{film_id}?language=pt-BR"
+            movie_response = requests.get(movie_url, headers=headers)
+            movie_response.raise_for_status()
+            movie_data = movie_response.json()
+
+            if movie_data["overview"] == "":
+                continue
+
+            # Validar gênero
+            movie_genres = [g["id"] for g in movie_data.get("genres", [])]
+            if not any(g in selected_genres_id for g in movie_genres):
+                continue
+
+            # Validar tempo de execução
+            runtime = movie_data.get("runtime", 0)
+            if runtime > MaxRuntime + 10:
+                continue
             
-            #Achar o diretor
-            url_diretor = f"https://api.themoviedb.org/3/movie/{id_filmes[i]}/credits?language=en-US"
-            chamada_casting = requests.get(url_diretor, headers=headers)
-            iterar = chamada_casting.json()["crew"]
-            base["director"].append([])
-            for j in range(len(iterar)):
-                if(iterar[j]["job"] == "Director"):
-                    base["director"][len(right_films_list) - 1].append(iterar[j]["name"])
+            base["title_pt"].append(movie_data["title"])
+            base["overview"].append(movie_data["overview"])
+            base["runtime"].append(runtime)
+            base["poster_path"].append(movie_data["poster_path"])
+            base["review"].append(f"{str(movie_data.get("vote_average", "N/A")):.2f}")
+            base["title_en"].append(movie_data["original_title"])
+
+            # Buscar diretor
+            credits_url = f"https://api.themoviedb.org/3/movie/{film_id}/credits?language=en-US"
+            credits_response = requests.get(credits_url, headers=headers)
+            credits_response.raise_for_status()
+            
+            director_name = "Unknown"
+            for crew in credits_response.json().get("crew", []):
+                if crew["job"] == "Director":
+                    director_name = crew["name"]
                     break
-    return (base)
+            base["director"].append(director_name)
 
+        except requests.exceptions.RequestException as e:
+            print(f"Erro ao processar filme ID {film_id}: {e}")
+            continue
 
+    return base

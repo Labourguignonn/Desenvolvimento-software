@@ -27,12 +27,11 @@ const GenreSelection = () => {
 
   const newGenres = [
     { label: "Documentário", value: "Documentary" },
-    { label: "Musical", value: "Musical" },
-    { label: "Histórico", value: "Historical" },
+    { label: "Musical", value: "Music" },
+    { label: "Histórico", value: "History" },
     { label: "Guerra", value: "War" },
     { label: "Suspense", value: "Thriller" },
     { label: "Crime", value: "Crime" },
-    { label: "Biografia", value: "Biography" },
     { label: "Faroeste", value: "Western" },
   ];
 

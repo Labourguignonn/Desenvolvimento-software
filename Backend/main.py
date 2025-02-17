@@ -3,6 +3,7 @@ from flask_cors import CORS
 import time
 import sys
 import os
+
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import IntegracaoAPI
 import BancoFilmes
@@ -10,11 +11,6 @@ import crud
 
 app = Flask(__name__)
 CORS(app)
-
-api_key = None
-selected_runtime = None 
-selected_genres = None
-selected_rating = None
 
 @app.route("/")
 def home():
@@ -60,32 +56,54 @@ def getSelectedRating():
 def process_movies():
     global selected_rating, selected_runtime, selected_genres, data_dict_global
 
-# Verifique se todos os dados necessários estão presentes
     if not selected_rating or not selected_runtime or not selected_genres:
         return jsonify({"error": "Faltando dados: classificação, tempo ou gêneros."}), 400
 
-    # Caso todos os dados estejam presentes, processa os filmes
-    try: 
-        if len(selected_genres) > 1:
+    try:
+        if isinstance(selected_genres, list) and len(selected_genres) > 1:
             selected_genres = ', '.join(selected_genres)
-        # Assegure-se de que a função call_openai e collecting_data sejam chamadas corretamente
+
         print(f"Processando filmes com os dados: classificação={selected_rating}, tempo={selected_runtime}, gêneros={selected_genres}")
+
+        # Chamada inicial para obter filmes
         data_dict = BancoFilmes.collecting_data(
-            IntegracaoAPI.call_openai(api_key, selected_genres, selected_runtime, selected_rating), int(selected_runtime)
+            IntegracaoAPI.call_openai(api_key, selected_genres, selected_runtime, selected_rating), int(selected_runtime), selected_genres
         )
-        data_dict_global = data_dict
-        
+
+        max_attempts = 3
+        attempts = 0
+
+        while len(data_dict["title_en"]) < 5 and attempts < max_attempts:
+            print(f"Tentativa {attempts + 1} de {max_attempts} para encontrar mais filmes...")
+
+            refactored_movies_list = IntegracaoAPI.call_openai_extra(
+                api_key, selected_genres, selected_runtime, selected_rating, data_dict["title_en"]
+            )
+
+            # Verifica se `refactored_movies_list` tem algum dado válido
+            if not refactored_movies_list or not isinstance(refactored_movies_list, list):
+                print("Erro: Lista de filmes extra vazia ou inválida. Parando tentativas adicionais.")
+                break  # Sai do loop se a resposta for inválida
+
+            novos_filmes_dict = BancoFilmes.collecting_data(refactored_movies_list, int(selected_runtime), selected_genres)
+
+            attempts += 1
+            print (data_dict)
+
+        data_dict_global = data_dict  # Salva o resultado final
+
         return jsonify({
-            "data_dict": data_dict,
-            "processamento_concluido": True  # Indica que o processamento foi bem-sucedido
+            "data_dict": data_dict_global,
+            "processamento_concluido": True
         }), 200
 
     except Exception as e:
         print(f"Erro ao processar filmes: {str(e)}")
         return jsonify({
             "error": f"Erro ao processar filmes: {str(e)}",
-            "processamento_concluido": False  # Se ocorrer erro, também retorna False
+            "processamento_concluido": False
         }), 500
+
         
 @app.route("/entregar-filmes", methods=["GET"])
 def send_movies():

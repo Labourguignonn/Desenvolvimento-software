@@ -12,6 +12,9 @@ function InfoMovies() {
   const filmeIndex = location.state?.index; // O índice do filme na lista
   const dataDict = location.state?.dataDict; // O dicionário de filmes completo
 
+  console.log("Filme recebido:", filme);
+
+
   // Caso o filme não tenha sido passado corretamente, exibe um erro
   if (!filme) {
     return <div>Erro: Nenhum filme encontrado!</div>;
@@ -38,12 +41,12 @@ function InfoMovies() {
             <img
               id="filme-selection"
               src={filme.poster_path}  // Aqui agora você deve usar o `poster_path` completo
-              alt={filme.title}
+              alt={filme.title_pt}
             />
           </div>
 
           <div id="infos-infofilmes">
-            <h3 id="titulo">{filme.title}</h3>
+            <h3 id="titulo">{filme.title_pt}</h3>
             <p id="sinopse-texto">{filme.overview}</p>
             <div id="detalhes">
               <div className="detalhe-item">
@@ -51,6 +54,9 @@ function InfoMovies() {
               </div>
               <div className="detalhe-item">
                 <strong>Duração: </strong><span>{formatTime(filme.runtime)}</span>
+              </div>
+              <div className="detalhe-item">
+                <strong>Nota: </strong><span>{filme.review}</span>
               </div>
             </div>
           </div>
