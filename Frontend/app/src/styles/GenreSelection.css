@@ -21,7 +21,6 @@
   flex: 1; /* 1 parte da proporção */
   height: 100%; /* Ocupa toda a altura */
   position: relative;
-  color:#ffffff;
 }
 
 /* Seção Direita */
@@ -56,6 +55,30 @@
   justify-content: center;
   align-items: center;
   height: 50%;
+  width: 100%;
+  max-height: 300px; /* Defina a altura máxima */
+  overflow-y: auto; /* Ativa a rolagem vertical */
+  padding: 10px;
+
+  border-radius: 10px;
+}
+
+.genres-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.genres-container::-webkit-scrollbar-track {
+  background: #1B1F3A;
+  border-radius: 10px;
+}
+
+.genres-container::-webkit-scrollbar-thumb {
+  background: #3D348B;
+  border-radius: 10px;
+}
+
+.genres-container::-webkit-scrollbar-thumb:hover {
+  background: #5A46AD;
 }
 
 /* Botões */

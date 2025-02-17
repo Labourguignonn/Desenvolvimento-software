@@ -1,5 +1,5 @@
 /* Estilos gerais do container */
-.conteiner_empty_line {
+.Conteiner-final-da-fila {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,19 +28,17 @@
   
   .botao-refazer-selecao {
     padding: 10px 20px; /* Reduzi o padding */
-    background-color: black;
+    background-color: #1B1F3A;
     color: white;
     border-radius: 6px; /* Bordas menores */
     font-size: 0.9em; /* Fonte ligeiramente menor */
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 2px solid black; /* Bordas mais finas */
+    border: 2px solid #3D348B; /* Bordas mais finas */
   }
   
   .botao-refazer-selecao:hover {
-    background-color: #ffffff;
-    border-color: black; /* Mantém a borda preta no hover */
-    color: black; /* Muda a cor da fonte para preto no hover */
+    background-color: #3D348B;
   }
   
   .botao-refazer-selecao:focus {

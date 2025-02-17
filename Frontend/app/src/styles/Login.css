@@ -18,7 +18,7 @@
     height: 70%;
     width: 35%;
     align-items: center;
-    border: 1px solid rgb(88, 88, 88);
+    border: 1px solid #3D348B;
     border-radius: 10px;
  /* Centraliza verticalmente os filhos */
 }
@@ -31,7 +31,7 @@
     flex-direction: column;
     justify-content: center; /* Centraliza horizontalmente os filhos */
     align-items: center;
-    border: 1px solid rgb(88, 88, 88);
+    border: 1px solid #3D348B;
     border-radius: 10px;
     margin: 0 auto /* Centraliza verticalmente os filhos */
 }
@@ -43,12 +43,13 @@
     align-items: left;
     width: 90%;
     gap: 8px;
+
 }
 
 .input_box {
     padding: 10px;
     font-size: 16px;
-    border: 2px solid #ccc;
+    border: 2px solid #3D348B;
     border-radius: 4px;
     width: 100%;
     outline: none;

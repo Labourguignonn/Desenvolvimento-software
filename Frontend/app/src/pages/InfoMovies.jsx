@@ -20,6 +20,15 @@ function InfoMovies() {
   // Você pode usar `dataDict` aqui para acessar outros filmes, se necessário
   console.log("Dicionário de filmes:", dataDict);
 
+  const formatTime = (runtime) => {
+    if (!runtime || runtime <= 0) return "N/A"; // Caso o valor seja inválido
+  
+    const horas = Math.floor(runtime / 60); // Obtém as horas
+    const minutos = runtime % 60; // Obtém os minutos restantes
+  
+    return minutos > 0 ? `${horas}h ${minutos}min` : `${horas}h`; 
+  };
+
   return (
     <>
       <div className="container_info_movies">
@@ -41,7 +50,7 @@ function InfoMovies() {
                 <strong>Diretor: </strong><span>{filme.director}</span>
               </div>
               <div className="detalhe-item">
-                <strong>Duração: </strong><span>{filme.runtime}</span>
+                <strong>Duração: </strong><span>{formatTime(filme.runtime)}</span>
               </div>
             </div>
           </div>

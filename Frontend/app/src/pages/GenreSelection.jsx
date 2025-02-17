@@ -38,15 +38,15 @@ const GenreSelection = () => {
 
   const toggleGenre = (genreValue) => {
     setSelectedGenres((prevSelected) => {
-      if (prevSelected.includes(genreValue)) {
-        return prevSelected.filter((value) => value !== genreValue);
-      } else if (prevSelected.length < 3) {
-        return [...prevSelected, genreValue];
-      }
-      return prevSelected;
-    });
+      const updatedSelection = prevSelected.includes(genreValue)
+        ? prevSelected.filter((value) => value !== genreValue)
+        : prevSelected.length < 3
+        ? [...prevSelected, genreValue]
+        : prevSelected;
   
-    console.log("Gêneros selecionados:", selectedGenres);
+      console.log("Gêneros selecionados:", updatedSelection);
+      return updatedSelection;
+    });
   };
   
   const addGenres = () => {
@@ -60,6 +60,11 @@ const GenreSelection = () => {
       
       return [...prevGenres, ...selectedNewGenres];
     });
+    setTimeout(() => {
+      if (genresContainerRef.current) {
+        genresContainerRef.current.scrollTop = genresContainerRef.current.scrollHeight;
+      }
+    }, 100);
   };
   
   // Função para enviar os dados para o backend
