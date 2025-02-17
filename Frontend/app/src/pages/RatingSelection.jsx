@@ -7,19 +7,11 @@ import { baseURL } from "../services/config";
 
 function RatingSelection() {
   const navigate = useNavigate(); // Hook para navegação
-  const [botaoSelecionado, setBotaoSelecionado] = useState(null); // Estado para armazenar o botão clicado
+  const [selectedRating, setBotaoSelecionado] = useState(null); // Estado para armazenar o botão clicado
 
   // Função chamada ao clicar em qualquer botão de restrição
   const handleClick = (botao) => {
     setBotaoSelecionado(botao); // Salva o botão clicado no estado
-  };
-
-  // Função chamada ao clicar no botão de navegação →
-  const handleNavButtonClick = () => {
-    if (botaoSelecionado) {
-      enviarDadosParaBackend(botaoSelecionado); // Envia dados apenas se um botão foi selecionado
-      navigate("/carregamento"); // Navega para a página desejada
-    }
   };
 
   // Função para enviar os dados para o backend
@@ -30,6 +22,7 @@ function RatingSelection() {
       })
       .then((response) => {
         console.log("Dados enviados com sucesso:", response.data);
+        navigate("/carregamento");
       })
       .catch((error) => {
         console.error("Erro ao enviar dados:", error);
@@ -97,7 +90,9 @@ function RatingSelection() {
       >
         ←
       </button>
-      <button className="nav-button-right" onClick={handleNavButtonClick}>
+      <button 
+        className="nav-button-right" 
+        onClick={() => enviarDadosParaBackend(selectedRating)}>
         →
       </button>
     </div>

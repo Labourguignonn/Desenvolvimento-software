@@ -28,6 +28,7 @@ const RuntimeSelection = () => {
       .post(`${baseURL}/tempo`, { time: selectedTime }) // Envia o tempo ao backend
       .then((response) => {
         console.log("Tempo enviado com sucesso:", response.data);
+        navigate('/escolha_classificacao');
       })
       .catch((error) => {
         console.error("Erro ao enviar tempo:", error);
@@ -60,7 +61,6 @@ const RuntimeSelection = () => {
         className="nav-button-right"
         onClick={() => {
           enviarTempoParaBackend(); // Envia o tempo ao backend
-          navigate('/escolha_classificacao'); // Navega para a próxima página
         }}
       >
         →
