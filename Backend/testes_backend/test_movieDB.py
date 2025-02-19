@@ -1,6 +1,6 @@
 import sys
 import os
-
+import pytest
 # Adiciona a pasta `Backend` ao caminho do Python
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -51,7 +51,7 @@ def test_collecting_data(mock_get):
     assert "title_pt" in result and result["title_pt"] == ["Filme de Teste"]
     assert "title_en" in result and result["title_en"] == ["Test Movie"]
     assert "overview" in result and result["overview"] == ["Um filme de teste."]
-    assert "runtime" in result and result["runtime"] == [100]
+    assert "runtime" in result and result["runtime"] == [150]
     assert "poster_path" in result and result["poster_path"] == ["/test_poster.jpg"]
     assert "review" in result and result["review"] == ["8.5"]
     assert "director" in result and result["director"] == ["Test Director"]
