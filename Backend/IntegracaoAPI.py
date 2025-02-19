@@ -29,7 +29,7 @@ def call_openai_extra(key, genre, runtime, rating, existing_movies):
     # Criar mensagem para evitar filmes repetidos
     mensagens = [
         {'role': 'system', 'content': 'You are a movie critic giving recommendations'},
-        {'role': 'user', 'content': f'Return, without numbers and separated by semicolons, only {5 - len(existing_movies)} new movie titles of the genre {genre}, that has a {rating} rating or less, with at most {runtime} minutes of runtime. Do NOT repeat any of these movies: {", ".join(existing_movies)}'}
+        {'role': 'user', 'content': f'Return, without numbers and separated by semicolons, only {5 - len(existing_movies)} new movie titles of the genre {genre}, that has a {rating} rating or less, with at most {runtime} minutes of runtime. Do NOT repeat any of these movies: {", ".join(existing_movies)}' }
     ]
 
     # Chamar OpenAI
@@ -44,6 +44,11 @@ def call_openai_extra(key, genre, runtime, rating, existing_movies):
     mensagem_resp = resposta['choices'][0]['message']['content']
     new_films = [film.strip() for film in mensagem_resp.split(";")]
 
-    complete_movies_list = existing_movies + new_films
+    # Filtrar os filmes existentes da lista de novos filmes
+    filtered_new_films = [film for film in new_films if film not in existing_movies]
+
+    # Combinar filmes existentes com novos filmes
+    complete_movies_list = existing_movies + filtered_new_films
 
     return complete_movies_list
+

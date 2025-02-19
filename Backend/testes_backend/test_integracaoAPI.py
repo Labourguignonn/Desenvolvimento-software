@@ -26,9 +26,9 @@ def openai_mock():
 def test_call_openai(openai_mock):
     """Testa a função call_openai garantindo que ela retorna uma lista correta."""
     key = "fake-key"
-    genre = "action"
+    genre = "action, thriller"
     runtime = 120
-    rating = 7.5
+    rating = "PG-13"
 
     result = call_openai(key, genre, runtime, rating)
 
@@ -42,9 +42,9 @@ def test_call_openai(openai_mock):
 def test_call_openai_extra(openai_mock):
     """Testa a função call_openai_extra garantindo que ela retorna novos filmes sem repetir os existentes."""
     key = "fake-key"
-    genre = "comedy"
+    genre = "comedy, romance"
     runtime = 90
-    rating = 8.0
+    rating = "R"
     existing_movies = ["Movie 1", "Movie 2"]
 
     result = call_openai_extra(key, genre, runtime, rating, existing_movies)
@@ -62,7 +62,7 @@ def test_call_openai_error():
     key = "fake-key"
     genre = "drama"
     runtime = 100
-    rating = 6.5
+    rating = "PG-13"
 
     with patch("openai.ChatCompletion.create", side_effect=OpenAIError("Erro na API")):
         with pytest.raises(OpenAIError):
