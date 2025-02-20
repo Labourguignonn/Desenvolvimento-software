@@ -9,6 +9,12 @@ import IntegracaoAPI
 import BancoFilmes
 import crud
 
+api_key = None
+selected_runtime = None
+selected_genres = None
+selected_runtime = None
+data_dict_global = None
+
 app = Flask(__name__)
 CORS(app)
 
@@ -37,7 +43,7 @@ def getSelectedGenres():
     global selected_genres
     selected_genres = (request.json).get("selectedGenres")
     
-    if selected_genres and len(selected_genres) <= 3 and len(selected_genres) > 0:
+    if isinstance(selected_genres, list) and len(selected_genres) <= 3 and len(selected_genres) > 0:
         return jsonify({"message": "Gêneros recebidos com sucesso", "selectedGenres": selected_genres}), 200
     
     return jsonify({"error": "Selecione de 1 a 3 gêneros"}), 400
@@ -56,7 +62,7 @@ def getSelectedRating():
 def process_movies():
     global selected_rating, selected_runtime, selected_genres, data_dict_global
 
-    if not selected_rating or not selected_runtime or not selected_genres:
+    if selected_rating is None or selected_runtime is None or not selected_genres:
         return jsonify({"error": "Faltando dados: classificação, tempo ou gêneros."}), 400
 
     try:
@@ -107,15 +113,23 @@ def process_movies():
 def send_movies():
     global data_dict_global
 
-    # Verifica se o data_dict_global já foi gerado
-    if data_dict_global:
+    base = {"title_pt": [], "title_en": [], "overview": [], "runtime": [], "poster_path": [], "director": [], "review": []}
+
+    if not isinstance(data_dict_global, dict):
         return jsonify({
-            "data_dict": data_dict_global
-        }), 200
-        
+            "error": "Os filmes ainda não foram processados. Execute processar-filmes primeiro."
+        }), 400
+
+    missing_keys = [key for key in base.keys() if key not in data_dict_global]
+    
+    if missing_keys:
+        return jsonify({
+            "error": f"O dicionário retornado está incompleto. Chaves ausentes: {missing_keys}"
+        }), 400
+
     return jsonify({
-        "error": "Os filmes ainda não foram processados. Execute processar_filmes primeiro."
-    }), 400
+        "data_dict": data_dict_global
+    }), 200
 
 @app.route("/registrar-usuario", methods=["POST"])
 def register_user():
