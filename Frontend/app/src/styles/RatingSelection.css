@@ -99,9 +99,9 @@ h1 {
     border-bottom-left-radius: 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition:
-        background-color 0.3s ease,
-        border-color 0.4s ease,
-        transform 0.4s ease;
+    background-color 0.3s ease,
+    border-color 0.4s ease,
+    transform 0.4s ease;
 }
 
 /* Estilos gerais para o background */
@@ -114,13 +114,7 @@ h1 {
 #value-14 { background-color: var(--cor-14); }
 #value-16 { background-color: var(--cor-16); }
 #value-18 { background-color: var(--cor-18); }
-
-/* Estilos para o hover */
-.button-option:hover {
-    border-left: none;
-    font-weight: bold;
-    transform: scale(1.05);
-}
+ 
 
 .button-option:hover #option-L { 
     border: 1px solid var(--cor-L);
@@ -166,7 +160,6 @@ h1 {
 .button-option.selected #option-14 { background-color: var(--cor-14); }
 .button-option.selected #option-16 { background-color: var(--cor-16); }
 .button-option.selected #option-18 { background-color: var(--cor-18); }
-
 
 @media screen and (max-width: 768px) {
     .button-option {

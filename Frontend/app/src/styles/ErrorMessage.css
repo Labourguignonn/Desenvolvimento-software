@@ -1,0 +1,54 @@
+.error-message {
+    position: fixed;
+    top: 50%; /* Posiciona no meio da tela em relação ao eixo Y */
+    left: 50%; /* Posiciona no meio da tela em relação ao eixo X */
+    transform: translate(-50%, -50%); /* Ajusta para centralizar perfeitamente */
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Garante que a mensagem de erro ficará acima de outros elementos */
+  }
+  
+  .refazer-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .error {
+    display: flex;
+    align-items: center;
+  }
+  
+  .error__close {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .close-icon {
+    font-weight: bold;
+    font-size: 18px;
+    color: #721c24;
+  }
+  
+  .message-error {
+    display: flex;
+    align-items: center;
+  }
+  
+  .error__icon {
+    font-size: 24px;
+    margin-right: 10px;
+  }
+  
+  .error__title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
