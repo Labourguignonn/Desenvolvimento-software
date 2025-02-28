@@ -1,4 +1,3 @@
-/* Estilos gerais do contêiner principal */
 .container_info_movies {
   display: flex;
   flex-direction: column;
@@ -6,60 +5,56 @@
   align-items: center;
   font-family: Arial, sans-serif;
   height: 100%;
-  width: 90%; 
-  max-width: 1200px;
-  padding: 10px;
-  gap: 20px; 
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
   box-sizing: border-box;
   margin: 0 auto; 
+  padding-top: 10vh;
 }
 
 /* Estilos para o contêiner das informações do filme */
 .container-info-filme {
-  max-width: 80vh;
-  height: 50vh;
+  background-color: #161616;
+  height: 60vh;
+  width: 80%;
   display: flex;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 15px; /* Reduzido de 20px para 15px */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
   border-radius: 10px;
-  border: 1px solid #3D348B;
   align-items: center; /* Centraliza verticalmente */
 }
-
 
 /* Estilos para a imagem do filme */
 #poster {
   flex: 1;
-  padding-left: 15px;
-  max-width: 30vw; /* Largura máxima reduzida */
-  width: 100%; /* Garante que a largura se ajuste */
-  height: auto; /* Mantém a proporção */
+  height: 100%; /* Garante que a largura se ajuste */
   object-fit: contain; /* Garante que a imagem não fique distorcida */
-  margin: 0 auto; /* Centraliza horizontalmente */
-  display: block; /* Necessário para funcionar com margin auto */
 }
 
 #filme-selection {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
   border-radius: 10px;
 }
 
 /* Estilos para a parte de informações do filme */
 #infos-infofilmes {
   flex: 2;
-  padding: 15px; /* Reduzido de 20px para 15px */
+  height: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 3%;
 }
 
 /* Estilos para o título do filme */
 #titulo {
-  font-size: 20px; /* Corrigido o erro no espaço */
+  font-size: 1.5em;
   font-weight: bold;
   color: white;
-  margin-bottom: 10px; /* Reduzido de 15px para 10px */
+  margin-left: 0px; /* Removido espaço à esquerda */
+  text-align: center; /* Centraliza o título */
 }
 
 /* Estilos para a sinopse */
@@ -68,10 +63,10 @@
   text-align: justify;
   line-height: 1.6;
   color: white;
-  margin-bottom: 15px; /* Reduzido de 20px para 15px */
-  max-height: 220px; /* Define um limite de altura */
-  overflow-y: auto; /* Adiciona rolagem vertical quando necessário */
-  padding-right: 15px;  /* Empurra o texto para longe da barra */
+  margin-bottom: 15px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 15px;
 }
 
 /* Estilos para os detalhes do filme */
@@ -81,44 +76,32 @@
 }
 
 .detalhe-item {
-  margin-bottom: 8px; /* Reduzido de 10px para 8px */
+  margin-bottom: 8px;
 }
 
 .detalhe-item strong {
   font-weight: bold;
 }
 
-.detalhe-item span {
-  color: rgb(154, 146, 146);
-}
-
 /* Estilos para o contêiner de pergunta */
 .container-pergunta {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: column;
   align-items: center;
-  padding: 15px; /* Reduzido de 20px para 15px */
+  padding: 15px;
+  gap: 10px;
 }
 
-#pergunta-infofilmes {
-  text-align: center;
-}
-
-#pergunta-infofilmes p {
-  font-size: 18px;
-  font-weight: bold;
+#pergunta {
+  font-size: 1.2em;
   color: white;
-  margin-bottom: 10px; /* Reduzido de 15px para 10px */
-}
-
-/* Estilos para os botões */
-#botoes {
-  display: flex;
-  justify-content: center;
-  gap: 8px; /* Reduzido de 10px para 8px */
+  text-align: center;
+  gap: 10px;
 }
 
 .botao-infofilmes {
+  gap: 30px; /* Reduzido de 10px para 8px */
   padding: 10px 20px; /* Reduzi o padding */
   background-color: #1B1F3A;
   color: white;
@@ -128,6 +111,10 @@
   transition: all 0.3s ease;
   width: 100px; /* Largura menor */
   border: 2px solid #3D348B; /* Bordas mais finas */
+}
+
+.bottons-info-movies{
+  gap: 10px;
 }
 
 .botao-infofilmes:hover {
@@ -142,4 +129,11 @@
 /* Efeitos visuais ao passar o mouse */
 .botao-infofilmes:active {
   transform: scale(0.95); /* Redução ligeiramente maior ao clicar */
+}
+
+.bottons-info-movies{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
