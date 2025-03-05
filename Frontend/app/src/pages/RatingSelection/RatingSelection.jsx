@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../styles/RatingSelection.css";
-import ErrorMessage from "../components/ErrorMessage";
-import BackButton from "../components/BackButton";
-import NextButton from "../components/NextButton";
-import { baseURL } from "../services/config";
+import "./RatingSelection.css";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import BackButton from "../../components/BackButton";
+import NextButton from "../../components/NextButton";
+import { baseURL } from "../../services/config";
 
 function RatingSelection() {
   const navigate = useNavigate();

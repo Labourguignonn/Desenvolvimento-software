@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import "../styles/RuntimeSelection.css";
-import BackButton from "../components/BackButton";
-import NextButton from "../components/NextButton";
-import { baseURL } from "../services/config";
+import "./RuntimeSelection.css";
+import BackButton from "../../components/BackButton";
+import NextButton from "../../components/NextButton";
+import { baseURL } from "../../services/config";
 
 
 

@@ -1,15 +1,15 @@
 import React from "react"; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar.jsx";
-import Login from "./pages/Login.jsx";
-import GenreSelection from "./pages/GenreSelection.jsx"
-import RuntimeSelection from "./pages/RuntimeSelection.jsx";
-import RatingSelection from "./pages/RatingSelection.jsx";
-import Loading from "./pages/Loading.jsx";
-import MovieSelection from "./pages/MovieSelection.jsx";
-import InfoMovies from "./pages/InfoMovies.jsx";
-import LastPage from "./pages/LastPage.jsx";
-import EmptyLine from './pages/EmptyLine.jsx'; 
+import Login from "./pages/Login/Login.jsx";
+import GenreSelection from "./pages/GenreSelection/GenreSelection.jsx"
+import RuntimeSelection from "./pages/RuntimeSelection/RuntimeSelection.jsx";
+import RatingSelection from "./pages/RatingSelection/RatingSelection.jsx";
+import Loading from "./pages/Loading/Loading.jsx";
+import MovieSelection from "./pages/MovieSelection/MovieSelection.jsx";
+import InfoMovies from "./pages/InfoMovies/InfoMovies.jsx";
+import LastPage from "./pages/LastPage/LastPage.jsx";
+import EmptyLine from './pages/EmptyLine/EmptyLine.jsx'; 
 import "./App.css"
 
 const App = () => {

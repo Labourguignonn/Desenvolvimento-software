@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import "../styles/MovieSelection.css";
-import { baseURL } from "../services/config";
+import "./MovieSelection.css";
+import { baseURL } from "../../services/config";
 
 function MovieSelection() {
   const navigate = useNavigate();

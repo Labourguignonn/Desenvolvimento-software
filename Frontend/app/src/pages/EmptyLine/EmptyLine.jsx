@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import '../styles/EmptyLine.css'; 
+import './EmptyLine.css'; 
 
-import FinalDaFilaImage from '../assets/final-da-fila.png'; 
+import FinalDaFilaImage from '../../assets/final-da-fila.png'; 
 
 const EmptyLine = () => {
   const navigate = useNavigate(); 

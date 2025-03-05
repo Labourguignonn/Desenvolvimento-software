@@ -1,7 +1,7 @@
 import React from "react";
-import '../styles/LastPage.css';
+import './LastPage.css';
 
-import LastPageImage from '../assets/flork-pipoca.png'; 
+import LastPageImage from '../../assets/flork-pipoca.png'; 
 
 const LastPage = () => {
   return (

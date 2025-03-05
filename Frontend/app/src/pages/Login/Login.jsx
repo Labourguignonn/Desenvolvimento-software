@@ -1,10 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../styles/Login.css";
-import { baseURL } from "../services/config";
-import eyeIcon from "../assets/eye-icon.svg";
-import ErrorMessage from "../components/ErrorMessage";
+import "./Login.css";
+import { baseURL } from "../../services/config";
+import eyeIcon from "../../assets/eye-icon.svg";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 function Login() {
   const navigate = useNavigate();

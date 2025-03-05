@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/ErrorMessage.css'; // Importando o arquivo CSS
+import './ErrorMessage.css'; // Importando o arquivo CSS
 
 const ErrorMessage = ({ message, onClose }) => {
   return (

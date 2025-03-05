@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Importando axios para fazer requisições HTTP
 import { DotLottieReact} from "@lottiefiles/dotlottie-react"
-import '../styles/Loading.css';
-import { baseURL } from "../services/config";
+import './Loading.css';
+import { baseURL } from "../../services/config";
 
 
 function Loading() {

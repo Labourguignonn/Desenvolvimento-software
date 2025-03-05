@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"; // Para enviar dados para o backend
-import "../styles/GenreSelection.css";
-import { baseURL } from "../services/config";
-import NextButton from "../components/NextButton";
-import ErrorMessage from "../components/ErrorMessage";
-
+import "./GenreSelection.css";
+import { baseURL } from "../../services/config";
+import NextButton from "../../components/NextButton";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const GenreSelection = () => {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../styles/InfoMovies.css";
+import "./InfoMovies.css";
 
 function InfoMovies() {
   const navigate = useNavigate();
