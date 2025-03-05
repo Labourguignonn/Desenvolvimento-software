@@ -9,7 +9,7 @@ import { baseURL } from "../services/config";
 
 function RatingSelection() {
   const navigate = useNavigate();
-  const [selectedRating, setSelectedRating] = useState(null);  // Unificando o estado
+  const [selectedRating, setSelectedRating] = useState(null);
   const [labelSelecionado, setLabelSelecionado] = useState(null);
   const [errorRatingEmpty, setErrorRatingEmpty] = useState(false);
 
@@ -23,7 +23,7 @@ function RatingSelection() {
   ];
 
   const handleClick = (value, label) => {
-    setSelectedRating(value);  // Atualizando o estado de seleção
+    setSelectedRating(value);
     setLabelSelecionado(label);
   };
 
@@ -68,7 +68,7 @@ function RatingSelection() {
 
       {/* Passando a função de envio para o NextButton */}
       <BackButton backLink="/escolha_tempo" />
-      <NextButton proceedLink="/carregamento" onProceedClick={handleNavButtonClick} />  {/* Passei a função diretamente aqui */}
+      <NextButton proceedLink="/carregamento" onProceedClick={handleNavButtonClick} />
 
       {errorRatingEmpty && (
         <ErrorMessage
