@@ -57,6 +57,8 @@ import shutil
 #     else:
 #         return {"success": False, "message": "Usuário ou senha incorretos."}
 
+
+
 def buscar_usuario(username):
 
     conn = sqlite3.connect("usuarios.db")
