@@ -41,7 +41,6 @@ def get_director(film_id, headers):
         print(f"Erro ao buscar diretor do filme ID {film_id}: {e}")
     return "Unknown"
 
-# Função que coleta os dados dos filmes
 def collecting_data(films_lists, MaxRuntime, selected_genres):
     headers = {
         "accept": "application/json",
