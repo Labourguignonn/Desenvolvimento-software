@@ -19,11 +19,11 @@
   align-items: center;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  width: 270px; /* Largura fixa do card */
+  width: 270px; 
   max-height: 85vh;
   text-align: center;
   border: 2px solid #161616;
-  overflow: hidden; /* Esconder qualquer conteúdo que ultrapasse o limite do contêiner */
+  overflow: hidden; 
 }
 
 #filmeSelection {
@@ -32,7 +32,7 @@
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   object-fit: cover;
-  object-position: center 90%; /* Move a imagem um pouco para baixo */
+  object-position: center 90%; 
   margin: 0;
 }
 
@@ -56,33 +56,26 @@ h3 {
 }
 
 /* Texto da pergunta */
-#pergunta p {
+.selecao p {
   font-size: 1em;
   color: #bab4b4;
 }
 
-/* Contêiner dos botões */
-/* Contêiner dos botões */
-#pergunta div {
+/* Estilos dos botões de seleção */
+.botoes-container {
   display: flex;
-  justify-content: center;
-  align-items: stretch; /* Garante que todos os botões tenham a mesma altura */
   gap: 10px;
-  width: 100%;
-}
-
-.p #pergunta {
+  justify-content: center;
   margin-top: 10px;
 }
 
-/* Estilos dos botões de seleção */
 .botao-selecao {
-  flex: 1; /* Faz com que todos os botões ocupem o mesmo espaço */
-  min-width: 20%; /* Define um tamanho mínimo */
-  height: 45px; /* Altura fixa para padronização */
+  flex: 1; 
+  min-width: 20%; 
+  height: 45px; 
   display: flex;
   justify-content: center;
-  align-items: center; /* Centraliza o texto */
+  align-items: center; 
   padding: 10px;
   background-color: black;
   color: white;
@@ -96,38 +89,18 @@ h3 {
 }
 
 /* Efeito ao passar o mouse */
-.botao-selecao:hover {
+.botao-selecao:hover,
+.botao-selecao.clicado {
   background-color: #161616;
   border-color: blueviolet;
   color: blueviolet;
 }
 
-/* Alteração de estilo ao clicar no botão */
-.botao-selecao:active {
-  transform: scale(0.95);
-}
-
-
-/* Efeitos de hover nos botões */
-.botao-selecao:hover {
-  background-color: #161616;
-  border-color: blueviolet;
-  color: blueviolet;
-}
-
-/* Desabilitando o hover quando o botão for clicado */
-.botao-selecao.clicado:hover {
-  background-color: blueviolet;
-  color: white;
-  border-color: none;
-}
-
-/* Alteração de estilo ao clicar no botão */
+/* Efeito ao clicar */
 .botao-selecao:active {
   transform: scale(0.95);
 }
 
 .indicador {
   padding-top: 10px;
-  padding-bottom: 0px;
 }
