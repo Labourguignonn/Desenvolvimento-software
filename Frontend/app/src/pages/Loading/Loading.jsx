@@ -6,6 +6,7 @@ import './Loading.css';
 import { baseURL } from "../../services/config";
 
 
+
 function Loading() {
     const [isLoading, setIsLoading] = useState(true); // Estado para controlar o carregamento
     const navigate = useNavigate(); // Hook para navegar entre páginas
@@ -40,13 +41,14 @@ function Loading() {
     return (
         <div className="central">
             <div id="container_loading">
-                <DotLottieReact src="https://lottie.host/8d9b894b-c790-42c9-88c9-dea79266e08d/FQNAmMRH0q.lottie" loop autoplay style={{ width: 400, height: 400
-                    
-                 }} />
+                <DotLottieReact src="https://lottie.host/8d9b894b-c790-42c9-88c9-dea79266e08d/FQNAmMRH0q.lottie" loop autoplay style={{
+                    width: 400, height: 400
+
+                }} />
                 <br ></br>
                 <p className="last-page-text">Carregando seus filmes...</p>
                 {isLoading && <p>Aguardando resposta do servidor...</p>} {/* Mensagem de carregamento */}
-            </div>         
+            </div>
         </div>
     );
 }
