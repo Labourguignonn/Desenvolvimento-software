@@ -1,6 +1,6 @@
 import React from "react"; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from "./components/Navbar.jsx";
+import Navbar from "./components/Navbar/Navbar.jsx";
 import Login from "./pages/Login/Login.jsx";
 import GenreSelection from "./pages/GenreSelection/GenreSelection.jsx"
 import RuntimeSelection from "./pages/RuntimeSelection/RuntimeSelection.jsx";
