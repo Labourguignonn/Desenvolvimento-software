@@ -18,7 +18,7 @@ const EmptyLine = () => {
         
         <button
           className="botao-refazer-selecao"
-          onClick={() => navigate("/escolha_generos")} 
+          onClick={() => navigate("/filtros")} 
         >
           Clique aqui para refazer a seleção
         </button>
