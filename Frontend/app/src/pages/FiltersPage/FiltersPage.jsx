@@ -223,13 +223,18 @@ const FiltersPage = () => {
             <p className="subtitle">Selecione a classificação indicativa desejada do filme.</p>
           </div>
 
+
           <div className="section-rating">
             {ratings.map(({ label, value }) => (
               <button
                 key={label}
-                id={`rating-${label.replace(/\s+/g, '-').toLowerCase()}`} // Gerando um ID único a partir do label
-                className={`button-option ${labelSelecionado === label && "selected"}`}
-                onClick={() => (setSelectedRating(value), setLabelSelecionado(label))}
+                id={`rating-${label.replace(/\s+/g, "-").toLowerCase()}`}
+                className={`button-option ${labelSelecionado === label ? "selected" : ""}`}
+                onClick={() => (
+                  labelSelecionado === label
+                    ? (setSelectedRating(null), setLabelSelecionado(null))
+                    : (setSelectedRating(value), setLabelSelecionado(label))
+                )}
               >
                 <div className="value">{label}</div>
               </button>
