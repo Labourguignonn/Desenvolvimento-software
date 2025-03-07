@@ -1,4 +1,4 @@
-/* Container principal */
+/* Container principal
 :root {
     --cor-L: #00A44Eff;
     --cor-10: #0095D9ff;
@@ -6,8 +6,9 @@
     --cor-14: #F5811Eff;
     --cor-16: #EC1A23ff;
     --cor-18: #000000ff;
-}
+} */
 
+/* 
 .container_rating_selection {
     display: flex;
     flex-direction: row;
@@ -17,19 +18,9 @@
     width: 100%;
     font-family: Arial, sans-serif;
     box-sizing: border-box;
-}
+} */
 
-/* Título */
-.titulo,
-h1 {
-    font-size: 4.5em;
-    text-align: center;
-    margin-bottom: 20px;
-    text-decoration: underline;
-    color: white;
-}
-
-/* Lado esquerdo */
+/* 
 .lado_esquerdo {
     flex: 1;
     display: flex;
@@ -40,10 +31,10 @@ h1 {
     width: 100%;
     color: white;
     margin: 0;
-}
+} */
 
 /* Lado direito */
-.lado_direito {
+/* .lado_direito {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -51,9 +42,9 @@ h1 {
     align-items: left;
     height: 100%;
     width: 100%;
-}
+} */
 
-.button-option {
+/* .button-option {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -66,9 +57,9 @@ h1 {
     padding: auto;
     background-color: transparent;
     border: transparent;
-}
+} */
 
-.value {
+/* .value {
     color: white;
     flex: 1;
     width: 100%;
@@ -82,10 +73,10 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     font-weight: bold;
     font-size: 2em;
-}
+} */
 
 /* Class para opções no lado esquerdo */
-.option {
+/* .option {
     background-color: #161616;
     color: white;
     flex: 5;
@@ -102,10 +93,10 @@ h1 {
     background-color 0.3s ease,
     border-color 0.4s ease,
     transform 0.4s ease;
-}
+} */
 
 /* Estilos gerais para o background */
-#value-L, #value-10, #value-12, #value-14, #value-16, #value-18 {
+/* #value-L, #value-10, #value-12, #value-14, #value-16, #value-18 {
     background-color: var(--cor-L);
 }
 
@@ -139,10 +130,10 @@ h1 {
 .button-option:hover #option-18 { 
     border: 1px solid var(--cor-18);
     color: var(--cor-18);
-}
+} */
 
 /* Estilos para a opção selecionada */
-.button-option.selected #option-L, 
+/* .button-option.selected #option-L, 
 .button-option.selected #option-10, 
 .button-option.selected #option-12, 
 .button-option.selected #option-14, 
@@ -152,9 +143,9 @@ h1 {
     background-color: transparent;
     color: white;
     font-weight: bold;
-}
+} */
 
-.button-option.selected #option-L { background-color: var(--cor-L); }
+/* .button-option.selected #option-L { background-color: var(--cor-L); }
 .button-option.selected #option-10 { background-color: var(--cor-10); }
 .button-option.selected #option-12 { background-color: var(--cor-12); }
 .button-option.selected #option-14 { background-color: var(--cor-14); }
@@ -165,4 +156,4 @@ h1 {
     .button-option {
         width: 80%;
     }
-}
+} */

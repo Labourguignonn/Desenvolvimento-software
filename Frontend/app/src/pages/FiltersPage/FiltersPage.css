@@ -1,0 +1,426 @@
+.main-conteiner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 8%;
+    gap: 10%
+}
+
+.image-top {
+    display: flex;
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+    width: 100%;
+    /* Ocupa toda a largura disponível */
+    height: auto;
+    /* Altura automática conforme a largura da imagem */
+    padding-top: 5%;
+}
+
+/* Estilo para a imagem */
+.image-top img {
+    max-width: 100%;
+    /* A imagem não ultrapassa a largura do contêiner */
+    height: auto;
+    /* A altura é ajustada automaticamente conforme a largura */
+    border-radius: 8px;
+    /* Bordas arredondadas para a imagem */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    /* Sombra suave ao redor da imagem */
+    transition: transform 0.3s ease;
+    /* Transição suave para transformações */
+}
+
+/* Efeito hover: aumenta ligeiramente a imagem quando o mouse passa por cima */
+.image-top img:hover {
+    transform: scale(1.05);
+    /* Aumenta a imagem 5% */
+}
+
+
+.section_title {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 0;
+    gap: 0px;
+    padding: 0;
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 34px;
+    letter-spacing: 0%;
+}
+
+.subtitle {
+    margin-top: 5px;
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-bottom: 30px;
+    line-height: 32px;
+    font-family: "Poppins", sans-serif;
+    color: var(--color-5);
+    left: 5px;
+    margin-left: 3px;
+}
+
+.container_runtime_selection,
+.container_rating_selection {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+}
+
+/* DIV GENERO */
+.container_genre_selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: 100%;
+}
+
+.section-add-genres {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    font-family: Poppins;
+    font-size: 24px;
+    /* Aumentado */
+}
+
+.genres-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    gap: 30px;
+    width: 100%;
+    padding: 5px;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+.genres-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.genres-container::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 10px;
+}
+
+.genres-container::-webkit-scrollbar-thumb {
+    background: var(--color-1);
+    border-radius: 10px;
+}
+
+.genres-container::-webkit-scrollbar-thumb:hover {
+    background: var(--color-1);
+}
+
+.genre-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    /* Aumentado */
+    border-radius: 40px;
+    background-color: var(--color-2);
+    font-size: 25px;
+    /* Aumentado */
+    cursor: pointer;
+    color: var(--color-1);
+    border: 3.5px solid var(--color-1);
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+    width: 90%;
+    height: 100%;
+    font-family: Poppins;
+}
+
+.genre-button.selected {
+    background-color: var(--color-1);
+    color: white !important;
+    border-color: var(--color-1);
+}
+
+.genre-button:hover {
+    border: solid 3.5px var(--color-1);
+    color: var(--color-1);
+    transform: scale(1.05);
+}
+
+.genre-button.selected:hover {
+    color: var(--color-2) !important;
+}
+
+.add-button {
+    width: 60px;
+    /* Aumentado */
+    height: 60px;
+    /* Aumentado */
+    border: solid 3px var(--color-1);
+    border-radius: 50%;
+    font-size: 2rem;
+    /* Aumentado */
+    background-color: var(--color-2);
+    cursor: pointer;
+    color: var(--color-1);
+}
+
+.add-button:hover {
+    background-color: var(--color-1);
+    color: var(--color-2);
+}
+
+/* DIV TEMPO */
+
+.section-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 2;
+    height: 100%;
+    position: relative;
+    padding: 5px;
+}
+
+.timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    height: 4px;
+    margin-bottom: 20px;
+}
+
+/* Linha da timeline */
+.timeline::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: var(--color-4);
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+/* Linha preenchida */
+.timeline .filled {
+    position: absolute;
+    left: 0;
+    height: 4px;
+    background-color: var(--color-1);
+    /* Cor da linha preenchida */
+    z-index: 1;
+    transition: width 0.3s ease;
+}
+
+/* Bolinhas */
+.time-point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.time-point::before {
+    content: "";
+    width: 4vh;
+    height: 4vh;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.time-point.selected::before {
+    background-color: var(--color-1);
+    width: 4vh;
+    height: 4vh;
+    border: none;
+}
+
+.time-label {
+    margin-top: 10vh;
+    text-align: center;
+    color: var(--color-5);
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 34px;
+    letter-spacing: 0%;
+}
+
+
+/*{DIV CLASSIFICAÇÃO}*/
+.section-rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: left;
+    height: 100%;
+    width: 100%;
+}
+
+.section-rating {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+.button-option {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid transparent;
+    height: 77px;
+    width: 77px;
+}
+
+/* Efeito hover padrão (sem id específico) */
+.button-option:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+#rating-l {
+    background-color: var(--color-2);
+    border: 3px solid var(--var-L);
+    color: var(--var-L);
+}
+
+#rating-10 {
+    background-color: var(--color-2);
+    border: 3px solid var(--var-10);
+    color: var(--var-10);
+}
+
+#rating-12 {
+    background-color: var(--color-2);
+    border: 3px solid var(--var-12);
+    color: var(--var-12);
+}
+
+#rating-14 {
+    background-color: var(--color-2);
+    border: 3px solid var(--var-14);
+    color: var(--var-14);
+}
+
+#rating-16 {
+    background-color: var(--color-2);
+    border: 3px solid var(--var-16);
+    color: var(--var-16);
+}
+
+#rating-18 {
+    background-color: var(--color-2);
+    border: 3px solid var(--var-18);
+    color: var(--var-18);
+}
+
+/* Hover por id com cores diferentes para efeito */
+#rating-l:hover {
+    background-color: darken(var(--var-10), 10%);
+    /* Azul escuro */
+    border-color: darken(var(--var-10), 10%);
+}
+
+#rating-10:hover {
+    background-color: darken(var(--var-12), 10%);
+    /* Amarelo escuro */
+    border-color: darken(var(--var-12), 10%);
+}
+
+#rating-12:hover {
+    background-color: darken(var(--var-14), 10%);
+    /* Laranja escuro */
+    border-color: darken(var(--var-14), 10%);
+}
+
+#rating-14:hover {
+    background-color: darken(var(--var-16), 10%);
+    /* Vermelho escuro */
+    border-color: darken(var(--var-16), 10%);
+}
+
+#rating-16:hover {
+    background-color: darken(var(--var-18), 10%);
+    /* Preto mais intenso */
+    border-color: darken(var(--var-18), 10%);
+}
+
+#rating-18:hover {
+    background-color: darken(var(--var-L), 10%);
+    /* Verde mais escuro */
+    border-color: darken(var(--var-L), 10%);
+}
+
+/* Quando selecionado */
+.button-option.selected {
+    border-color: #fff;
+    /* Borda branca quando selecionado */
+}
+
+/*{BOTÃO DE ENVIAR}*/
+
+.Submit-Button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 10%;
+    gap: 10%;
+    width: 297;
+    height: 86;
+    opacity: 0.8;
+    top: 1824px;
+    left: 505px;
+    border-radius: 40px;
+}
+
+.button-receive {
+    background-color: var(--color-1);
+    width: 25%;
+    height: 90px;
+    border: 0px;
+    border-radius: 40px;
+    color: var(--color-2);
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+}

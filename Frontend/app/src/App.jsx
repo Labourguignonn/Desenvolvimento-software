@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Login from "./pages/Login/Login.jsx";
+import FiltersPage from "./pages/FiltersPage/FiltersPage.jsx";
 import GenreSelection from "./pages/GenreSelection/GenreSelection.jsx"
 import RuntimeSelection from "./pages/RuntimeSelection/RuntimeSelection.jsx";
 import RatingSelection from "./pages/RatingSelection/RatingSelection.jsx";
@@ -17,7 +18,8 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Login />} />
+        {/* <Route path="/" element={<Login />} /> */}
+        <Route path="/" element={<FiltersPage />} />
         <Route path="/escolha_generos" element={<GenreSelection />} />
         <Route path="/escolha_tempo" element={<RuntimeSelection />} />
         <Route path="/escolha_classificacao" element={<RatingSelection />} />
