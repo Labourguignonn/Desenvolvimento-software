@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./MovieSelection.css";
 import { baseURL } from "../../services/config";
 
 function MovieSelection() {
   const navigate = useNavigate();
-  const [currentFilmIndex, setCurrentFilmIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [dataDict, setDataDict] = useState(null);
-
-  const filmeIndex = useLocation().state?.index || 0;
+  const [selectedFilmIndex, setSelectedFilmIndex] = useState(0); // Índice do filme em destaque
   const posterBaseURL = "https://image.tmdb.org/t/p/w500";
 
   useEffect(() => {
@@ -27,59 +25,82 @@ function MovieSelection() {
       .finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => {
-    setCurrentFilmIndex(filmeIndex);
-  }, [filmeIndex]);
+  if (loading) return <p>Carregando filmes...</p>;
+  if (!dataDict || !dataDict.title_pt.length) navigate("/final_da_fila");
 
-  useEffect(() => {
-    if (!loading && (!dataDict || !dataDict.title_pt.length)) {
-      navigate("/final_da_fila");
-    }
-  }, [loading, dataDict, navigate]);
+  // Dados do filme em destaque
+  const filmeAtual = {
+    title_pt: dataDict.title_pt[selectedFilmIndex],
+    overview: dataDict.overview?.[selectedFilmIndex] || "Sinopse não disponível.",
+    director: dataDict.director?.[selectedFilmIndex] || "Desconhecido",
+    runtime: dataDict.runtime?.[selectedFilmIndex] || 0,
+    review: dataDict.review?.[selectedFilmIndex] || "Sem nota",
+    poster_path: dataDict.poster_path?.[selectedFilmIndex]
+      ? posterBaseURL + dataDict.poster_path[selectedFilmIndex]
+      : "URL da imagem padrão"
+  };
 
-  const filmeAtual = dataDict?.title_pt[currentFilmIndex] ? {
-    title_pt: dataDict.title_pt[currentFilmIndex],
-    poster_path: dataDict.poster_path?.[currentFilmIndex] ? 
-                 posterBaseURL + dataDict.poster_path[currentFilmIndex] : 
-                 "URL da imagem padrão",
-    overview: dataDict.overview?.[currentFilmIndex] || "Descrição não disponível",
-    director: dataDict.director?.[currentFilmIndex] || "Diretor não informado",
-    runtime: dataDict.runtime?.[currentFilmIndex] || "Duração não informada",
-    review: dataDict.review?.[currentFilmIndex] || "Nota não informada",
-  } : null;
+  // Função para formatar a duração do filme
+  const formatTime = (runtime) =>
+    runtime > 0 ? `${Math.floor(runtime / 60)}h ${runtime % 60}min` : "N/A";
 
   return (
     <div className="container_movie_selection">
-      {loading ? (
-        <p>Carregando filmes...</p>
-      ) : filmeAtual ? (
-        <div id="conteinerFilme">
-          <div className="poster">
-            <img id="filmeSelection" src={filmeAtual.poster_path} alt={filmeAtual.title_pt} />
-          </div>
-          <div className="selecao">
-            <h3>{filmeAtual.title_pt}</h3>
-            <p>Você já assistiu a esse filme?</p>
-            <div className="botoes-container">
-              <button className="botao-selecao" onClick={() => setCurrentFilmIndex(prev => Math.max(prev - 1, 0))}>
-                Filme Anterior
-              </button>
-              <button className="botao-selecao" onClick={() => navigate("/info_filmes", {
-                state: { filme: filmeAtual, index: currentFilmIndex + 1, dataDict }
-              })}>
-                Não
-              </button>
-              <button className="botao-selecao" onClick={() => setCurrentFilmIndex(prev => prev + 1)}>
-                Próximo Filme
-              </button>
+      <div className="container-info-carrousel">
+          
+          {/* DIV INFORMAÇÕES DO FILME DESTACADO */}
+        <div className="container-info-filme">
+          <div class="infos-infofilmes">
+            <h3 id="titulo">{filmeAtual.title_pt}</h3>
+            <div className="detalhes">
+            <div className="detalhe-nota"><span className="star">★</span> {filmeAtual.review}/10 IMDb</div>
+              <div className="subdetails"> 
+                <div className="detalhe-item">{filmeAtual.director}</div>
+                <div className="detalhe-item">{formatTime(filmeAtual.runtime)}</div>
+              </div>
             </div>
-            <div className="indicador">
-              <p>{currentFilmIndex + 1} de {dataDict.title_pt.length}</p>
-            </div>
+            <p id="sinopse-texto">{filmeAtual.overview}</p>
           </div>
         </div>
-      ) : navigate("/final_da_fila")}
-    </div>
+        
+        {/* CARROSSEL DE FILMES */}
+        <div className="movie-carousel">
+          <div className="movie-list">
+            {dataDict.title_pt.map((title, index) => (
+              <div 
+                key={index} 
+                className={`movie-item ${index === selectedFilmIndex ? "highlighted" : ""}`}
+                onClick={() => setSelectedFilmIndex(index)} // Atualiza o filme em destaque
+              >
+                <img src={posterBaseURL + dataDict.poster_path[index]} alt={title} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      
+        {/* BOTÕES DE NAVEGAÇÃO */}
+      <div className="button-div">
+          <button 
+            className="carousel-btn left" 
+            onClick={() => setSelectedFilmIndex(prev => Math.max(prev - 1, 0))}
+            disabled={selectedFilmIndex === 0}
+          >
+            {"<"}
+          </button>
+          
+          <button className="like-button"> + </button>
+          
+          <button 
+            className="carousel-btn right" 
+            onClick={() => setSelectedFilmIndex(prev => Math.min(prev + 1, dataDict.title_pt.length - 1))}
+            disabled={selectedFilmIndex >= dataDict.title_pt.length - 1}
+          >
+            {">"}
+          </button>
+        </div>
+      </div>
+      
   );
 }
 
