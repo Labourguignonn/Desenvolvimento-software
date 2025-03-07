@@ -152,13 +152,10 @@
 
 .add-button {
     width: 60px;
-    /* Aumentado */
     height: 60px;
-    /* Aumentado */
     border: solid 3px var(--color-1);
     border-radius: 50%;
     font-size: 2rem;
-    /* Aumentado */
     background-color: var(--color-2);
     cursor: pointer;
     color: var(--color-1);
