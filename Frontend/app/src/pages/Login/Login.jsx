@@ -49,7 +49,7 @@ function Login() {
       if (!authResponse.data.success) return setErrorMessage("Usuário ou senha incorretos!");
 
       const keyResponse = await axios.post(`${baseURL}/receber_chave`, user);
-      keyResponse.data.chave ? navigate("/escolha_generos") : setErrorMessage("Erro ao validar a chave.");
+      keyResponse.data.chave ? navigate("/filtros") : setErrorMessage("Erro ao validar a chave.");
     } catch {
       setErrorMessage("Erro ao enviar dados.");
     }

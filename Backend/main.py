@@ -116,7 +116,7 @@ def get_selected_filters():
         "time": runtime,
         "selectedGenres": genres,
         "classificação": rating
-    }), 500
+    }), 200
 
 @app.route("/processar-filmes", methods=["GET"])
 def process_movies():

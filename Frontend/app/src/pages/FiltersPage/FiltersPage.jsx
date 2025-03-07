@@ -4,6 +4,7 @@ import axios from "axios";
 import { baseURL } from "../../services/config";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import "./FiltersPage.css"
+import FirstImage from "../../assets/movie_images/top_images/01.jpg";
 
 const FiltersPage = () => {
   const navigate = useNavigate();
@@ -143,7 +144,7 @@ const FiltersPage = () => {
   return (
     <>      <div className="image-top">
       <img
-        src="https://i.postimg.cc/XJ93G4rf/Captura-de-tela-2025-03-06-222136.png"
+        src={FirstImage}
         alt="Imagem do Google Drive"
       />
     </div>

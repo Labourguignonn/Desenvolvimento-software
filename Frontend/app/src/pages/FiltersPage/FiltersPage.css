@@ -4,43 +4,28 @@
     height: 100%;
     width: 90%;
     margin: 0 auto;
-    padding-top: 8%;
-    gap: 10%
+    padding-top: 5%;
+    gap: 10%;
 }
 
 .image-top {
     display: flex;
     justify-content: center;
-    /* Centraliza horizontalmente */
     align-items: center;
-    /* Centraliza verticalmente */
     width: 100%;
-    /* Ocupa toda a largura disponível */
     height: auto;
-    /* Altura automática conforme a largura da imagem */
-    padding-top: 5%;
+    padding-top: 72px;
 }
 
-/* Estilo para a imagem */
 .image-top img {
-    max-width: 100%;
-    /* A imagem não ultrapassa a largura do contêiner */
-    height: auto;
-    /* A altura é ajustada automaticamente conforme a largura */
+    width: 100%;
+    /* Faz com que a imagem ocupe toda a largura */
+    height: 100%;
+    /* Faz com que a imagem ocupe toda a altura do contêiner */
+    object-fit: cover;
+    /* Garante que a imagem cubra todo o espaço disponível sem distorcer */
     border-radius: 8px;
-    /* Bordas arredondadas para a imagem */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    /* Sombra suave ao redor da imagem */
-    transition: transform 0.3s ease;
-    /* Transição suave para transformações */
 }
-
-/* Efeito hover: aumenta ligeiramente a imagem quando o mouse passa por cima */
-.image-top img:hover {
-    transform: scale(1.05);
-    /* Aumenta a imagem 5% */
-}
-
 
 .section_title {
     display: flex;
@@ -58,7 +43,7 @@
 }
 
 .subtitle {
-    margin-top: 5px;
+    margin-top: 1px;
     padding-top: 0px;
     padding-left: 10px;
     padding-bottom: 30px;
@@ -93,8 +78,8 @@
     align-items: center;
     height: auto;
     font-family: Poppins;
+    gap: 20px;
     font-size: 24px;
-    /* Aumentado */
 }
 
 .genres-container {
@@ -195,6 +180,7 @@
     height: 100%;
     position: relative;
     padding: 5px;
+    margin-bottom: 8%;
 }
 
 .timeline {
@@ -204,7 +190,7 @@
     width: 100%;
     position: relative;
     height: 4px;
-    margin-bottom: 20px;
+    margin-top: 3%;
 }
 
 /* Linha da timeline */
@@ -275,120 +261,92 @@
 
 
 /*{DIV CLASSIFICAÇÃO}*/
-.section-rating {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: left;
-    height: 100%;
-    width: 100%;
-}
 
 .section-rating {
     display: flex;
     gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-    
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
 }
 
+/* Botões de avaliação */
 .button-option {
-    padding: 10px 20px;
+    flex: 1;
+    max-width: 100px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    padding: 10px;
     font-size: 16px;
     font-weight: bold;
     color: #fff;
     cursor: pointer;
-    border-radius: 5px;
     transition: all 0.3s ease-in-out;
-    border: 2px solid transparent;
-    height: 77px;
-    width: 77px;
+    border: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-/* Efeito hover padrão (sem id específico) */
-.button-option:hover {
-    transform: scale(1.05);
-    transition: transform 0.2s ease-in-out;
-}
-
-#rating-l {
-    background-color: var(--color-2);
-    border: 3px solid var(--var-L);
-    color: var(--var-L);
-}
-
-#rating-10 {
-    background-color: var(--color-2);
-    border: 3px solid var(--var-10);
-    color: var(--var-10);
-}
-
-#rating-12 {
-    background-color: var(--color-2);
-    border: 3px solid var(--var-12);
-    color: var(--var-12);
-}
-
-#rating-14 {
-    background-color: var(--color-2);
-    border: 3px solid var(--var-14);
-    color: var(--var-14);
-}
-
-#rating-16 {
-    background-color: var(--color-2);
-    border: 3px solid var(--var-16);
-    color: var(--var-16);
-}
-
-#rating-18 {
-    background-color: var(--color-2);
-    border: 3px solid var(--var-18);
-    color: var(--var-18);
-}
-
-/* Hover por id com cores diferentes para efeito */
-#rating-l:hover {
-    background-color: darken(var(--var-10), 10%);
-    /* Azul escuro */
-    border-color: darken(var(--var-10), 10%);
-}
-
-#rating-10:hover {
-    background-color: darken(var(--var-12), 10%);
-    /* Amarelo escuro */
-    border-color: darken(var(--var-12), 10%);
-}
-
-#rating-12:hover {
-    background-color: darken(var(--var-14), 10%);
-    /* Laranja escuro */
-    border-color: darken(var(--var-14), 10%);
-}
-
-#rating-14:hover {
-    background-color: darken(var(--var-16), 10%);
-    /* Vermelho escuro */
-    border-color: darken(var(--var-16), 10%);
-}
-
-#rating-16:hover {
-    background-color: darken(var(--var-18), 10%);
-    /* Preto mais intenso */
-    border-color: darken(var(--var-18), 10%);
-}
-
-#rating-18:hover {
-    background-color: darken(var(--var-L), 10%);
-    /* Verde mais escuro */
-    border-color: darken(var(--var-L), 10%);
-}
-
-/* Quando selecionado */
 .button-option.selected {
-    border-color: #fff;
-    /* Borda branca quando selecionado */
+    border-color: transparent;
+    background-color: var(--var-L); /* A cor do fundo pode ser variável conforme o seu estilo */
+    color: white;
+  }
+  
+  .button-option #rating-var-10.selected {
+    background-color: var(--var-10);
+  }
+  
+  .button-option #rating-var-12.selected {
+    background-color: var(--var-12);
+  }
+  
+  .button-option #rating-var-14.selected {
+    background-color: var(--var-14);
+  }
+  
+  .button-option #rating-var-16.selected {
+    background-color: var(--var-16);
+  }
+  
+  .button-option #rating-var-18.selected {
+    background-color: var(--var-18);
+  }
+  
+  .button-option .value {
+    font-weight: bold;
+    font-family: Arial, sans-serif; /* A fonte pode ser alterada de acordo com o estilo */
+  }
+  
+  .button-option:hover {
+    opacity: 0.8;
+  }
+  
+  .button-option:focus {
+    outline: none;
+  }
+
+
+/* Estilo do texto dentro dos botões */
+.value {
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
 }
+
+.button-option:disabled {
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
 
 /*{BOTÃO DE ENVIAR}*/
 
@@ -401,19 +359,18 @@
     padding-top: 2%;
     padding-bottom: 10%;
     gap: 10%;
-    width: 297;
-    height: 86;
     opacity: 0.8;
     top: 1824px;
     left: 505px;
     border-radius: 40px;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Corrigido: 'transition' em vez de 'ransition' */
 }
 
 .button-receive {
     background-color: var(--color-1);
     width: 25%;
     height: 90px;
-    border: 0px;
+    border: none;
     border-radius: 40px;
     color: var(--color-2);
     font-family: Poppins;
@@ -423,4 +380,13 @@
     letter-spacing: 0%;
     text-align: center;
     vertical-align: middle;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Adicionado 'transition' para o botão também */
+}
+
+/* Efeito de hover */
+.Submit-Button .button-receive:hover {
+    background-color: var(--color-1); /* Alteração de cor para o hover */
+    transform: scale(1.1); /* Aumenta o botão com um efeito suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
 }
