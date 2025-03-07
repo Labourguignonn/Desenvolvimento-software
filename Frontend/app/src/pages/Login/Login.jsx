@@ -85,6 +85,9 @@ function Login() {
           {isRegistering ? "Já tem uma conta? Faça login" : "Não tem uma conta? Registre-se"}
         </p>
       </div>
+      <div className="container_image_film">
+          {/* <img src= "https://portal.cin.ufpe.br/wp-content/uploads/2024/05/Professores-CIn-1.png"/> */}
+      </div>
     </div>
   );
 }

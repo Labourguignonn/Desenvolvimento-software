@@ -16,14 +16,29 @@
     font-weight: bold;
     flex-direction: column;
     justify-content: center;
-    gap:4%; 
-    height: 80%;
-    width: 35%;
+    gap: 5%; 
+    height: 75%;
+    width: 30%;
     align-items: center;
     border-radius: 10px;
     background: #161616;
     padding-top: 25px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    margin-left: 54%;
+}
+
+.container_image_film {
+    position: absolute; /* Posiciona o contêiner de forma absoluta */
+    top: 60px; /* Alinha o topo do contêiner com o topo da página */
+    left: 0; /* Alinha o contêiner à esquerda */
+    width: 50%; /* Define a largura do contêiner como 50% da página */
+    height: calc(100vh - 60px); /* Define a altura do contêiner, subtraindo a altura da navbar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #161616;
+    box-sizing: border-box;
+    padding: 10px;
 }
 
 .field_with_eye {
@@ -44,6 +59,9 @@
     padding-left: 40px; 
 }
 
+/* Container que possui o ícone do olho7
+=> Mudanças: a imagem agora vai ser com o olho cortado e sem ser cortado,
+com adição de um texto dizendo para esconder ou não */
 .eye-icon {
     position: absolute;
     right: 10px; 
@@ -55,16 +73,20 @@
     padding: 0;
 }
 
+/* imagem do olho */
 .eye-icon img {
     width: 20px;
     height: 20px;
     transition: opacity 0.3s ease;
 }
 
+/* imagem do olho quando clicada */
 .eye-icon:active img {
     opacity: 0.6;
 }
 
+/* Container pai que contém qual a informação que vai ser armazenada no campo de escrita
+OBS*: Esse container é filho do container information e container register */
 .container_title_input {
     display: flex;
     flex-direction: column;
@@ -75,6 +97,8 @@
 
 }
 
+/* Container filho do container title_input
+=> Container onde serão colocados as informações */
 .input_box {
     padding: 10px;
     font-size: 16px;
