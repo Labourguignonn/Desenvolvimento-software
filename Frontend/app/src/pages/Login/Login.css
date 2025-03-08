@@ -15,16 +15,17 @@
     display: flex;
     font-weight: bold;
     flex-direction: column;
-    justify-content: center;
-    gap: 5%; 
+    justify-content: flex-start; /* Alinha os filhos ao topo */
+    align-items: flex-start; /* Alinha os filhos à esquerda */
+    gap: 2%; 
     height: 75%;
     width: 30%;
-    align-items: center;
     border-radius: 10px;
-    background: #161616;
-    padding-top: 25px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    background: #ffffff;
+    padding: 25px; /* Adiciona preenchimento interno */
+    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); */
     margin-left: 54%;
+    margin-top: 7%;
 }
 
 .container_image_film {
@@ -94,18 +95,39 @@ OBS*: Esse container é filho do container information e container register */
     align-items: left;
     width: 90%;
     gap: 8px;
+    margin-bottom: 5%;
+}
 
+/* Estilo para os rótulos dos blocos de usuário e senha */
+.container_title_input p {
+    color: rgb(100, 100, 100); /* Altere esta cor conforme necessário */
+}
+
+/* Estilo para o título quando isRegistering é true */
+.title-register, .title-login {
+    color: rgb(52,52,148);
+    font-size: 250%;
+    margin-bottom: 2%;
+}
+
+/* Estilo para o texto adicional dentro dos títulos */
+.title-register p, .title-login p {
+    color: rgb(100, 100, 100); /* Cor diferente dos títulos */
+    font-size: 18px;
+    margin-top: 10px; /* Espaço acima do texto adicional */
+    margin-bottom: 20px; /* Espaço abaixo do texto adicional */
 }
 
 /* Container filho do container title_input
 => Container onde serão colocados as informações */
 .input_box {
-    padding: 10px;
+    padding: 5%;
     font-size: 16px;
     border-radius: 10px;
     width: 100%;
     outline: none;
-    transition: border-color 0.3s ease;  
+    transition: border-color 0.3s ease;
+    border: 2px solid #333; /* Define a cor e a espessura da borda */  
 }
 
 .toggle_form {
@@ -114,6 +136,8 @@ OBS*: Esse container é filho do container information e container register */
     cursor: pointer;
     text-decoration: none;
     width: 100%;
+    color: #333;
+    margin-left: -25%;
   }
   
   .toggle_form:hover {
@@ -121,19 +145,20 @@ OBS*: Esse container é filho do container information e container register */
   }
 
 .button_config{
-    background-color: #000000;
+    background-color: rgb(52,52,148);
     color: white;
+    font-weight: bold;
     border: none;
     border-radius: 100px;
-    padding: 10px 20px;
+    padding: 5% 20%;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 140%;
     transition: background-color 0.3s ease;
 }
 
 .button_config:hover {
-    background-color: blueviolet;
-    border-color: blueviolet;
+    background-color: rgb(34, 34, 145);
+    border-color: rgb(52,52,148);
     color: white;
     transition: background-color 0.3s ease;
   }
