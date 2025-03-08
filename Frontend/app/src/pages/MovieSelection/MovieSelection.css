@@ -12,6 +12,7 @@
   flex-direction: row;
   padding-top: 10%;
   align-items: center;
+  overflow: hidden;
 }
 
 .container-info-filme {
@@ -112,31 +113,54 @@
 }
 
 .movie-carousel {
-  flex: 0 0 60%;
+  flex-grow:1;
   display: flex;
   height: 100%;
-  width: 50%;
+  width: auto;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   position: relative;
 }
 
+.main-movie {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%; /* Ajuste conforme necessário */
+  height: 90%; /* Altura do destaque */
+  padding-right: 20px;
+  padding-top: 40px;
+}
+.main-movie img {
+  width: 100%;
+  max-width: 400px; /* Ajuste o tamanho máximo do pôster */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
 .movie-list {
   display: flex;
-  gap: 15px;
+  gap: 5px;
   transition: transform 0.3s ease-in-out;
   justify-content: center;
   align-items: center;
+  overflow: visible;
   }
 
-.movie-item {
-  transition: transform 0.3s ease, filter 0.3s ease;
-  cursor: pointer;
-}
+  .movie-item {
+    width: 200px;  /* Largura fixa dos filmes */
+    height: 225px; /* Altura fixa proporcional (exemplo 2:3) */
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 .movie-item.highlighted {
-  transform: scale(1.5);
+  transform: scale(1.2);
   z-index: 10;
 }
 
