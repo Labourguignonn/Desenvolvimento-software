@@ -62,18 +62,24 @@ function MovieSelection() {
             <p id="sinopse-texto">{filmeAtual.overview}</p>
           </div>
         </div>
+        {/* FILME DESTAQUE */}
+        <div className="main-movie">
+          <img src={filmeAtual.poster_path} alt={filmeAtual.title_pt} className="highlighted-movie" />
+        </div>
         
         {/* CARROSSEL DE FILMES */}
         <div className="movie-carousel">
           <div className="movie-list">
             {dataDict.title_pt.map((title, index) => (
-              <div 
-                key={index} 
-                className={`movie-item ${index === selectedFilmIndex ? "highlighted" : ""}`}
-                onClick={() => setSelectedFilmIndex(index)} // Atualiza o filme em destaque
-              >
-                <img src={posterBaseURL + dataDict.poster_path[index]} alt={title} />
-              </div>
+              index !== selectedFilmIndex && ( // Oculta o filme em destaque do carrossel
+                <div 
+                  key={index} 
+                  className="movie-item"
+                  onClick={() => setSelectedFilmIndex(index)} // Atualiza o filme em destaque
+                >
+                  <img src={posterBaseURL + dataDict.poster_path[index]} alt={title} />
+                </div>
+              )
             ))}
           </div>
         </div>
