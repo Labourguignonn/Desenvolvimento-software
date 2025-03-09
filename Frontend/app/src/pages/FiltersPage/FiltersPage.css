@@ -19,9 +19,7 @@
 
 .image-top img {
     width: 100%;
-    /* Faz com que a imagem ocupe toda a largura */
     height: 100%;
-    /* Faz com que a imagem ocupe toda a altura do contêiner */
     object-fit: cover;
     /* Garante que a imagem cubra todo o espaço disponível sem distorcer */
     border-radius: 8px;
