@@ -47,14 +47,14 @@ function MovieSelection() {
   return (
     <div className="container_movie_selection">
       <div className="container-info-carrousel">
-          
-          {/* DIV INFORMAÇÕES DO FILME DESTACADO */}
+
+        {/* DIV INFORMAÇÕES DO FILME DESTACADO */}
         <div className="container-info-filme">
           <div class="infos-infofilmes">
             <h3 id="titulo">{filmeAtual.title_pt}</h3>
             <div className="detalhes">
-            <div className="detalhe-nota"><span className="star">★</span> {filmeAtual.review}/10 IMDb</div>
-              <div className="subdetails"> 
+              <div className="detalhe-nota"><span className="star">★</span> {parseFloat(filmeAtual.review).toFixed(1)}/10 IMDb</div>
+              <div className="subdetails">
                 <div className="detalhe-item">{filmeAtual.director}</div>
                 <div className="detalhe-item">{formatTime(filmeAtual.runtime)}</div>
               </div>
@@ -62,51 +62,61 @@ function MovieSelection() {
             <p id="sinopse-texto">{filmeAtual.overview}</p>
           </div>
         </div>
-        {/* FILME DESTAQUE */}
-        <div className="main-movie">
-          <img src={filmeAtual.poster_path} alt={filmeAtual.title_pt} className="highlighted-movie" />
-        </div>
-        
-        {/* CARROSSEL DE FILMES */}
-        <div className="movie-carousel">
-          <div className="movie-list">
-            {dataDict.title_pt.map((title, index) => (
-              index !== selectedFilmIndex && ( // Oculta o filme em destaque do carrossel
-                <div 
-                  key={index} 
-                  className="movie-item"
-                  onClick={() => setSelectedFilmIndex(index)} // Atualiza o filme em destaque
-                >
-                  <img src={posterBaseURL + dataDict.poster_path[index]} alt={title} />
-                </div>
-              )
-            ))}
+
+        <div className="tentativa">
+          <div className="movie-highlight">
+            <img src={filmeAtual.poster_path} alt={filmeAtual.title_pt} />
+            <div className="button-div">
+              <button
+                className="carousel-btn left"
+                onClick={() => setSelectedFilmIndex(prev => Math.max(prev - 1, 0))}
+                disabled={selectedFilmIndex === 0}
+              >
+                {"<"}
+              </button>
+
+              <button className="like-button"> + </button>
+
+              <button
+                className="carousel-btn right"
+                onClick={() => setSelectedFilmIndex(prev => Math.min(prev + 1, dataDict.title_pt.length - 1))}
+                disabled={selectedFilmIndex >= dataDict.title_pt.length - 1}
+              >
+                {">"}
+              </button>
+            </div>
+          </div>
+          <div className="movie-carousel">
+            <div
+              className="movie-list"
+              style={{
+                transform: `translateX(-${selectedFilmIndex * 210}px)`,
+                display: 'flex', // Garante que todos os filmes se alinhem horizontalmente
+                flexDirection: 'row',
+              }}
+            >
+              {dataDict.title_pt.map((title, index) => {
+                // Exclui o filme atual do carrossel
+                if (index === selectedFilmIndex) return null;
+                return (
+                  <div
+                    key={index}
+                    className={`movie-item ${index === selectedFilmIndex ? "highlighted" : ""}`}
+                    onClick={() => setSelectedFilmIndex(index)}
+                  >
+                    <img src={posterBaseURL + dataDict.poster_path[index]} alt={title} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
+
       </div>
-      
-        {/* BOTÕES DE NAVEGAÇÃO */}
-      <div className="button-div">
-          <button 
-            className="carousel-btn left" 
-            onClick={() => setSelectedFilmIndex(prev => Math.max(prev - 1, 0))}
-            disabled={selectedFilmIndex === 0}
-          >
-            {"<"}
-          </button>
-          
-          <button className="like-button"> + </button>
-          
-          <button 
-            className="carousel-btn right" 
-            onClick={() => setSelectedFilmIndex(prev => Math.min(prev + 1, dataDict.title_pt.length - 1))}
-            disabled={selectedFilmIndex >= dataDict.title_pt.length - 1}
-          >
-            {">"}
-          </button>
-        </div>
-      </div>
-      
+
+
+    </div>
+
   );
 }
 
