@@ -1,106 +1,220 @@
-/* Container principal para seleção de filmes */
 .container_movie_selection {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: Arial, sans-serif;
   height: 100%;
-  width: 100%;
-  box-sizing: border-box;
+  width: 95%;
   margin: 0 auto;
-  padding-top: 8vh;
+  gap: 10%;
+  flex-direction: column;
 }
 
-/* Contêiner do filme */
-#conteinerFilme {
+.container-info-carrousel {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10%;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container-info-filme {
+  flex: 0 0 40%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  width: 270px; 
-  max-height: 85vh;
-  text-align: center;
-  border: 2px solid #161616;
-  overflow: hidden; 
+  justify-content: flex-start;
+  height: 80%;
+  width: 80%;
+  border-radius: 10px;
 }
 
-#filmeSelection {
-  width: 270px;
-  height: 60vh;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  object-fit: cover;
-  object-position: center 90%; 
-  margin: 0;
-}
-
-/* Seção de seleção */
-.selecao {
-  background-color: #161616;
+.infos-infofilmes {
+  height: 90%;
   width: 100%;
-  height: 100%;
-  border-bottom-left-radius: 15px; 
-  border-bottom-right-radius: 15px; 
-  margin-top: -20px;
-  padding: 10px 10px; 
-  padding-top: 0;
-}
-
-/* Título do filme */
-h3 {
-  font-size: 1em;
-  color: #ffffff;
-  padding: 15px;
-}
-
-/* Texto da pergunta */
-.selecao p {
-  font-size: 1em;
-  color: #bab4b4;
-}
-
-/* Estilos dos botões de seleção */
-.botoes-container {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 3%;
+}
+
+#titulo {
+  font-family: Poppins;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--color-3);
+}
+
+#sinopse-texto {
   gap: 10px;
-  justify-content: center;
-  margin-top: 10px;
+  padding-left: 5%;
+  font-family: Poppins;
+  width: 95%;
+  font-size: 18px;
+  text-align: left;
+  line-height: 1.6;
+  color: var(--color-3);
+  margin-bottom: 15px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 15px;
+  direction: rtl; 
 }
 
-.botao-selecao {
-  flex: 1; 
-  min-width: 20%; 
-  height: 45px; 
+#sinopse-texto::-webkit-scrollbar {
+  width: 8px; 
+}
+
+#sinopse-texto::-webkit-scrollbar-thumb {
+  background-color: #073193; 
+  border-radius: 10px;
+}
+
+#sinopse-texto::-webkit-scrollbar-track {
+  background-color: #f1f1f1; 
+}
+
+.detalhes {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 15px;
+}
+
+.detalhe-nota {
+  font-family: Poppins;
+  color: #666666;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.subdetails {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.star {
+  color: #F4D062;
+  font-size: 20px;
+}
+
+.detalhe-item {
+  align-items: center;
+  width: auto;
+  padding: 5px;
+  color: #073193;
+  background-color: #50A3FF33;
+  border-radius: 30px;
+  border: 1px solid #073193;
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 2%;
+}
+
+.movie-carousel {
+  flex-grow:1;
+  display: flex;
+  height: 100%;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.main-movie {
   display: flex;
   justify-content: center;
-  align-items: center; 
-  padding: 10px;
-  background-color: black;
-  color: white;
-  border-radius: 6px;
-  font-size: 0.9em;
+  align-items: center;
+  width: 25%; /* Ajuste conforme necessário */
+  height: 90%; /* Altura do destaque */
+  padding-right: 20px;
+  padding-top: 40px;
+}
+.main-movie img {
+  width: 100%;
+  max-width: 400px; /* Ajuste o tamanho máximo do pôster */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.movie-list {
+  display: flex;
+  gap: 5px;
+  transition: transform 0.3s ease-in-out;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  }
+
+  .movie-item {
+    width: 200px;  /* Largura fixa dos filmes */
+    height: 225px; /* Altura fixa proporcional (exemplo 2:3) */
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.movie-item.highlighted {
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+.movie-item:not(.highlighted) {
+  transform: scale(0.7);
+  opacity: 0.7;
+}
+
+.movie-item img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-btn {
+  width: 60px;
+  height: 60px;
+  border: solid 3px var(--color-7);
+  border-radius: 50%;
+  font-size: 2rem;
+  background-color: var(--color-2);
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid black;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  text-align: center;
+  color: var(--color-7);
 }
 
-/* Efeito ao passar o mouse */
-.botao-selecao:hover,
-.botao-selecao.clicado {
-  background-color: #161616;
-  border-color: blueviolet;
-  color: blueviolet;
+.carousel-btn:hover {
+  background-color: var(--color-7);
+  color: var(--color-2);
 }
 
-/* Efeito ao clicar */
-.botao-selecao:active {
-  transform: scale(0.95);
+.carousel-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-.indicador {
-  padding-top: 10px;
+.button-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+}
+
+.like-button {
+  width: 60px;
+  height: 60px;
+  border: solid 3px var(--color-7);
+  border-radius: 50%;
+  font-size: 2rem;
+  background-color: var(--color-2);
+  cursor: pointer;
+  color: var(--color-7);
+}
+
+.like-button:hover {
+  background-color: var(--color-7);
+  color: var(--color-2);
 }

@@ -6,7 +6,9 @@ import './NavBar.css'
 function Navbar() {
   return (
     <nav id="navBar">
-      <h1>IndicaAI</h1>
+      <div className="buttons-left"></div>
+      <div className="cinematch">cinematch</div>
+      <div className="username"></div>
     </nav>
   );
 }
