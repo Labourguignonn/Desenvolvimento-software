@@ -1,6 +1,7 @@
 import React from "react"; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar.jsx";
+import HomePage from "./pages/Home/Home.jsx";
 import Login from "./pages/Login/Login.jsx";
 import FiltersPage from "./pages/FiltersPage/FiltersPage.jsx";
 import Loading from "./pages/Loading/Loading.jsx";
@@ -15,6 +16,7 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
+        <Route path="/home" element={<HomePage />} />
         <Route path="/" element={<Login />} />
         <Route path="/filtros" element={<FiltersPage />} />
         <Route path="/carregamento" element={<Loading />} />

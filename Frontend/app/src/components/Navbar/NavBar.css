@@ -15,27 +15,63 @@
     z-index: 1000;
 }
 
-.buttons-left, .cinematch, .username {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .cinematch {
-    font-family: Poppins;
+    font-family: Poppins, sans-serif;
     font-weight: 700;
     font-size: 25px;
     line-height: 60px;
-    letter-spacing: -4%;
+    letter-spacing: -1px;
     color: var(--color-6);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
 }
 
-#content {
-    padding-top: 10vh;
+.buttons-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-body {
-    margin: 0;
-    padding: 0;
+.button-cadastro, .button-login, .button-home, .button-selecao {
+    font-family: Poppins, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.button-home, .button-selecao {
+    border: none;
+    padding: 10px 20px;
+    background-color: white;
+    color: #747171;
+}
+
+.button-home.active, .button-selecao.active {
+    color: black;
+    font-weight: bold;
+    border-bottom: 3px solid #ff4d4d; /*Linha embaixo*/
+}
+
+.button-login, .button-cadastro{
+    background-color: var(--color-2);
+    color: var(--color-1);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 7px;
+    margin-right: 15px;
+}
+
+.button-cadastro {
+    background-color: #EE375E;
+    color: white;
+}
+
+.username {
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 20px;
+    color: #EE375E;
 }

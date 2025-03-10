@@ -6,24 +6,99 @@
   align-items: center;
   text-align: center;
   font-family: Arial, sans-serif;
-  height: 100%;
-  width: 90%; 
+  height: 100vh; /* Garante que ocupe toda a tela */
+  width: 90%;
   max-width: 1200px;
   padding: 10px;
-  gap: 20px; 
+  gap: 20px;
   box-sizing: border-box;
-  margin: 0 auto; 
-}  
-
-.last-page-text {
-  font-size: 2rem;
-  font-weight: bold;
-  color: white;
+  margin: 0 auto;
 }
 
-#flock-comendo-pipoca {
-  height: 50%;  
-  max-width: 400px; 
-  margin-bottom: 30px; 
-  border-radius: 10px; 
+/* Fundo da página */
+.background-lastpage {
+  position: fixed; /* Mantém a imagem fixa na tela */
+  top: 0;
+  left: 0;
+  width: 100%; /* Largura igual à tela */
+  height: 100vh; /* Altura igual à tela */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1; /* Coloca a imagem atrás de outros elementos */
+}
+
+/* Imagem de fundo */
+.last-page-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Garante que a imagem cobre toda a área */
+}
+
+/* Contêiner para alinhar pôster e texto */
+.container-lastpage {
+  display: flex;
+  align-items: center; /* Centraliza verticalmente */
+  justify-content: flex-start; /* Alinha os itens à esquerda */
+  gap: 40px; /* Espaço entre o pôster e o texto */
+  padding: 20px;
+  width: 90%;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+/* Pôster do filme */
+.poster-lastpage {
+  width: 250px; /* Ajuste conforme necessário */
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Texto ao lado do pôster */
+.texto-lastpage {
+  font-weight: bold;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  text-align: left; /* Mantém o texto alinhado à esquerda */
+  max-width: 700px; /* Limita a largura do texto */
+}
+
+.titulo-lastpage {
+  color: white;
+  font-size: 3rem;
+  margin-bottom: 10%;
+}
+
+.last-page-text{
+  font-size: 2.5rem;
+}
+
+/* Informações do filme */
+.info-filme-lastpage {
+  font-family: arial;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaço entre os elementos */
+  margin-bottom: 20px; /* Espaço abaixo das informações do filme */
+}
+
+/* Nota do IMDb */
+.nota-lastpage {
+  font-family: arial;
+  font-size: 1rem;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+/* Estilização das "badges" (Diretor e duração) */
+.badge-lastpage {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
 }
