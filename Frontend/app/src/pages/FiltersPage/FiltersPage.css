@@ -225,8 +225,8 @@
 
 .time-point::before {
     content: "";
-    width: 4vh;
-    height: 4vh;
+    width: 4.5vh;
+    height: 4.5vh;
     background-color: white;
     border-radius: 50%;
     position: absolute;
@@ -238,9 +238,9 @@
 }
 
 .time-point.selected::before {
-    background-color: var(--color-1_1);
-    width: 4vh;
-    height: 4vh;
+    background-color: var(--color-1);
+    width: 4.5vh;
+    height: 4.5vh;
     border: none;
 }
 
