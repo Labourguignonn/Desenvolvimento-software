@@ -8,6 +8,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import IntegracaoAPI
 import BancoFilmes
 import crud
+from dotenv import load_dotenv
 
 
 class MovieAPI:
@@ -77,11 +78,8 @@ def home():
 
 @app.route("/receber_chave", methods=["POST"])
 def get_api_key():
-    key = request.json.get("key")
-    if key:
-        movie_api.api_key = key
-        return jsonify({"message": "Chave recebida com sucesso!", "chave": key})
-    return jsonify({"error": "Escolha uma chave para acessar a OpenAI API"}), 400
+    load_dotenv()
+    movie_api.api_key = os.getenv("API_KEY")
 
 @app.route("/selecionar_filtros", methods=["POST"])
 def get_selected_filters():

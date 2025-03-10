@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body, html {
+    font-family: 'Poppins', sans-serif; /* Aplica a fonte Poppins a todo o documento */
+    height: 100%; /* Garante que ocupe toda a altura do body */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .container_login {
     display: flex;
     flex-direction: column;
@@ -13,7 +23,7 @@
 .container_informations, .container_register {
     color: white;
     display: flex;
-    font-weight: bold;
+    font-weight: normal;
     flex-direction: column;
     justify-content: flex-start; /* Alinha os filhos ao topo */
     align-items: flex-start; /* Alinha os filhos à esquerda */
@@ -23,7 +33,6 @@
     border-radius: 10px;
     background: #ffffff;
     padding: 25px; /* Adiciona preenchimento interno */
-    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); */
     margin-left: 54%;
     margin-top: 7%;
 }
@@ -40,6 +49,13 @@
     background: #161616;
     box-sizing: border-box;
     padding: 10px;
+}
+
+.container_image_film img {
+    width: 200%; /* Garante que a imagem ocupe toda a largura do contêiner */
+    height: 103%; /* Garante que a imagem ocupe toda a altura do contêiner */
+    object-fit: cover; /* Ajusta a imagem para cobrir o contêiner sem distorção */
+    margin-right: 75%;
 }
 
 .field_with_eye {
@@ -105,7 +121,7 @@ OBS*: Esse container é filho do container information e container register */
 
 /* Estilo para o título quando isRegistering é true */
 .title-register, .title-login {
-    color: rgb(52,52,148);
+    color: #04227A;
     font-size: 250%;
     margin-bottom: 2%;
 }
@@ -145,7 +161,7 @@ OBS*: Esse container é filho do container information e container register */
   }
 
 .button_config{
-    background-color: rgb(52,52,148);
+    background-color: #04227A;
     color: white;
     font-weight: bold;
     border: none;
@@ -157,7 +173,7 @@ OBS*: Esse container é filho do container information e container register */
 }
 
 .button_config:hover {
-    background-color: rgb(34, 34, 145);
+    background-color: rgb(0, 0, 131);
     border-color: rgb(52,52,148);
     color: white;
     transition: background-color 0.3s ease;

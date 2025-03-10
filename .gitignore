@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 .vercel
 __pycache__/
-
+.env
