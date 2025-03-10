@@ -118,8 +118,14 @@ OBS*: Esse container é filho do container information e container register */
 }
 
 /* Estilo para o título quando isRegistering é true */
-.title-register, .title-login {
+.title-register {
     color: #04227A;
+    font-size: 250%;
+    margin-bottom: 2%;
+}
+
+.title-login {
+    color: #9A6300;
     font-size: 250%;
     margin-bottom: 2%;
 }
@@ -158,7 +164,7 @@ OBS*: Esse container é filho do container information e container register */
     text-decoration: underline;
   }
 
-.button_config{
+.button_config_register{
     background-color: #04227A;
     color: white;
     font-weight: bold;
@@ -170,10 +176,28 @@ OBS*: Esse container é filho do container information e container register */
     transition: background-color 0.3s ease;
 }
 
-.button_config:hover {
+.button_config_register:hover {
     background-color: rgb(0, 0, 131);
     border-color: rgb(52,52,148);
     color: white;
     transition: background-color 0.3s ease;
   }
   
+  .button_config_login{
+    background-color: #9A6300;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 100px;
+    padding: 5% 20%;
+    cursor: pointer;
+    font-size: 140%;
+    transition: background-color 0.3s ease;
+}
+
+.button_config_login:hover {
+    background-color: #664200;
+    border-color: #ce8600;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
