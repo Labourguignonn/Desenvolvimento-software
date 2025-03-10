@@ -36,7 +36,7 @@ function Loading() {
     useEffect(() => {
         // Inicia a requisição assim que o componente for montado
         processarFilmes();
-    }, []); // O useEffect roda apenas uma vez, quando o componente é montado
+    }, []);
 
     return (
         <div className="central">

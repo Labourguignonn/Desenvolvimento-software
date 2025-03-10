@@ -1,0 +1,413 @@
+.main-conteiner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 5%;
+    gap: 10%;
+}
+
+.image-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding-top: 72px;
+}
+
+.image-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Garante que a imagem cubra todo o espaço disponível sem distorcer */
+    border-radius: 8px;
+}
+
+.section_title {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 0;
+    gap: 0px;
+    padding: 0;
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 34px;
+    letter-spacing: 0%;
+}
+
+.subtitle {
+    margin-top: 1px;
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-bottom: 30px;
+    line-height: 32px;
+    font-family: "Poppins", sans-serif;
+    color: var(--color-5);
+    left: 5px;
+    margin-left: 3px;
+}
+
+.container_runtime_selection,
+.container_rating_selection {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+}
+
+/* DIV GENERO */
+.container_genre_selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: 100%;
+}
+
+.section-add-genres {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    font-family: Poppins;
+    gap: 20px;
+    font-size: 24px;
+}
+
+.genres-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    gap: 30px;
+    width: 100%;
+    padding: 5px;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+.genres-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.genres-container::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 10px;
+}
+
+.genres-container::-webkit-scrollbar-thumb {
+    background: var(--color-1);
+    border-radius: 10px;
+}
+
+.genres-container::-webkit-scrollbar-thumb:hover {
+    background: var(--color-1);
+}
+
+.genre-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    /* Aumentado */
+    border-radius: 40px;
+    background-color: var(--color-2);
+    font-size: 25px;
+    /* Aumentado */
+    cursor: pointer;
+    color: var(--color-1);
+    border: 3.5px solid var(--color-1);
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+    width: 90%;
+    height: 100%;
+    font-family: Poppins;
+}
+
+.genre-button.selected {
+    background-color: var(--color-1);
+    color: white !important;
+    border-color: var(--color-1);
+}
+
+.genre-button:hover {
+    border: solid 3.5px var(--color-1);
+    color: var(--color-1);
+    transform: scale(1.05);
+}
+
+.genre-button.selected:hover {
+    color: var(--color-2) !important;
+}
+
+.add-button {
+    width: 60px;
+    height: 60px;
+    border: solid 3px var(--color-1);
+    border-radius: 50%;
+    font-size: 2rem;
+    background-color: var(--color-2);
+    cursor: pointer;
+    color: var(--color-1);
+}
+
+.add-button:hover {
+    background-color: var(--color-1);
+    color: var(--color-2);
+}
+
+/* DIV TEMPO */
+
+.section-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 2;
+    height: 100%;
+    position: relative;
+    padding: 5px;
+    margin-bottom: 8%;
+}
+
+.timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 0;
+    width: 100%;
+    position: relative;
+    height: 4px;
+    margin-top: 3%;
+}
+
+/* Linha da timeline */
+.timeline::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    left: 10px;
+    right: 10px;
+    height: 4px;
+    background-color: var(--color-4);
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+/* Linha preenchida */
+.timeline .filled {
+    position: absolute;
+    left: 0;
+    height: 4px;
+    left: 10px;
+    right: 10px;
+    background-color: var(--color-1);
+    top: -50%;
+    z-index: 1;
+    transition: width 0.3s ease;
+}
+
+/* Bolinhas */
+.time-point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.time-point::before {
+    content: "";
+    width: 4.5vh;
+    height: 4.5vh;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.time-point.selected::before {
+    background-color: var(--color-1);
+    width: 4.5vh;
+    height: 4.5vh;
+    border: none;
+}
+
+.time-label {
+    margin-top: 10vh;
+    text-align: center;
+    color: var(--color-5);
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 34px;
+    letter-spacing: 0%;
+}
+
+
+/*{DIV CLASSIFICAÇÃO}*/
+
+.section-rating {
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly; 
+    align-items: center;
+    width: 100%; 
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+.button-option {
+    flex: 1;
+    max-width: 100px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;    
+}
+
+.button-option:hover {
+    transform: scale(1.1);
+}
+
+/* Botões selecionados */
+.button-option.selected {
+    color: var(--color-2);
+    background-color: var(--color-1);
+}
+
+#rating-l {
+    background-color: var(--color-2);
+    border: 3px solid var(--var-L);
+    color: var(--var-L);
+}
+
+#rating-l.selected {
+    background-color: var(--var-L);
+    color: var(--color-2);
+}
+
+#rating-10 {
+    background-color: var(--color-2);
+    border: 3px solid var(--var-10);
+    color: var(--var-10);
+}
+
+#rating-10.selected {
+    background-color: var(--var-10);
+    color: var(--color-2);
+}
+
+#rating-12 {
+    background-color: var(--color-2);
+    border: 3px solid var(--var-12);
+    color: var(--var-12);
+}
+
+#rating-12.selected {
+    background-color: var(--var-12);
+    color: var(--color-2);
+}
+
+#rating-14 {
+    background-color: var(--color-2);
+    border: 3px solid var(--var-14);
+    color: var(--var-14);
+}
+
+#rating-14.selected {
+    background-color: var(--var-14);
+    color: var(--color-2);
+}
+
+#rating-16 {
+    background-color: var(--color-2);
+    border: 3px solid var(--var-16);
+    color: var(--var-16);
+}
+
+#rating-16.selected {
+    background-color: var(--var-16);
+    color: var(--color-2);
+}
+
+#rating-18 {
+    background-color: var(--color-2);
+    border: 3px solid var(--var-18);
+    color: var(--var-18);
+}
+
+#rating-18.selected {
+    background-color: var(--var-18);
+    color: var(--color-2);
+}
+
+/*{BOTÃO DE ENVIAR}*/
+
+.Submit-Button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 10%;
+    gap: 10%;
+    opacity: 0.8;
+    top: 1824px;
+    left: 505px;
+    border-radius: 40px;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Corrigido: 'transition' em vez de 'ransition' */
+}
+
+.button-receive {
+    background-color: var(--color-1);
+    width: 25%;
+    height: 90px;
+    border: none;
+    border-radius: 40px;
+    color: var(--color-2);
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Adicionado 'transition' para o botão também */
+}
+
+/* Efeito de hover */
+.Submit-Button .button-receive:hover {
+    background-color: var(--color-1); /* Alteração de cor para o hover */
+    transform: scale(1.1); /* Aumenta o botão com um efeito suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}

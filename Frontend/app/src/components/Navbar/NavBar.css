@@ -1,38 +1,41 @@
 #navBar {
-    background-color: var(--col-1); /* Fundo branco */
-    color: white; /* Texto preto */
-    padding: 10px 20px; /* Espaçamento interno */
-    position: fixed; /* Barra fixa no topo */
-    top: 0; /* Alinhado ao topo da página */
-    width: 100%; /* Ocupa toda a largura */
-    height: 8vh;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
-    box-sizing: border-box; /* Inclui bordas e padding no tamanho total */
-    display: flex; /* Torna o container flexível */
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: space-between; /* Ajusta a posição do conteúdo dentro da barra */
-    margin: 0; /* Remove qualquer margem que possa interferir com o layout */
+    background-color: #FFFFFF;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 72px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    z-index: 1000;
 }
 
-/* Título do Navbar */
-#navBar h1 {
-    margin: 0; /* Remove margens */
-    font-family: "Alfa Slab One", serif; /* Fonte personalizada */
-    font-style: normal;
-    font-size: 30px; /* Tamanho do texto */
-    white-space: nowrap; /* Evita quebra de linha no título */
-    overflow: hidden; /* Impede transbordamento do título */
-    text-overflow: ellipsis; /* Adiciona "..." se o título for muito longo */
+.buttons-left, .cinematch, .username {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Para garantir que o conteúdo abaixo do Navbar não seja afetado */
+.cinematch {
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 60px;
+    letter-spacing: -4%;
+    color: var(--color-6);
+}
+
 #content {
-    padding-top: 60px; /* Garante que o conteúdo não fique escondido atrás do Navbar */
+    padding-top: 10vh;
 }
 
-/* Estilo para o Body, sem alterar o comportamento do Navbar */
 body {
-    margin: 0; /* Garante que o body não tenha margens externas */
-    padding: 0; /* Garante que o body não tenha padding adicional */
-    font-family: Arial, sans-serif; /* Definindo a fonte do corpo */
+    margin: 0;
+    padding: 0;
 }

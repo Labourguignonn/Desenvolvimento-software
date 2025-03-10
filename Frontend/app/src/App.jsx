@@ -2,9 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Login from "./pages/Login/Login.jsx";
-import GenreSelection from "./pages/GenreSelection/GenreSelection.jsx"
-import RuntimeSelection from "./pages/RuntimeSelection/RuntimeSelection.jsx";
-import RatingSelection from "./pages/RatingSelection/RatingSelection.jsx";
+import FiltersPage from "./pages/FiltersPage/FiltersPage.jsx";
 import Loading from "./pages/Loading/Loading.jsx";
 import MovieSelection from "./pages/MovieSelection/MovieSelection.jsx";
 import InfoMovies from "./pages/InfoMovies/InfoMovies.jsx";
@@ -18,9 +16,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/escolha_generos" element={<GenreSelection />} />
-        <Route path="/escolha_tempo" element={<RuntimeSelection />} />
-        <Route path="/escolha_classificacao" element={<RatingSelection />} />
+        <Route path="/filtros" element={<FiltersPage />} />
         <Route path="/carregamento" element={<Loading />} />
         <Route path="/info_filmes" element={<InfoMovies />} />
         <Route path="/seleção" element={<MovieSelection />} />

@@ -9,7 +9,7 @@ import IntegracaoAPI
 import BancoFilmes
 import crud
 
-@dataclass
+
 class MovieAPI:
     api_key: str = None
     selected_runtime: str = None
@@ -83,29 +83,40 @@ def get_api_key():
         return jsonify({"message": "Chave recebida com sucesso!", "chave": key})
     return jsonify({"error": "Escolha uma chave para acessar a OpenAI API"}), 400
 
-@app.route("/tempo", methods=["POST"])
-def get_selected_runtime():
-    runtime = request.json.get("time")
-    if runtime:
-        movie_api.selected_runtime = runtime
-        return jsonify({"message": "Tempo recebido com sucesso!", "time": runtime})
-    return jsonify({"error": "Escolha uma duração máxima para seu filme"}), 400
-
-@app.route("/selecionar_generos", methods=["POST"])
-def get_selected_genres():
-    genres = request.json.get("selectedGenres")
-    movie_api.selected_genres = request.json.get("selectedGenres")
-    if movie_api.selected_genres:
-        return jsonify({"message": "Gêneros recebidos com sucesso", "selectedGenres": genres}), 200
-    return jsonify({"error": "Selecione de 1 a 3 gêneros"}), 400
-
-@app.route("/selecionar_classificacao", methods=["POST"])
-def get_selected_rating():
-    rating = request.json.get("botaoClicado")
-    if rating:
-        movie_api.selected_rating = rating
-        return jsonify({"message": "Classificação recebida com sucesso!", "classificação": rating}), 200
-    return jsonify({"error": "Classificação não enviada!"}), 400
+@app.route("/selecionar_filtros", methods=["POST"])
+def get_selected_filters():
+    data = request.json
+    
+    # Obter dados dos filtros
+    runtime = data.get("selectedTime")
+    genres = data.get("selectedGenres")
+    rating = data.get("selectedRating")
+    
+    # Validar tempo (runtime)
+    if not runtime:
+        return jsonify({"error": "Escolha uma duração máxima para seu filme"}), 400
+    
+    # Validar gêneros
+    if not genres or len(genres) < 1 or len(genres) > 3:
+        return jsonify({"error": "Selecione de 1 a 3 gêneros"}), 400
+    
+    # Validar classificação
+    if not rating:
+        return jsonify({"error": "Classificação não enviada!"}), 400
+    
+    # Se todos os dados estiverem corretos, atribua os valores
+    movie_api.selected_runtime = runtime
+    movie_api.selected_genres = genres
+    movie_api.selected_rating = rating
+    
+    # Retornar resposta de sucesso
+    print("Deu certo")
+    return jsonify({
+        "message": "Filtros recebidos com sucesso!",
+        "time": runtime,
+        "selectedGenres": genres,
+        "classificação": rating
+    }), 200
 
 @app.route("/processar-filmes", methods=["GET"])
 def process_movies():
