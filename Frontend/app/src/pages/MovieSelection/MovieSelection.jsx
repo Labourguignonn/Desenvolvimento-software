@@ -9,6 +9,7 @@ function MovieSelection() {
   const [loading, setLoading] = useState(true);
   const [dataDict, setDataDict] = useState(null);
   const [selectedFilmIndex, setSelectedFilmIndex] = useState(0); // Índice do filme em destaque
+  const [showRefazerText, setShowRefazerText] = useState(false);
   const posterBaseURL = "https://image.tmdb.org/t/p/w500";
 
   useEffect(() => {
@@ -75,7 +76,7 @@ function MovieSelection() {
                 {"<"}
               </button>
 
-              <button className="like-button"> + </button>
+              <button className="like-button" onClick={() => navigate("/ultima_pagina")}> ❤ </button>
 
               <button
                 className="carousel-btn right"
@@ -108,6 +109,14 @@ function MovieSelection() {
                   </div>
                 );
               })}
+              <div
+                className="movie-item refazer-card"
+                onMouseEnter={() => setShowRefazerText(true)}
+                onMouseLeave={() => setShowRefazerText(false)}
+                onClick={() => navigate("/filtros")}
+              >
+                {showRefazerText ? <span className="refazer-text">Refazer seleção?</span> : <span className="plus-icon">+</span>}
+              </div>
             </div>
           </div>
         </div>

@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../../services/config";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import "./FiltersPage.css"
-import FirstImage from "../../assets/movie_images/top_images/01.jpg";
+import Image1 from "../../assets/movie_images/top_images/1.jpg";
+import Image2 from "../../assets/movie_images/top_images/2.jpg";
+import Image3 from "../../assets/movie_images/top_images/3.jpg";
+import Image4 from "../../assets/movie_images/top_images/4.jpg";
 
 const FiltersPage = () => {
   const navigate = useNavigate();
@@ -61,6 +64,14 @@ const FiltersPage = () => {
     { label: "18", value: "R" },
   ];
 
+  const imageList = [Image1, Image2, Image3, Image4];
+  const [randomImage, setRandomImage] = useState(Image1);
+
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * imageList.length);
+    setRandomImage(imageList[randomIndex]);
+  }, []);
+
 
   const toggleGenre = (genreValue) => {
     setSelectedGenres((prevSelected) => {
@@ -82,7 +93,7 @@ const FiltersPage = () => {
 
   const updateFilledLine = (index) => {
     if (index === 0) {
-      setFilledWidth(0); // Nenhuma largura quando o primeiro ponto não é selecionado
+      setFilledWidth(0); 
     } else {
       const newWidth = ((100 * index) / times.length) + index * 3; //((index/2)*1.5)*4
       setFilledWidth(newWidth);
@@ -144,7 +155,7 @@ const FiltersPage = () => {
   return (
     <>      <div className="image-top">
       <img
-        src={FirstImage}
+        src={randomImage}
         alt="Imagem do Google Drive"
       />
     </div>
