@@ -48,14 +48,12 @@ body, html {
     align-items: center;
     background: #161616;
     box-sizing: border-box;
-    padding: 10px;
 }
 
 .container_image_film img {
-    width: 200%; /* Garante que a imagem ocupe toda a largura do contêiner */
-    height: 103%; /* Garante que a imagem ocupe toda a altura do contêiner */
+    width: 100%; /* Garante que a imagem ocupe toda a largura do contêiner */
+    height: 100%; /* Garante que a imagem ocupe toda a altura do contêiner */
     object-fit: cover; /* Ajusta a imagem para cobrir o contêiner sem distorção */
-    margin-right: 75%;
 }
 
 .field_with_eye {
