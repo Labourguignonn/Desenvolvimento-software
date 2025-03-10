@@ -16,7 +16,7 @@
 }
 
 /* Fundo da página */
-.background {
+.background-lastpage {
   position: fixed; /* Mantém a imagem fixa na tela */
   top: 0;
   left: 0;
@@ -36,7 +36,7 @@
 }
 
 /* Contêiner para alinhar pôster e texto */
-.container {
+.container-lastpage {
   display: flex;
   align-items: center; /* Centraliza verticalmente */
   justify-content: flex-start; /* Alinha os itens à esquerda */
@@ -48,7 +48,7 @@
 }
 
 /* Pôster do filme */
-.poster {
+.poster-lastpage {
   width: 250px; /* Ajuste conforme necessário */
   height: auto;
   border-radius: 8px;
@@ -56,7 +56,7 @@
 }
 
 /* Texto ao lado do pôster */
-.texto {
+.texto-lastpage {
   font-weight: bold;
   color: white;
   font-family: "Poppins", sans-serif;
@@ -64,7 +64,7 @@
   max-width: 700px; /* Limita a largura do texto */
 }
 
-.titulo {
+.titulo-lastpage {
   color: white;
   font-size: 3rem;
   margin-bottom: 10%;
@@ -75,7 +75,7 @@
 }
 
 /* Informações do filme */
-.info-filme {
+.info-filme-lastpage {
   font-family: arial;
   font-size: 1rem;
   display: flex;
@@ -85,7 +85,7 @@
 }
 
 /* Nota do IMDb */
-.nota {
+.nota-lastpage {
   font-family: arial;
   font-size: 1rem;
   color: white;
@@ -94,7 +94,7 @@
 }
 
 /* Estilização das "badges" (Diretor e duração) */
-.badge {
+.badge-lastpage {
   background-color: rgba(255, 255, 255, 0.2);
   padding: 5px 10px;
   border-radius: 15px;

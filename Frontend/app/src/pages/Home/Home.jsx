@@ -10,8 +10,8 @@ const HomePage = () => {
                 <img src={HomeImage} className="home-image"/>
             </div>
 
-            <div className="content">
-                <h1 className="titulo">Descubra seu próximo filme favorito!</h1>
+            <div className="content-home">
+                <h1 className="titulo-home">Descubra seu próximo filme favorito!</h1>
                 <p className="descricao">
                     Está em dúvida sobre o que assistir? O Cinematch usa inteligência artificial para encontrar o filme ideal 
                     para você, levando em conta seus gêneros favoritos, o tempo disponível e a classificação indicativa.

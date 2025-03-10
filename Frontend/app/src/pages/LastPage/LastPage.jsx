@@ -7,22 +7,22 @@ import PosterImage from '../../assets/poster.jpg';
 const LastPage = () => {
   return (
     <div id="conteiner_last_page">
-      <div className="background">
+      <div className="background-lastpage">
         <img src={LastPageImage} alt="Imagem de fundo da última página" className="last-page-image" />
       </div>
 
-      <div className="container">
-        <img src={PosterImage} className="poster" />
+      <div className="container-lastpage">
+        <img src={PosterImage} className="poster-lastpage" />
         
-        <div className="texto">
-          <h1 className="titulo">La La Land: Cantando Estações</h1>
+        <div className="texto-lastpage">
+          <h1 className="titulo-lastpage">La La Land: Cantando Estações</h1>
 
-          <div className="info-filme">
-            <p className="nota">
+          <div className="info-filme-lastpage">
+            <p className="nota-lastpage">
               ⭐ <strong>9.1/10 IMDb</strong>
             </p>
-            <span className="badge">Damien Chazelle</span>
-            <span className="badge">2h 8m</span>
+            <span className="badge-lastpage">Damien Chazelle</span>
+            <span className="badge-lastpage">2h 8m</span>
             </div>
 
           <h1 className="last-page-text">Cinematch te deseja um bom filme!</h1>
