@@ -150,6 +150,7 @@
 
 .movie-list {
   display: flex;
+  align-items: center;
   transition: transform 0.3s ease-in-out;
   padding-bottom: 5%;
 }
@@ -207,6 +208,35 @@
 .carousel-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.refazer-card {
+  height: 280px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-7);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.refazer-card:hover {
+  background: #073193;
+}
+
+.plus-icon {
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--color-2);
+}
+
+.refazer-text {
+  font-size: 18px;
+  font-family: Poppins;
+  font-weight: bold;
+  color: white;
+  position: absolute;
 }
 
 .like-button {
