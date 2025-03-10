@@ -22,7 +22,8 @@ body {
 }
 
 :root {
-    --color-1: rgba(245, 4, 3, 0.8);
+    --color-1:   rgba(245, 4, 3, 0.8);
+    --color-1_1: rgba(245, 4, 3, 1);
     --color-2: #ffffff;
     --color-3: #333131;
     --color-4: #C4C4C4;
