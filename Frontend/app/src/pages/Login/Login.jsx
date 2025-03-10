@@ -5,6 +5,12 @@ import "./Login.css";
 import { baseURL } from "../../services/config";
 import eyeIcon from "../../assets/eye-icon.svg";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import Samurai from "../../assets/Login/register_images/Samurai.png";
+import Predio from "../../assets/Login/register_images/Predio.png";
+import Bateria from "../../assets/Login/register_images/Bateria.png";
+import Praia from "../../assets/Login/register_images/Cidade_de_deus.png";
+import Kill_bill from "../../assets/Login/register_images/Kill_bill.png";
+import Fogueira from "../../assets/Login/register_images/Fogueira.png";
 
 function Login() {
   const navigate = useNavigate();
@@ -13,8 +19,28 @@ function Login() {
   const [showPassword, setShowPassword] = useState({ password: false, confirmPassword: false, key: false });
   const [errorMessage, setErrorMessage] = useState("");
 
-  const toggleVisibility = (field) => setShowPassword((prev) => ({ ...prev, [field]: !prev[field] }));
-  const handleChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+  const cadastroImages = [
+    { imagem: Samurai },
+    { imagem: Predio },
+    { imagem: Bateria }
+  ];
+
+  const loginImages = [
+    { imagem: Praia },
+    { imagem: Kill_bill },
+    { imagem: Fogueira }
+  ];
+
+  const randomIndex = Math.floor(Math.random() * 3);
+
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const toggleVisibility = (name) => {
+    setShowPassword({ ...showPassword, [name]: !showPassword[name] });
+  };
   const handleCloseError = () => setErrorMessage("");
 
   const verificarUsuario = async () => {
@@ -55,35 +81,74 @@ function Login() {
     }
   };
 
+  // useEffect(() => {
+  //   const imageLinks = [
+  //     {imagem : Samurai, style : "f"},
+  //     {imagem : Predio, style : "f"},
+  //     {imagem : Bateria, style : "f"},
+  //     {imagem : Praia, style : "q"},
+  //     {imagem : Kill_bill, style : "q"},
+  //     {imagem : Fogueira, style : "q"}
+  // ];
+  //   const randomIndex = Math.floor(Math.random() * imageLinks.length);
+  //   const selectedImage = imageLinks[randomIndex];
+  //   setRandomImage(selectedImage.url);
+  //   setStyleClass({
+  //     title: selectedImage.style === "f" ? "title-register_f title-login_f" : "title-register_q title-login_q",
+  //     button: selectedImage.style === "f" ? "button_config_f" : "button_config_q"
+  //   });
+  // }, []);
+
+
   return (
     <div className="container_login">
       {errorMessage && <ErrorMessage message={errorMessage} onClose={handleCloseError} />}
+      <div className="container_image_film">
+          <img src= {isRegistering ? cadastroImages[randomIndex].imagem : loginImages[randomIndex].imagem}/>
+      </div>
       <div className={isRegistering ? "container_register" : "container_informations"}>
-        <h2>{isRegistering ? "Registre-se" : "Login"}</h2>
-        {[{ label: "Usuário", name: "username" }, { label: "Senha", name: "password" }, ...(isRegistering ? [{ label: "Confirmar Senha", name: "confirmPassword" }] : [{ label: "Senha OPEN AI", name: "key" }])].map(({ label, name }) => (
+        <div className={isRegistering ? "title-register" : "title-login"}>
+            {isRegistering ? "Registre-se" : "Login"}
+            <p>
+              {isRegistering ? "Já possui uma conta?" : "Venha descobrir novos filmes!"}
+            {isRegistering && (
+              <span onClick={() => setIsRegistering(false)} className="toggle_form" style={{ cursor: "pointer", marginLeft: "1px" }}>
+                Login
+              </span>
+            )}
+            </p>
+          </div>
+          {[{ label: "Usuário", name: "username", type: "text" }, { label: "Senha", name: "password", type: showPassword.password ? "text" : "password" }, ...(isRegistering ? [{ label: "Confirmar Senha", name: "confirmPassword", type: showPassword.confirmPassword ? "text" : "password" }] : [])].map(({ label, name, type }) => (
           <div className="container_title_input" key={name}>
             <p className="mt-2">{label}</p>
             <div className="field_with_eye">
               <input
-                type={showPassword[name] ? "text" : "password"}
+                type={type}
                 placeholder={`Digite sua ${label.toLowerCase()}...`}
                 name={name}
                 value={user[name]}
                 onChange={handleChange}
                 className="input_box"
-              />
-              {(name !== "username") && (
-                <button type="button" className="eye-icon" onClick={() => toggleVisibility(name)}>
-                  <img src={eyeIcon} alt="Ícone de olho" />
-                </button>
-              )}
+                />
+                {(name !== "username") && (
+                  <button type="button" className="eye-icon" onClick={() => toggleVisibility(name)}>
+                    <img src={eyeIcon} alt="Ícone de olho" />
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
-        <button className="button_config" onClick={isRegistering ? registrarUsuario : loginUsuario}>{isRegistering ? "Registrar" : "Enviar"}</button>
-        <p onClick={() => setIsRegistering(!isRegistering)} className="toggle_form" style={{ cursor: "pointer" }}>
-          {isRegistering ? "Já tem uma conta? Faça login" : "Não tem uma conta? Registre-se"}
-        </p>
+          ))}
+          <button className={isRegistering ? "button_config_register" : "button_config_login"} onClick={isRegistering ? registrarUsuario : loginUsuario}>
+            {isRegistering ? "Registrar" : "Enviar"}
+          </button>
+          {!isRegistering && (
+          <p onClick={() => setIsRegistering(!isRegistering)} className="toggle_form" style={{ cursor: "pointer" }}>
+            Não tem uma conta? Registre-se
+          </p>
+        )}
+      {/* <div className="container_image_film">
+          <img src= {randomImage} alt="Imagem do "/>
+      </div> */}
       </div>
     </div>
   );
