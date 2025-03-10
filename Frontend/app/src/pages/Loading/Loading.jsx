@@ -5,8 +5,6 @@ import { DotLottieReact} from "@lottiefiles/dotlottie-react"
 import './Loading.css';
 import { baseURL } from "../../services/config";
 
-
-
 function Loading() {
     const [isLoading, setIsLoading] = useState(true); // Estado para controlar o carregamento
     const navigate = useNavigate(); // Hook para navegar entre páginas
@@ -36,21 +34,29 @@ function Loading() {
     useEffect(() => {
         // Inicia a requisição assim que o componente for montado
         processarFilmes();
-    }, []); // O useEffect roda apenas uma vez, quando o componente é montado
+    }, []);
 
     return (
-        <div className="central">
-            <div id="container_loading">
-                <DotLottieReact src="https://lottie.host/8d9b894b-c790-42c9-88c9-dea79266e08d/FQNAmMRH0q.lottie" loop autoplay style={{
-                    width: 400, height: 400
+        <div className="loading-container">
+            <header>
+              <nav>
+                <a href="#">Home</a>
+                <a href="#">Seleção de Filmes</a>
+              </nav>
+              <div className="logo">cinematch</div>
+              <div className="user-info">username</div>
+            </header>
 
-                }} />
-                <br ></br>
-                <p className="last-page-text">Carregando seus filmes...</p>
-                {isLoading && <p>Aguardando resposta do servidor...</p>} {/* Mensagem de carregamento */}
-            </div>
+            <DotLottieReact 
+                src="https://lottie.host/embed/290b2fdf-b678-4d82-9f24-4049f9488dc7/2gdST0218I.lottie" 
+                loop 
+                autoplay 
+                style={{ width: 400, height: 400 }} 
+            />
+            <p className="last-page-text">Carregando seus filmes...</p>
+            {isLoading && <p>Aguardando resposta do servidor...</p>}
         </div>
     );
 }
 
-export default Loading;
+export default Loading; 
