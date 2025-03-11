@@ -22,6 +22,11 @@ const LastPage = () => {
   return (
     <div id="conteiner_last_page">
       <div className="background-lastpage">
+        {imageLoaded ? (
+          <img src={LastPageImage} alt="Imagem de fundo" className="last-page-image" />
+        ) : (
+          <div className="loading-placeholder">Carregando...</div>
+        )}
       </div>
 
       <div className="container-lastpage">
