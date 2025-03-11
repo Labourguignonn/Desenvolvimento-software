@@ -33,6 +33,16 @@
     height: 80%;
     display: block;
     clip-path: polygon(0% 0%, 100% 0%, 100% 32%, 0% 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.home-image.loaded {
+    opacity: 1;
+}
+
+.home-image.loading {
+    opacity: 0;
 }
 
 /* Contêiner para alinhar pôster e texto */

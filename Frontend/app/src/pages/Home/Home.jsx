@@ -1,13 +1,25 @@
-import React from "react"; 
+import React, { useState, useEffect } from "react"; 
 import './Home.css';
 
 import HomeImage from '../../assets/Fundo_Home.png'; 
 
 const HomePage = () => {
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        const img = new Image();
+        img.src = HomeImage;
+        img.onload = () => setLoaded(true);
+    }, []);
+
     return (
         <div id="conteiner_home_page">
             <div className="background-home">
-                <img src={HomeImage} className="home-image"/>
+                <img 
+                    src={HomeImage} 
+                    className={`home-image ${loaded ? 'loaded' : 'loading'}`} 
+                    alt="Fundo Home"
+                />
             </div>
 
             <div className="content-home">
@@ -18,11 +30,8 @@ const HomePage = () => {
                     Basta ajustar suas preferências e deixar a IA sugerir opções que combinam com o seu momento. Diga
                     adeus à indecisão e aproveite mais o seu tempo assistindo ao que realmente gosta!
                 </p>
-        
             </div>
-
         </div>
-            
     );
 };
 

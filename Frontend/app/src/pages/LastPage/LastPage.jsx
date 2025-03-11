@@ -2,12 +2,19 @@ import React from "react";
 import './LastPage.css';
 import { useLocation } from "react-router-dom";
 
-import LastPageImage from '../../assets/Fundo_lastpage.png'; 
+import LastPageImage from '../../assets/Fundo_lastpage.webp'; 
 
 const LastPage = () => {
   const location = useLocation();
   const filme = location.state?.filme;
   const posterBaseURL = "https://image.tmdb.org/t/p/w500";
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = LastPageImage;
+    img.onload = () => setImageLoaded(true);
+  }, []);
 
   const formatTime = (runtime) =>
     runtime > 0 ? `${Math.floor(runtime / 60)}h ${runtime % 60}min` : "N/A";
@@ -15,7 +22,6 @@ const LastPage = () => {
   return (
     <div id="conteiner_last_page">
       <div className="background-lastpage">
-        <img src={LastPageImage} alt="Imagem de fundo da última página" className="last-page-image" />
       </div>
 
       <div className="container-lastpage">
