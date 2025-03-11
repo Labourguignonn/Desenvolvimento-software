@@ -76,7 +76,7 @@ function MovieSelection() {
                 {"<"}
               </button>
 
-              <button className="like-button" onClick={() => navigate("/ultima_pagina")}> ❤ </button>
+              <button className="like-button" onClick={() => navigate("/ultima_pagina", { state: { filme: filmeAtual }})}> ❤ </button>
 
               <button
                 className="carousel-btn right"

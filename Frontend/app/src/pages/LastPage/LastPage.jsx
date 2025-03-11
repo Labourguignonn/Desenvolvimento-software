@@ -1,10 +1,17 @@
 import React from "react";
 import './LastPage.css';
+import { useLocation } from "react-router-dom";
 
 import LastPageImage from '../../assets/Fundo_lastpage.png'; 
-import PosterImage from '../../assets/poster.jpg'; 
 
 const LastPage = () => {
+  const location = useLocation();
+  const filme = location.state?.filme;
+  const posterBaseURL = "https://image.tmdb.org/t/p/w500";
+
+  const formatTime = (runtime) =>
+    runtime > 0 ? `${Math.floor(runtime / 60)}h ${runtime % 60}min` : "N/A";
+
   return (
     <div id="conteiner_last_page">
       <div className="background-lastpage">
@@ -12,17 +19,17 @@ const LastPage = () => {
       </div>
 
       <div className="container-lastpage">
-        <img src={PosterImage} className="poster-lastpage" />
+        <img src={posterBaseURL + filme.poster_path} className="poster-lastpage" />
         
         <div className="texto-lastpage">
-          <h1 className="titulo-lastpage">La La Land: Cantando Estações</h1>
+          <h1 className="titulo-lastpage">{filme.title_pt}</h1>
 
           <div className="info-filme-lastpage">
             <p className="nota-lastpage">
-              ⭐ <strong>9.1/10 IMDb</strong>
+              ⭐ <strong>{parseFloat(filme.review).toFixed(1)}/10 IMDb</strong>
             </p>
-            <span className="badge-lastpage">Damien Chazelle</span>
-            <span className="badge-lastpage">2h 8m</span>
+            <span className="badge-lastpage">{filme.director}</span>
+            <span className="badge-lastpage">{formatTime(filme.runtime)}</span>
             </div>
 
           <h1 className="last-page-text">Cinematch te deseja um bom filme!</h1>

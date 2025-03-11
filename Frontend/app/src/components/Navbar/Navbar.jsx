@@ -12,16 +12,16 @@ function Navbar() {
     <nav id="navBar">
       
       <div className="buttons-left">
-        <button className={`button-home ${location.pathname === "/home" ? "active" : ""}`} onClick={() => navigate("/home")}>Home</button>
+        <button className={`button-home ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>Home</button>
         <button className={`button-home ${location.pathname === "/filtros" ? "active" : ""}`} onClick={() => navigate("/filtros")}>Seleção de Filmes </button>
       </div>
       
       <div className="cinematch">cinematch</div>
       
-      {location.pathname === "/home" && (
+      {location.pathname === "/" && (
         <div className="buttons-right">
-          <button className="button-login" onClick={() => navigate("/")}>Login</button>
-          <button className="button-cadastro" onClick={() => navigate("/")}>Cadastre-se</button>
+          <button className="button-login" onClick={() => navigate("/login")}>Login</button>
+          <button className="button-cadastro" onClick={() => navigate("/login")}>Cadastre-se</button>
         </div>
       )}
 
