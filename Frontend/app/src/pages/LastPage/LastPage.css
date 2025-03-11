@@ -17,10 +17,15 @@
 
 /* Fundo da página */
 .background-lastpage {
-  background-image: url('../../assets/Fundo_lastpage.png');
+  position: fixed; /* Mantém a imagem fixa na tela */
+  top: 0;
+  left: 0;
+  width: 100%; /* Largura igual à tela */
+  height: 100vh; /* Altura igual à tela */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: -1; /* Coloca a imagem atrás de outros elementos */
 }
 
 /* Imagem de fundo */
