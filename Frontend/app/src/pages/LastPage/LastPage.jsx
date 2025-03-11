@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './LastPage.css';
 import { useLocation } from "react-router-dom";
 
