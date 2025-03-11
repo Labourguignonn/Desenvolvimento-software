@@ -8,7 +8,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import IntegracaoAPI
 import BancoFilmes
 import crud
-
+from dotenv import load_dotenv
 
 class MovieAPI:
     api_key: str = None
@@ -16,6 +16,10 @@ class MovieAPI:
     selected_genres: list = None  
     selected_rating: str = None
     data_dict: dict = None
+
+    def __init__(self):
+        load_dotenv()
+        self.api_key = os.getenv("API_KEY")
 
     def process_movies(self):
         if any(value is None for value in [self.api_key, self.selected_rating, self.selected_runtime, self.selected_genres]):
@@ -74,14 +78,6 @@ CORS(app)
 @app.route("/")
 def home():
     return "<h1>Deu tudo certo</h1>"
-
-@app.route("/receber_chave", methods=["POST"])
-def get_api_key():
-    key = request.json.get("key")
-    if key:
-        movie_api.api_key = key
-        return jsonify({"message": "Chave recebida com sucesso!", "chave": key})
-    return jsonify({"error": "Escolha uma chave para acessar a OpenAI API"}), 400
 
 @app.route("/selecionar_filtros", methods=["POST"])
 def get_selected_filters():
