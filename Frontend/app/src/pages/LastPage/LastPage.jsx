@@ -2,7 +2,7 @@ import React from "react";
 import './LastPage.css';
 import { useLocation } from "react-router-dom";
 
-import LastPageImage from '../../assets/Fundo_lastpage.webp'; 
+import LastPageImage from '../../assets/Fundo_lastpage.png'; 
 
 const LastPage = () => {
   const location = useLocation();
