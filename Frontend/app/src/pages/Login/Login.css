@@ -17,13 +17,13 @@
     font-weight: bold;
     flex-direction: column;
     justify-content: flex-start; /* Alinha os filhos ao topo */
-    align-items: flex-start; /* Alinha os filhos à esquerda */
-    gap: 2%; 
+    align-items: flex-start; /* Alinha os filhos à esquerda */ 
     height: 75%;
     width: 30%;
+    gap: 5%;
     border-radius: 10px;
     background: #ffffff;
-    padding: 25px; /* Adiciona preenchimento interno */
+    padding: 1%; /* Adiciona preenchimento interno */
     margin-left: 54%;
     margin-top: 7%;
 }
@@ -69,7 +69,7 @@
     width: 100%;
     outline: none;
     transition: border-color 0.3s ease;
-    border: 2px solid #333; /* Define a cor e a espessura da borda */  
+    border: 2px solid rgba(102, 102, 102, 0.35); /* Define a cor e a espessura da borda */  
     transition: border-color 0.3s ease;  
 }
 
@@ -101,8 +101,7 @@
     justify-content: center; /* Centraliza horizontalmente os filhos */
     align-items: left;
     width: 90%;
-    gap: 8px;
-
+    font-weight: normal;
 }
 
 /* Estilo para os rótulos dos blocos de usuário e senha */
@@ -115,12 +114,14 @@
     color: #04227A;
     font-size: 250%;
     margin-bottom: 2%;
+    font-weight: 500;
 }
 
 .title-login{
     color: #9A6300;
     font-size: 250%;
     margin-bottom: 2%;
+    font-weight: 500;
 }
 
 /* Estilo para o texto adicional dentro dos títulos */
@@ -129,6 +130,7 @@
     font-size: 18px;
     margin-top: 10px; /* Espaço acima do texto adicional */
     margin-bottom: 20px; /* Espaço abaixo do texto adicional */
+    font-weight: normal;
 }
 
 /* Container filho do container title_input
@@ -143,22 +145,37 @@
     padding-left: 40px; 
 }
 
-.toggle_form {
-    text-align: center;
-    padding: 10px;
+.toggle_form_login{
     cursor: pointer;
     text-decoration: none;
     width: 100%;
-    color: #333;
-    margin-left: -20%;
+    color: rgba(102, 102, 102, 1);
+    padding-left: 5px;
+    font-weight: normal;
   }
 
-  .toggle_form:hover {
+  .toggle_form_login:hover {
     text-decoration: underline;
+    color: #04227A; 
+  }
+
+
+  .toggle_form_register{
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    color: rgba(102, 102, 102, 1);
+    padding-left: 5px;
+    font-weight: normal;
+  }
+
+  .toggle_form_register:hover {
+    text-decoration: underline;
+    color: #9A6300; 
   }
 
 .button_config_register{
-    background-color: #04227A;
+    background-color: rgba(4, 34, 122, 0.35);
     color: white;
     border: none;
     border-radius: 100px;
@@ -166,10 +183,12 @@
     cursor: pointer;
     font-size: 25px;
     transition: background-color 0.3s ease;
+    font-weight: bold;
+    margin-top: 7%;
 }
 
 .button_config_login{
-    background-color: #9A6300;
+    background-color: rgba(154, 99, 0, 0.35);
     color: white;
     border: none;
     border-radius: 100px;
@@ -177,10 +196,12 @@
     cursor: pointer;
     font-size: 25px;
     transition: background-color 0.3s ease;
+    font-weight: bold;
+    margin-top: 7%;
 }
 
 .button_config_register:hover {
-    background-color: rgb(0, 0, 131);
+    background-color: #04227A;
     border-color: rgb(52,52,148);
     color: white;
     transition: background-color 0.3s ease;
