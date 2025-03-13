@@ -101,11 +101,11 @@ function Login() {
       </div>
       <div className={isRegistering ? "container_register" : "container_informations"}>
         <div className={isRegistering ? "title-register" : "title-login"}>
-            {isRegistering ? "Registre-se" : "Login"}
+            {isRegistering ? "Cadastre-se" : "Login"}
             <p>
               {isRegistering ? "Já possui uma conta?" : "Venha descobrir novos filmes!"}
             {isRegistering && (
-              <span onClick={() => setIsRegistering(false)} className="toggle_form" style={{ cursor: "pointer", marginLeft: "1px" }}>
+              <span onClick={() => setIsRegistering(false)} className="toggle_form_login" style={{ cursor: "pointer"}}>
                 Login
               </span>
             )}
@@ -132,10 +132,10 @@ function Login() {
             </div>
           ))}
           <button className={isRegistering ? "button_config_register" : "button_config_login"} onClick={isRegistering ? registrarUsuario : loginUsuario}>
-            {isRegistering ? "Registrar" : "Enviar"}
+            {isRegistering ? "Cadastre-se" : "Entre"}
           </button>
           {!isRegistering && (
-          <p onClick={() => setIsRegistering(!isRegistering)} className="toggle_form" style={{ cursor: "pointer" }}>
+          <p onClick={() => setIsRegistering(!isRegistering)} className="toggle_form_register" style={{ cursor: "pointer" }}>
             Não tem uma conta? Registre-se
           </p>
         )}
