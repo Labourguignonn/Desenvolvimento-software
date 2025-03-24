@@ -18,10 +18,12 @@ class MovieAPI:
     data_dict: dict = None
 
     def __init__(self):
+        
         load_dotenv()
         self.api_key = os.getenv("REACT_APP_API_KEY")
 
     def process_movies(self):
+        print (self.api_key)
         if any(value is None for value in [self.api_key, self.selected_rating, self.selected_runtime, self.selected_genres]):
             return {f"error": "Faltando dado {value}"}, 400
 

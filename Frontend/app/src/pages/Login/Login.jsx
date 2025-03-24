@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import CryptoJS from "crypto-js";
+import axios from "axios";
 import "./Login.css";
 import { baseURL } from "../../services/config";
 import eyeIcon from "../../assets/eye-icon.svg";
@@ -40,7 +41,6 @@ function Login() {
     setRandomImage(selectedImage.imagem);
   }, [isRegistering]);
 
-
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -67,7 +67,7 @@ function Login() {
     if (await verificarUsuario()) return;
 
     try {
-      const { data } = await axios.post(`${baseURL}/registrar-usuario`, { username: user.username, password: user.password });
+      const { data } = await axios.post(`${baseURL}/registrar-usuario`, { username: user.username, password: user.password, });
       if (data.message) setIsRegistering(false);
     } catch {
       setErrorMessage("Erro ao registrar o usuário.");
@@ -79,17 +79,18 @@ function Login() {
 
     try {
       const authResponse = await axios.post(`${baseURL}/verificar-login`, { username: user.username, password: user.password });
+      console.log("Resposta do backend:", authResponse.data);
       if (!authResponse.data.success) {
-        return setErrorMessage("Usuário ou senha incorretos!");
+        return setErrorMessage(authResponse.data.message || "Usuário ou senha incorretos!");
       }
-      
+  
       if (user.username && user.password) {
         navigate("/filtros");
       } else {
         setErrorMessage("Preencha todos os campos corretamente!");
       }
-    } catch {
-      setErrorMessage("Erro ao enviar dados.");
+    } catch (error) {
+      setErrorMessage("Erro ao enviar dados: " + error.response?.data?.error || error.message);
     }
   };
 
