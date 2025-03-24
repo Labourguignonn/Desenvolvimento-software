@@ -111,18 +111,18 @@ def buscar_login(username, password):
     conn = sqlite3.connect(TMP_DB, check_same_thread=False)
     cursor = conn.cursor()
 
-        cursor.execute("SELECT * FROM usuarios WHERE username = ?", (username,))
-        usuario = cursor.fetchone()
+    cursor.execute("SELECT * FROM usuarios WHERE username = ?", (username,))
+    usuario = cursor.fetchone()
 
-        conn.close()
+    conn.close()
 
-        if usuario:
-            # Verifica se a senha fornecida corresponde ao hash no banco
-            if verificar_senha(password, usuario[2]):
-                return {"success": True, "message": "Login bem-sucedido!", "dados": {"id": usuario[0], "username": usuario[1]}}
-            else:
-                return {"success": False, "message": "Usuário ou senha incorretos."}
+    if usuario:
+        # Verifica se a senha fornecida corresponde ao hash no banco
+        if verificar_senha(password, usuario[2]):
+            return {"success": True, "message": "Login bem-sucedido!", "dados": {"id": usuario[0], "username": usuario[1]}}
         else:
             return {"success": False, "message": "Usuário ou senha incorretos."}
+    else:
+        return {"success": False, "message": "Usuário ou senha incorretos."}
 
 
