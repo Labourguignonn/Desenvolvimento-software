@@ -25,8 +25,8 @@ function Navbar() {
         </div>
       )}
 
-      {(location.pathname === "/filtros" || location.pathname === "/carregamento" || location.pathname === "/seleção" || location.pathname === "/final_da_fila" || location.pathname === "/ultima_pagina") && (
-        <div className="username">{localStorage.getItem("username")}</div>
+      {(location.pathname === "/filtros" || location.pathname === "/carregamento" || location.pathname === "/seleção" || location.pathname === "/final_da_fila" || location.pathname === "/ultima_pagina" || location.pathname === "/meus_filmes") && (
+        <button className={`username ${location.pathname === "/meus_filmes" ? "active" : ""}`} onClick={() => navigate("/meus_filmes")}>{localStorage.getItem("username")}</button>
       )}
 
     </nav>
