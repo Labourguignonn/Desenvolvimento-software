@@ -25,8 +25,8 @@ function Navbar() {
         </div>
       )}
 
-      {(location.pathname === "/filtros" || location.pathname === "/carregamento" || location.pathname === "/info_filmes" || location.pathname === "/seleção" || location.pathname ==="/final_da_fila" || location.pathname === "/ultima_pagina") && (
-        <div className="username">username</div>
+      {(location.pathname === "/filtros" || location.pathname === "/carregamento" || location.pathname === "/seleção" || location.pathname === "/final_da_fila" || location.pathname === "/ultima_pagina") && (
+        <div className="username">{localStorage.getItem("username")}</div>
       )}
 
     </nav>
