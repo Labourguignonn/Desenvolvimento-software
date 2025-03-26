@@ -47,7 +47,7 @@ const Myfilms = () => {
         </div>
 
         <div className="content-myfilms">
-            <h1 className="title-myfilms">Meus filmes</h1>
+            <h1 className="title-myfilms">Meus filmes selecionados</h1>
             <div className="myfilms">
                 <div className="movie-grid">
                     {movies.map((movie, index) => (
