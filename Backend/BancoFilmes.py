@@ -1,7 +1,6 @@
 import requests
 import re
 
-# Modularizei o código
 
 # Função que busca os IDs dos filmes
 def get_movie_ids(films, headers):
