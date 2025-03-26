@@ -29,7 +29,6 @@ class MovieAPI:
         
 
     def process_movies(self):
-        print (self.api_key)
         if any(value is None for value in [self.api_key, self.selected_rating, self.selected_runtime, self.selected_genres]):
             return {f"error": "Faltando dado {value}"}, 400
 
@@ -135,7 +134,6 @@ def process_movies():
 @app.route("/entregar-filmes", methods=["GET"])
 def send_movies():
     response, status = movie_api.send_movies()
-    print(response)
     return jsonify(response), status
 
 
@@ -145,6 +143,13 @@ def add_watched_movie():
     data = request.json
     movie = data.get("movie")
     crud.adicionar_filme_assistido(movie_api.user, movie)
+    return jsonify({"message": "Filme adicionado com sucesso!"})
+
+@app.route("/adicionar-filme-selecionado", methods=["POST"])
+def add_selected_movie():
+    data = request.json
+    movie = data.get("movie")
+    crud.adicionar_filme_selecionado(movie_api.user, movie)
     return jsonify({"message": "Filme adicionado com sucesso!"})
     
     

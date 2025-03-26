@@ -60,7 +60,7 @@ function MovieSelection() {
 
   const movieSelect = (filme) => {
     axios.post(`${baseURL}/adicionar-filme-selecionado`, {
-      filme_selecionado: filme
+      movie: filme
     })
     .then(response => {
       console.log("Filme selecionado enviado:", response.data.message);

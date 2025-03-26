@@ -61,33 +61,55 @@ def buscar_usuario(username):
     else:
         return {"usuario_existe": False}
 
+import json
+
+import json
+import sqlite3
+
+def carregar_filmes(filmes_json):
+    """
+    Converte uma string JSON de filmes armazenados no banco para um dicionário estruturado.
+
+    Parâmetros:
+    - filmes_json (str): String JSON contendo os filmes assistidos ou selecionados.
+
+    Retorna:
+    - dict: Dicionário com os filmes indexados por 'title_en'.
+    """
+    try:
+        filmes = json.loads(filmes_json) if filmes_json else {}
+
+        if isinstance(filmes, list):
+            filmes = {filme['title_en']: filme for filme in filmes}
+        elif not isinstance(filmes, dict):
+            filmes = {}
+
+        return filmes
+
+    except json.JSONDecodeError:
+        return {}
 
 def buscar_login(username, password):
+    """
+    Verifica o login de um usuário e retorna seus dados caso as credenciais sejam válidas.
+
+    Parâmetros:
+    - username (str): Nome de usuário.
+    - password (str): Senha fornecida.
+
+    Retorna:
+    - dict: Dicionário com o status do login e os dados do usuário (se bem-sucedido).
+    """
     conn = sqlite3.connect("usuarios.db")
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM usuarios WHERE username = ?", (username,))
     usuario = cursor.fetchone()
 
-    if usuario:  # Aqui estava um erro: deveria ser `if usuario:`, não `if username:`
+    if usuario:
         if verificar_senha(password, usuario[2]):
-            try:
-                filmes_assistidos = json.loads(usuario[3]) if usuario[3] else {}
-                filmes_selecionados = json.loads(usuario[4]) if usuario[4] else {}
-
-                if isinstance(filmes_assistidos, list):
-                    filmes_assistidos = {filme['title_en']: filme for filme in filmes_assistidos}
-                elif not isinstance(filmes_assistidos, dict):
-                    filmes_assistidos = {}
-
-                if isinstance(filmes_selecionados, list):
-                    filmes_selecionados = {filme['title_en']: filme for filme in filmes_selecionados}
-                elif not isinstance(filmes_selecionados, dict):
-                    filmes_selecionados = {}
-
-            except json.JSONDecodeError:
-                filmes_assistidos = {}
-                filmes_selecionados = {}
+            filmes_assistidos = carregar_filmes(usuario[3])
+            filmes_selecionados = carregar_filmes(usuario[4])   
 
             cursor.close()
             return {
@@ -128,10 +150,6 @@ def verificar_usuarios():
 
     verificar_usuarios()
 
-
-import sqlite3
-import json
-
 def adicionar_filme_assistido(usuario, filme):
     conn = sqlite3.connect("usuarios.db")
     cursor = conn.cursor()
@@ -150,7 +168,7 @@ def adicionar_filme_assistido(usuario, filme):
             if not isinstance(filmes_assistidos, dict):
                 filmes_assistidos = {}
 
-            print(f"Filmes assistidos antes: {filmes_assistidos}")
+            print(f"Filmes assistidos antes: {filmes_assistidos.keys()}")
 
             title_en = filme['title_en']
             if title_en in filmes_assistidos:
@@ -172,18 +190,61 @@ def adicionar_filme_assistido(usuario, filme):
                 conn.commit()
 
                 print("Filme adicionado aos filmes assistidos com sucesso.")
-
-                cursor.execute("SELECT watched_movies FROM usuarios WHERE username = ?", (usuario,))
-                teste = cursor.fetchone()
-                print(f"Verificação pós-atualização: {teste[0]}")
+                
         except json.JSONDecodeError:
             print("Erro ao decodificar JSON de watched_movies. Verifique o formato dos dados no banco.")
     else:
         print("Usuário não encontrado. Verifique o username e tente novamente.")
 
     conn.close()
+    
+def adicionar_filme_selecionado(usuario, filme):
+    conn = sqlite3.connect("usuarios.db")
+    cursor = conn.cursor()
 
+    print(f"Verificando usuário com username: {usuario}")
 
+    cursor.execute("SELECT selected_movies FROM usuarios WHERE username = ?", (usuario,))
+    resultado = cursor.fetchone()
+
+    if resultado:
+        selected_movies_str = resultado[0] if resultado[0] else "{}"
+
+        try:
+            filmes_assistidos = json.loads(selected_movies_str)
+
+            if not isinstance(filmes_assistidos, dict):
+                filmes_assistidos = {}
+
+            print(f"Filmes assistidos antes: {filmes_assistidos.keys()}")
+
+            title_en = filme['title_en']
+            if title_en in filmes_assistidos:
+                print("Filme já adicionado aos filmes assistidos.")
+            else:
+                filmes_assistidos[title_en] = {
+                    "title_pt": filme["title_pt"],
+                    "title_en": filme["title_en"],
+                    "overview": filme["overview"],
+                    "director": filme["director"],
+                    "runtime": filme["runtime"],
+                    "review": filme["review"],
+                    "poster_path": filme["poster_path"]
+                }
+
+                filmes_json = json.dumps(filmes_assistidos)
+                cursor.execute("UPDATE usuarios SET selected_movies = ? WHERE username = ?", 
+                               (filmes_json, usuario))
+                conn.commit()
+
+                print("Filme adicionado aos filmes assistidos com sucesso.")
+                
+        except json.JSONDecodeError:
+            print("Erro ao decodificar JSON de selected_movies. Verifique o formato dos dados no banco.")
+    else:
+        print("Usuário não encontrado. Verifique o username e tente novamente.")
+
+    conn.close()
 
 """VERCEL VERSION"""
 
