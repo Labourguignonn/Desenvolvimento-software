@@ -16,11 +16,16 @@ class MovieAPI:
     selected_genres: list = None  
     selected_rating: str = None
     data_dict: dict = None
+    watched_movies: dict = None
+    selected_movies: dict = None
+    watched_set: set = None
+    selected_set: set = None
 
     def __init__(self):
-        
         load_dotenv()
         self.api_key = os.getenv("REACT_APP_API_KEY")
+        crud.inicializar_banco()
+        
 
     def process_movies(self):
         print (self.api_key)
@@ -58,7 +63,10 @@ class MovieAPI:
         except Exception as e:
             print(f"Erro ao processar filmes: {str(e)}")
             return {"error": f"Erro ao processar filmes: {str(e)}", "processamento_concluido": False}, 500
-
+        
+    def watched_movies_to_set(self):
+        return set(self.watched_movies.keys())
+        
     def send_movies(self):
         base_keys = ["title_pt", "title_en", "overview", "runtime", "poster_path", "director", "review"]
 
@@ -116,6 +124,8 @@ def get_selected_filters():
         "classificação": rating
     }), 200
 
+
+
 @app.route("/processar-filmes", methods=["GET"])
 def process_movies():
     response, status = movie_api.process_movies()
@@ -124,7 +134,14 @@ def process_movies():
 @app.route("/entregar-filmes", methods=["GET"])
 def send_movies():
     response, status = movie_api.send_movies()
+    print(response)
     return jsonify(response), status
+
+@app.route("/adicionar-filme-assistido", methods=["POST"])
+def add_watched_movie():
+    data = request.json
+    movie = data.get("movie")
+    
 
 @app.route("/registrar-usuario", methods=["POST"])
 def register_user():
@@ -158,8 +175,16 @@ def verify_login():
         return jsonify({"error": "Os parâmetros 'username' e 'password' são obrigatórios!"}), 400
 
     resultado = crud.buscar_login(username, password)
-    return jsonify(resultado)
-
+    
+    # Verifica se a chave 'dados' está presente
+    if "dados" in resultado:
+        movie_api.watched_movies = resultado["dados"]["watched_movies"]
+        movie_api.selected_movies = resultado["dados"]["selected_movies"]
+        
+        return jsonify(resultado)
+    else:
+        return jsonify({"error": resultado.get("message", "Erro desconhecido")}), 400
+        
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
     app.run(debug=True, port=port)

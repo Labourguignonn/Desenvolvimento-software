@@ -45,6 +45,31 @@ function MovieSelection() {
   const formatTime = (runtime) =>
     runtime > 0 ? `${Math.floor(runtime / 60)}h ${runtime % 60}min` : "N/A";
 
+  const marcarComoAssistido = (filme) => {
+    axios.post(`${baseURL}/marcar-como-assistido`, {
+      filme_assistido: filme
+    })
+    .then(response => {
+      console.log("Filme assistido enviado:", response.data.message);
+    })
+    .catch(error => {
+      console.error("Erro ao enviar o filme assistido:", error);
+    });
+  }
+
+  const movieSelect = (filme) => {
+    axios.post(`${baseURL}/adicionar-filme-selecionado`, {
+      filme_selecionado: filme
+    })
+    .then(response => {
+      console.log("Filme selecionado enviado:", response.data.message);
+    })
+    .catch(error => {
+      console.error("Erro ao enviar o filme selecionado:", error);
+    });
+  }
+
+
   return (
     <div className="container_movie_selection">
       <div className="container-info-carrousel">
@@ -76,7 +101,8 @@ function MovieSelection() {
                 {"<"}
               </button>
 
-              <button className="like-button" onClick={() => navigate("/ultima_pagina", { state: { filme: filmeAtual }})}> ❤ </button>
+              <button className="like-button" onClick={() => (movieSelect(filmeAtual), navigate("/ultima_pagina", { state: { filme: filmeAtual }}))}>❤</button>
+              <button className="movie-watch-button" onClick={() => marcarComoAssistido(filmeAtual)}> Já assisti esse filme </button>
 
               <button
                 className="carousel-btn right"
