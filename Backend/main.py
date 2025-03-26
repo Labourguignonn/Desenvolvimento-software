@@ -20,6 +20,7 @@ class MovieAPI:
     selected_movies: dict = None
     watched_set: set = None
     selected_set: set = None
+    user: str = None
 
     def __init__(self):
         load_dotenv()
@@ -137,10 +138,16 @@ def send_movies():
     print(response)
     return jsonify(response), status
 
+
+
 @app.route("/adicionar-filme-assistido", methods=["POST"])
 def add_watched_movie():
     data = request.json
     movie = data.get("movie")
+    crud.adicionar_filme_assistido(movie_api.user, movie)
+    return jsonify({"message": "Filme adicionado com sucesso!"})
+    
+    
     
 
 @app.route("/registrar-usuario", methods=["POST"])
@@ -155,10 +162,11 @@ def register_user():
     resultado = crud.inserir_usuario(username, password)
     return jsonify(resultado)
 
+
+
 @app.route("/verificar-usuario", methods=["GET"])
 def verify_user():
     username = request.args.get("username")
-
     if not username:
         return jsonify({"error": "O parâmetro 'username' é obrigatório!"}), 400
 
@@ -170,13 +178,13 @@ def verify_login():
     data = request.json
     username = data.get("username")
     password = data.get("password")
+    movie_api.user = username
 
     if not username or not password:
         return jsonify({"error": "Os parâmetros 'username' e 'password' são obrigatórios!"}), 400
 
     resultado = crud.buscar_login(username, password)
     
-    # Verifica se a chave 'dados' está presente
     if "dados" in resultado:
         movie_api.watched_movies = resultado["dados"]["watched_movies"]
         movie_api.selected_movies = resultado["dados"]["selected_movies"]
@@ -184,6 +192,7 @@ def verify_login():
         return jsonify(resultado)
     else:
         return jsonify({"error": resultado.get("message", "Erro desconhecido")}), 400
+    
         
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))

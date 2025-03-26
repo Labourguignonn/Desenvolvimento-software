@@ -31,6 +31,7 @@ function MovieSelection() {
 
   // Dados do filme em destaque
   const filmeAtual = {
+    title_en: dataDict.title_en?.[selectedFilmIndex],
     title_pt: dataDict.title_pt[selectedFilmIndex],
     overview: dataDict.overview?.[selectedFilmIndex] || "Sinopse não disponível.",
     director: dataDict.director?.[selectedFilmIndex] || "Desconhecido",
@@ -46,8 +47,8 @@ function MovieSelection() {
     runtime > 0 ? `${Math.floor(runtime / 60)}h ${runtime % 60}min` : "N/A";
 
   const marcarComoAssistido = (filme) => {
-    axios.post(`${baseURL}/marcar-como-assistido`, {
-      filme_assistido: filme
+    axios.post(`${baseURL}/adicionar-filme-assistido`, {
+      movie: filme
     })
     .then(response => {
       console.log("Filme assistido enviado:", response.data.message);
