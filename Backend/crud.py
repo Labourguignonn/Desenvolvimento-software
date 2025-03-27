@@ -57,7 +57,7 @@ def buscar_usuario(username):
     conn.close()
 
     if usuario:
-        return {"usuario_existe": True, "dados": {"id": usuario[0], "username": usuario[1], "password": usuario[2], "watched_movies": json.loads(usuario[3])}}
+        return {"usuario_existe": True, "dados": {"id": usuario[0], "username": usuario[1], "password": usuario[2], "watched_movies": json.loads(usuario[3]), "selected_movies": json.loads(usuario[4])}}
     else:
         return {"usuario_existe": False}
 
@@ -130,25 +130,6 @@ def buscar_login(username, password):
         return {"success": False, "message": "Usuário não cadastrado."}
     
     
-"""""FRONT"""
-
-def verificar_usuarios():
-    conn = sqlite3.connect("usuarios.db")
-    cursor = conn.cursor()
-
-    cursor.execute("SELECT * FROM usuarios;")
-    usuarios = cursor.fetchall()
-
-    if usuarios:
-        print("Usuários cadastrados:")
-        for u in usuarios:
-            print(f"ID: {u[0]}, Username: {u[1]}, Watched Movies: {u[3]}")
-    else:
-        print("Nenhum usuário cadastrado.")
-
-    conn.close()
-
-    verificar_usuarios()
 
 def adicionar_filme_assistido(usuario, filme):
     conn = sqlite3.connect("usuarios.db")
@@ -245,6 +226,50 @@ def adicionar_filme_selecionado(usuario, filme):
         print("Usuário não encontrado. Verifique o username e tente novamente.")
 
     conn.close()
+    
+def buscar_filmes_assistidos(usuario):
+    conn = sqlite3.connect("usuarios.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT watched_movies FROM usuarios WHERE username = ?", (usuario,))
+    resultado = cursor.fetchone()
+    
+    if resultado:
+        try:
+            filmes_assistidos = json.loads(resultado[0]) if resultado[0] else {}
+            if not isinstance(filmes_assistidos, dict):
+                filmes_assistidos = {}
+                conn.close()
+            return filmes_assistidos
+        except json.JSONDecodeError:
+            print("Erro ao decodificar JSON de watched_movies. Verifique o formato dos dados no banco.")
+            conn.close()
+            return {}
+    else:
+        print("Usuário não encontrado. Verifique o username e tente novamente.")
+        conn.close()
+        return {}
+
+def buscar_filmes_selecionados(usuario):
+    conn = sqlite3.connect("usuarios.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT selected_movies FROM usuarios WHERE username = ?", (usuario,))
+    resultado = cursor.fetchone()
+    
+    if resultado:
+        try:
+            filmes_selecionados = json.loads(resultado[0]) if resultado[0] else {}
+            if not isinstance(filmes_selecionados, dict):
+                filmes_selecionados = {}
+                conn.close()
+            return filmes_selecionados
+        except json.JSONDecodeError:
+            print("Erro ao decodificar JSON de selected_movies. Verifique o formato dos dados no banco.")
+            conn.close()
+            return {}
+    else:
+        print("Usuário não encontrado. Verifique o username e tente novamente.")
+        conn.close()
+        return {}
 
 """VERCEL VERSION"""
 
