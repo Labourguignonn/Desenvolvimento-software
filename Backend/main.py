@@ -25,8 +25,9 @@ class MovieAPI:
 
     def __init__(self):
         crud.inicializar_banco()
-        # load_dotenv()
-        # self.api_key = os.getenv("REACT_APP_API_KEY")
+
+        load_dotenv()
+        self.api_key = os.getenv("REACT_APP_API_KEY")
 
     def process_movies(self):
         if any(value is None for value in [self.api_key, self.selected_rating, self.selected_runtime, self.selected_genres]):
@@ -69,8 +70,6 @@ class MovieAPI:
                 refactored_movies_set = IntegracaoAPI.call_openai_extra(
                     self.api_key, selected_genres_str, self.selected_runtime, self.selected_rating,
                     set(self.data_dict["title_en"]), watched_set, selected_set)
-                
-
 
                 if not refactored_movies_set or not isinstance(refactored_movies_set, set):
                     print("Erro: Lista de filmes extra vazia ou inválida. Parando tentativas adicionais.")
@@ -84,9 +83,6 @@ class MovieAPI:
         except Exception as e:
             print(f"Erro ao processar filmes: {str(e)}")
             return {"error": f"Erro ao processar filmes: {str(e)}", "processamento_concluido": False}, 500
-        
-    def watched_movies_to_set(self):
-        return set(self.watched_movies.keys())
         
     def send_movies(self):
         base_keys = ["title_pt", "title_en", "overview", "runtime", "poster_path", "director", "review"]
@@ -145,8 +141,6 @@ def get_selected_filters():
         "classificação": rating
     }), 200
 
-
-
 @app.route("/processar-filmes", methods=["GET"])
 def process_movies():
     movie_api.watched_movies = crud.buscar_filmes_assistidos(movie_api.user)
@@ -159,7 +153,9 @@ def send_movies():
     response, status = movie_api.send_movies()
     return jsonify(response), status
 
-
+@app.route("/mandar-filmes-assistido", methods=["GET"])
+def send_watched_movie():
+    return jsonify({"watched_movies": movie_api.watched_movies}), 200
 
 @app.route("/adicionar-filme-assistido", methods=["POST"])
 def add_watched_movie():
@@ -186,8 +182,6 @@ def register_user():
 
     resultado = crud.inserir_usuario(username, password)
     return jsonify(resultado)
-
-
 
 @app.route("/verificar-usuario", methods=["GET"])
 def verify_user():
