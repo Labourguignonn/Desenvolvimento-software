@@ -85,6 +85,7 @@ function Login() {
       }
   
       if (user.username && user.password) {
+        localStorage.setItem("username", user.username);
         navigate("/filtros");
       } else {
         setErrorMessage("Preencha todos os campos corretamente!");
