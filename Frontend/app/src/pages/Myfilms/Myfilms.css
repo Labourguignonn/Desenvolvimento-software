@@ -1,0 +1,97 @@
+/* Container geral da página de filmes */
+#container_myfilms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 1540px;
+    padding: 10px;
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Imagem de fundo */
+.background_myfilms {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.myfilms-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.myfilms-image.loaded {
+    opacity: 1;
+}
+
+.myfilms-image.loading {
+    opacity: 0;
+}
+
+/* Conteúdo principal */
+.content-myfilms {
+    font-family: Poppins, sans-serif;
+    width: 100%;
+    max-width: 1500px;
+    margin-top: 140px;
+    z-index: 1;
+    position: relative;
+    padding: 0 20px;
+}
+
+/* Título */
+.title-myfilms {
+    color: var(--color-3);
+    font-weight: bold;
+    font-size: 4.2rem;
+    text-align: left;
+    margin-bottom: 40px;
+    line-height: 1.1;
+}
+
+/* Grade de filmes */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 40px;
+    width: 100%;
+    justify-items: center;
+}
+
+/* Cartão de filme */
+.movie-card {
+    width: 100%;
+    height: auto; /* proporção de cartaz padrão 2:3 */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    background-color: white;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+/* Imagem do filme */
+.movie-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}

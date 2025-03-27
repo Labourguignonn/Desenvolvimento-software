@@ -14,7 +14,7 @@ import Praia from "../../assets/Login_register/Cidade_de_deus.png";
 import Kill_bill from "../../assets/Login_register/Kill_bill.png";
 import Fogueira from "../../assets/Login_register/Fogueira.png";
 
-function Login() {
+function Login({isLogged, setIsLogged}) {
   const navigate = useNavigate();
   const [user, setUser] = useState({ username: "", password: "", confirmPassword: "" });
   const [isRegistering, setIsRegistering] = useState(false);
@@ -85,6 +85,8 @@ function Login() {
       }
   
       if (user.username && user.password) {
+        localStorage.setItem("username", user.username);
+        setIsLogged(true);
         navigate("/filtros");
       } else {
         setErrorMessage("Preencha todos os campos corretamente!");
