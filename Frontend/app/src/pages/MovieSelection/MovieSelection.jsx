@@ -87,43 +87,35 @@ function MovieSelection() {
               </button>
             </div>
           </div>
-          <div className="movie-carousel">
+          <div className="movie-carousel" 
+            style={{
+              transform: `translateX(-${selectedFilmIndex * 21}%)`, // Aplicar a rolagem
+            }}
+          >
+            {dataDict.title_pt.map((title, index) => {
+              // Exclui o filme atual do carrossel
+              if (index === selectedFilmIndex) return null;
+              return (
+                <div
+                  key={index}
+                  className={`movie-item ${index === selectedFilmIndex ? "highlighted" : ""}`}
+                  onClick={() => setSelectedFilmIndex(index)}
+                >
+                  <img src={posterBaseURL + dataDict.poster_path[index]} alt={title} />
+                </div>
+              );
+            })}
             <div
-              className="movie-list"
-              style={{
-                transform: `translateX(-${selectedFilmIndex * 210}px)`,
-                display: 'flex', // Garante que todos os filmes se alinhem horizontalmente
-                flexDirection: 'row',
-              }}
+              className=" movie item refazer-card"
+              onMouseEnter={() => setShowRefazerText(true)}
+              onMouseLeave={() => setShowRefazerText(false)}
+              onClick={() => navigate("/filtros")}
             >
-              {dataDict.title_pt.map((title, index) => {
-                // Exclui o filme atual do carrossel
-                if (index === selectedFilmIndex) return null;
-                return (
-                  <div
-                    key={index}
-                    className={`movie-item ${index === selectedFilmIndex ? "highlighted" : ""}`}
-                    onClick={() => setSelectedFilmIndex(index)}
-                  >
-                    <img src={posterBaseURL + dataDict.poster_path[index]} alt={title} />
-                  </div>
-                );
-              })}
-              <div
-                className="movie-item refazer-card"
-                onMouseEnter={() => setShowRefazerText(true)}
-                onMouseLeave={() => setShowRefazerText(false)}
-                onClick={() => navigate("/filtros")}
-              >
-                {showRefazerText ? <span className="refazer-text">Refazer seleção?</span> : <span className="plus-icon">+</span>}
-              </div>
+              {showRefazerText ? <span className="refazer-text">Refazer seleção?</span> : <span className="plus-icon">+</span>}
             </div>
           </div>
         </div>
-
       </div>
-
-
     </div>
 
   );
