@@ -1,28 +1,18 @@
-.container_login {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    gap: 20px;
-    padding: 10px;
-    box-sizing: border-box;
-    margin: 0 auto;
-}
-
 .container_register {
     color: white;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    height: 75%;
-    width: 30%;
-    gap: 5%;
-    border-radius: 10px;
+    align-items: left;  /* Centraliza o conteúdo horizontalmente */
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    height: 100vh;  /* Ocupa toda a altura da tela */
+    width: 50%;  /* Ocupa metade da tela */
+    border-radius: 50px;
     background: #ffffff;
-    padding: 1%;
-    margin-left: 54%;
-    margin-top: 4.5%;
+    gap: 3%; 
+    padding: 8%;
+    position: absolute;
+    right: 0;  /* Alinha o container na direita */
+    top: 40;  /* Alinha o container no topo */
 }
 
 .container_image_film {
@@ -50,7 +40,7 @@
 .container_title_input {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 100%;
 }
 
 .container_title_input p {
@@ -133,7 +123,8 @@
     font-size: 25px;
     transition: background-color 0.3s ease;
     font-weight: bold;
-    margin-top: 7%;
+    margin-top: 3%;
+    width: 70%
 }
 
 .button_config_register:hover {
@@ -143,26 +134,3 @@
     transition: background-color 0.3s ease; 
 }
 
-/* 
-.button_config_login {
-    background-color: rgba(154, 99, 0, 0.35);
-    color: white;
-    border: none;
-    border-radius: 100px;
-    padding: 5% 20%;
-    cursor: pointer;
-    font-size: 25px;
-    transition: background-color 0.3s ease;
-    font-weight: bolder;
-    margin-top: 7%;
-}
-
-.button_config_login:hover {
-    background-color: #9A6300;
-    border-color: rgb(229, 213,0); 
-    color: white;
-    transition: background-color 0.3s ease; 
-}
-
-
-*/
