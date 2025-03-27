@@ -16,14 +16,14 @@ html, body {
     flex-direction: column;
     align-items: left;  /* Centraliza o conteúdo horizontalmente */
     justify-content: center; /* Centraliza o conteúdo verticalmente */
-    height: 100vh;  /* Ocupa toda a altura da tela */
+    height:95vh;  /* Ocupa toda a altura da tela */
     width: 50%;  /* Ocupa metade da tela */
     background: #ffffff;
     gap: 3%; 
     padding: 8%;
     position: absolute;
     right: 0;  /* Alinha o container na direita */
-    top: 40;  /* Alinha o container no topo */
+    top: 72px;  /* Alinha o container no topo */
 }
 
 .container_image_film {
@@ -135,7 +135,7 @@ html, body {
     color: white;
     border: none;
     border-radius: 100px;
-    padding: 5% 20%;
+    padding: 3% 15%;
     cursor: pointer;
     font-size: 25px;
     transition: background-color 0.3s ease;

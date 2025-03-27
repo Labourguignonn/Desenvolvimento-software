@@ -4,11 +4,11 @@
     flex-direction: column;
     align-items: left;  /* Centraliza o conteúdo horizontalmente */
     justify-content: center; /* Centraliza o conteúdo verticalmente */
-    height: 100vh;  /* Ocupa toda a altura da tela */
+    height: calc(100%-72px);  /* Ocupa toda a altura da tela */
     width: 50%;  /* Ocupa metade da tela */
     border-radius: 50px;
     background: #ffffff;
-    gap: 3%; 
+    gap: 2vh; 
     padding: 8%;
     position: absolute;
     right: 0;  /* Alinha o container na direita */
@@ -58,7 +58,7 @@
     color: rgb(100, 100, 100);
     font-size: 18px;
     margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: normal;
 }
 
@@ -71,7 +71,7 @@
 
 .input_box {
     width: 100%;
-    padding: 5% 20%;
+    padding: 4% 15%;
     font-size: 16px;
     border-radius: 16px;
     outline: none;
@@ -118,7 +118,7 @@
     color: white;
     border: none;
     border-radius: 100px;
-    padding: 5% 20%;
+    padding: 4% 15%;
     cursor: pointer;
     font-size: 25px;
     transition: background-color 0.3s ease;
