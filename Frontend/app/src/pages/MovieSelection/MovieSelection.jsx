@@ -133,12 +133,12 @@ function MovieSelection() {
               );
             })}
             <div
-              className=" movie item refazer-card"
+              className="movie item refazer-card"
               onMouseEnter={() => setShowRefazerText(true)}
               onMouseLeave={() => setShowRefazerText(false)}
               onClick={() => navigate("/filtros")}
             >
-              {showRefazerText ? <span className="refazer-text">Refazer seleção?</span> : <span className="plus-icon">+</span>}
+              {showRefazerText ? <span className="refazer-text">Refazer seleção?</span> : <span className="plus-icon"> <div className="plus">+</div><div className="filmes-text">filmes</div></span>}
             </div>
           </div>
         </div>

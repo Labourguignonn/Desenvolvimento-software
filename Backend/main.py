@@ -25,9 +25,7 @@ class MovieAPI:
 
     def __init__(self):
         crud.inicializar_banco()
-
         load_dotenv()
-        self.api_key = os.getenv("REACT_APP_API_KEY")
 
     def process_movies(self):
         if any(value is None for value in [self.api_key, self.selected_rating, self.selected_runtime, self.selected_genres]):
@@ -44,9 +42,7 @@ class MovieAPI:
 
             watched_set = set(movie_api.watched_movies.keys())
             selected_set = set(movie_api.selected_movies.keys())
-            
-            print(f"Watched set: {watched_set}")
-            print(f"Selected set: {selected_set}")
+
             
             self.data_dict = BancoFilmes.collecting_data(
                 IntegracaoAPI.call_openai(self.api_key, selected_genres_str, self.selected_runtime, self.selected_rating, set(self.watched_movies.keys()), set(self.selected_movies.keys())),
@@ -62,7 +58,8 @@ class MovieAPI:
                     movie_api.watched_movies = {}
                 if movie_api.selected_movies is None:
                     movie_api.selected_movies = {}
-
+                    
+                update_movies()
                 watched_set = set(movie_api.watched_movies.keys())
                 selected_set = set(movie_api.selected_movies.keys())
 
@@ -155,7 +152,14 @@ def send_movies():
 
 @app.route("/mandar-filmes-assistido", methods=["GET"])
 def send_watched_movie():
+    update_movies()
     return jsonify({"watched_movies": movie_api.watched_movies}), 200
+
+@app.route("/mandar-filmes-selecionado", methods=["GET"])
+def send_selected_movie():
+    update_movies()
+    print(movie_api.selected_movies)
+    return jsonify({"selected_movies": movie_api.selected_movies}), 200
 
 @app.route("/adicionar-filme-assistido", methods=["POST"])
 def add_watched_movie():
@@ -169,6 +173,7 @@ def add_selected_movie():
     data = request.json
     movie = data.get("movie")
     crud.adicionar_filme_selecionado(movie_api.user, movie)
+    print(movie)
     return jsonify({"message": "Filme adicionado com sucesso!"})
 
 @app.route("/registrar-usuario", methods=["POST"])
@@ -191,6 +196,17 @@ def verify_user():
 
     resultado = crud.buscar_usuario(username)
     return jsonify(resultado)
+
+def update_movies():
+    resultado = crud.autalizar_filmes(movie_api.user)
+
+    if "dados" in resultado:
+        movie_api.watched_movies = resultado["dados"]["watched_movies"]
+        movie_api.selected_movies = resultado["dados"]["selected_movies"]
+        return jsonify(resultado)
+    else:
+        return jsonify({"error": resultado.get("message", "Erro desconhecido")}), 400
+
 
 @app.route("/verificar-login", methods=["POST"])
 def verify_login():

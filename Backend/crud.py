@@ -110,6 +110,25 @@ def buscar_login(username, password):
         }
     return {"success": False, "message": "Usuário ou senha incorretos."}
 
+def autalizar_filmes(username):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT * FROM usuarios WHERE username = ?", (username,))
+    usuario = cursor.fetchone()
+    conn.close()
+    if usuario:
+        return {
+            "success": True,
+            "message": "Filmes atualizados com sucesso!",
+            "dados": {
+                "watched_movies": json.loads(usuario[3]) if usuario[3] else {},
+                "selected_movies": json.loads(usuario[4]) if usuario[4] else {}
+            }
+        }
+    return {"success": False, "message": "Erro ao atualizar filmes."}
+
+
 def adicionar_filme_assistido(usuario, filme):
     conn = get_db_connection()
     cursor = conn.cursor()

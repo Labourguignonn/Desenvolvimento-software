@@ -95,3 +95,27 @@
     border-radius: 12px;
     display: block;
 }
+
+.SectionTitle {
+    display: flex;
+    justify-content: space-between;  
+    flex-direction: row;  
+            
+}
+
+.SelectSet{
+    height: 60px;
+    width: 300px;
+    border-radius: 50px;
+    border: var(--color-1) 3px solid;
+    margin-bottom: 40px;
+    margin-top: 5px;
+    background-color: none;
+    font-family: Poppins, sans-serif;
+    font-size: 1.2rem;
+    color: var(--color-1);
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+

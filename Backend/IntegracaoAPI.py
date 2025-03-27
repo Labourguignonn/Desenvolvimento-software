@@ -42,7 +42,6 @@ def call_openai_extra(key, genre, runtime, rating, existing_movies, watched_movi
 
     # String to set
     mensagem_resp = resposta['choices'][0]['message']['content']
-    print(mensagem_resp)
     new_films = {film.strip() for film in mensagem_resp.split(";")}
 
     complete_movies_set = existing_movies | (new_films - {"Anora", "Emilia Pérez"} - watched_movies - selected_movies)
