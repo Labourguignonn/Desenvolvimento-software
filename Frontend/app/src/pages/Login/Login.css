@@ -1,57 +1,44 @@
-.container_login {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centraliza horizontalmente os filhos */
-    align-items: center; /* Centraliza verticalmente os filhos */
-    height: 100%; /* Garante que ocupe toda a altura do body */
-    gap: 20px; /* Espaço entre seções */
-    padding: 10px;
-    box-sizing: border-box;
-    margin: 0 auto; /* Centraliza o contêiner horizontalmente */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Evitar que padding aumente o tamanho dos elementos */
 }
 
-.container_informations, .container_register {
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Impede o scroll */
+}
+
+.container_informations {
     color: white;
     display: flex;
-    font-weight: normal;
-    font-weight: bold;
     flex-direction: column;
-    justify-content: flex-start; /* Alinha os filhos ao topo */
-    align-items: flex-start; /* Alinha os filhos à esquerda */ 
-    height: 75%;
-    width: 30%;
-    gap: 5%;
-    border-radius: 10px;
+    align-items: left;  /* Centraliza o conteúdo horizontalmente */
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    height:95vh;  /* Ocupa toda a altura da tela */
+    width: 50%;  /* Ocupa metade da tela */
     background: #ffffff;
-    padding: 1%; /* Adiciona preenchimento interno */
-    margin-left: 54%;
-    margin-top: 7%;
+    gap: 3%; 
+    padding: 8%;
+    position: absolute;
+    right: 0;  /* Alinha o container na direita */
+    top: 72px;  /* Alinha o container no topo */
 }
 
-
 .container_image_film {
-    position: absolute; /* Posiciona o contêiner de forma absoluta */
-    top: 40px; /* Alinha o topo do contêiner com o topo da página */
-    left: 0; /* Alinha o contêiner à esquerda */
-    width: 50%; /* Define a largura do contêiner como 50% da página */
-    height: calc(100vh - 60px); /* Define a altura do contêiner, subtraindo a altura da navbar */
+    width: 50%; /* Metade da tela */
+    height: 100vh;
     display: flex;
     justify-content: center;
-    gap:4%; 
-    height: 100%;
-    width: 50%;
     align-items: center;
-    border-radius: 10px;
     background: #161616;
-    box-sizing: border-box;
 }
 
 .container_image_film img {
-    width: 100%; /* Garante que a imagem ocupe toda a largura do contêiner */
-    height: 100%; /* Garante que a imagem ocupe toda a altura do contêiner */
-    object-fit: cover; /* Ajusta a imagem para cobrir o contêiner sem distorção */
-    padding-top: 25px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
 }
 
 .field_with_eye {
@@ -62,26 +49,22 @@
 }
 
 .input_box {
-    padding: 5%;
-    font-size: 16px;
-    font-family: Poppins;
-    border-radius: 10px;
-    width: 100%;
+    padding: 3% 15%; 
+    font-size: 14px;
+    border-radius: 16px;
+    width: 80%;
+    border: 2px solid rgba(102, 102, 102, 0.35);
+    padding-left: 20px;
     outline: none;
     transition: border-color 0.3s ease;
-    border: 2px solid rgba(102, 102, 102, 0.35); /* Define a cor e a espessura da borda */  
-    transition: border-color 0.3s ease;  
 }
-
 
 .eye-icon {
     position: absolute;
-    right: 10px; 
+    right: 10px;
     background: transparent;
     border: none;
     cursor: pointer;
-    display: flex;
-    align-items: center;
     padding: 0;
 }
 
@@ -98,118 +81,72 @@
 .container_title_input {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza horizontalmente os filhos */
-    align-items: left;
+    justify-content: center;
+    align-items: left; 
     width: 90%;
     font-weight: normal;
 }
 
-/* Estilo para os rótulos dos blocos de usuário e senha */
 .container_title_input p {
-    color: rgb(100, 100, 100); /* Altere esta cor conforme necessário */
+    color: rgb(100, 100, 100);
 }
 
-/* Estilo para o título quando isRegistering é true */
-.title-register{
-    color: #04227A;
-    font-size: 250%;
-    margin-bottom: 2%;
-    font-weight: 500;
-}
-
-.title-login{
+.title-login {
     color: #9A6300;
     font-size: 250%;
     margin-bottom: 2%;
     font-weight: 500;
 }
 
-/* Estilo para o texto adicional dentro dos títulos */
-.title-register p, .title-login p {
-    color: rgb(100, 100, 100); /* Cor diferente dos títulos */
+.title-login p {
+    color: rgb(100, 100, 100);
     font-size: 18px;
-    margin-top: 10px; /* Espaço acima do texto adicional */
-    margin-bottom: 20px; /* Espaço abaixo do texto adicional */
+    margin-top: 10px;
+    margin-bottom: 20px;
     font-weight: normal;
 }
 
-/* Container filho do container title_input
-=> Container onde serão colocados as informações */
 .input_box {
-    width: 100%;
-    padding: 5% 20%;
-    font-size: 16px;
-    border-radius: 16px;
-    outline: none;
-    transition: border-color 0.3s ease;
-    padding-left: 40px; 
+    width: 100%; 
+    padding: 5% 20%; 
+    font-size: 16px; 
+    border-radius: 16px; 
+    outline: none; 
+    transition: border-color 0.3s ease; 
+    padding-left: 40px;
 }
 
-.toggle_form_login{
+.toggle_form_register {
     cursor: pointer;
     text-decoration: none;
     width: 100%;
     color: rgba(102, 102, 102, 1);
     padding-left: 5px;
     font-weight: normal;
-  }
-
-  .toggle_form_login:hover {
-    text-decoration: underline;
-    color: #04227A; 
-  }
-
-
-  .toggle_form_register{
-    cursor: pointer;
-    text-decoration: none;
-    width: 100%;
-    color: rgba(102, 102, 102, 1);
-    padding-left: 5px;
-    font-weight: normal;
-  }
-
-  .toggle_form_register:hover {
-    text-decoration: underline;
-    color: #9A6300; 
-  }
-
-.button_config_register{
-    background-color: rgba(4, 34, 122, 0.35);
-    color: white;
-    border: none;
-    border-radius: 100px;
-    padding: 5% 20%;    
-    cursor: pointer;
-    font-size: 25px;
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-    margin-top: 7%;
 }
 
-.button_config_login{
+.toggle_form_register:hover {
+    text-decoration: underline;
+    color: #9A6300;
+}
+
+.button_config_login {
     background-color: rgba(154, 99, 0, 0.35);
     color: white;
     border: none;
     border-radius: 100px;
-    padding: 5% 20%;
+    padding: 3% 15%;
     cursor: pointer;
     font-size: 25px;
     transition: background-color 0.3s ease;
     font-weight: bold;
-    margin-top: 7%;
-}
-
-.button_config_register:hover {
-    background-color: #04227A;
-    border-color: rgb(52,52,148);
-    color: white;
-    transition: background-color 0.3s ease;
+    margin-top: 3%;
+    width: 70%
 }
 
 .button_config_login:hover {
     background-color: #9A6300;
-    border-color: rgb(228, 213, 0);
+    border-color: rgb(229, 213,0); 
     color: white;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease; 
 }

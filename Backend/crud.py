@@ -4,6 +4,7 @@ import json
 import bcrypt
 import shutil
 
+
 # Detecta se está rodando no Vercel
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
 LOCAL_DB = os.path.join(BASE_DIR, "usuarios.db")  # Banco local
@@ -57,6 +58,7 @@ def buscar_usuario(username):
 
     cursor.execute("SELECT * FROM usuarios WHERE username = ?", (username,))
     usuario = cursor.fetchone()
+
     conn.close()
 
     if usuario:
@@ -248,6 +250,7 @@ def buscar_filmes_assistidos(usuario):
         print("Usuário não encontrado. Verifique o username e tente novamente.")
         conn.close()
         return {}
+
 
 def buscar_filmes_selecionados(usuario):
     conn = get_db_connection()

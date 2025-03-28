@@ -3,31 +3,33 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
 import axios from "axios";
-import "./Login.css";
+import "./Register.css";
 import { baseURL } from "../../services/config";
 import eyeIcon from "../../assets/eye-icon.svg";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import Praia from "../../assets/Login_register/Cidade_de_deus.png";
-import Kill_bill from "../../assets/Login_register/Kill_bill.png";
-import Fogueira from "../../assets/Login_register/Fogueira.png";
+import Samurai from "../../assets/Login_register/Samurai.png";
+import Predio from "../../assets/Login_register/Predio.png";
+import Bateria from "../../assets/Login_register/Bateria.png";
 
-function Login({isLogged, setIsLogged}) {
+function Register() {
   const navigate = useNavigate();
   const [user, setUser] = useState({ username: "", password: "", confirmPassword: "" });
+  const [isRegistering, setIsRegistering] = useState(false);
   const [showPassword, setShowPassword] = useState({ password: false, confirmPassword: false});
   const [errorMessage, setErrorMessage] = useState("");
   const [randomImage, setRandomImage] = useState("");
 
   useEffect(() => {
-    const loginImages = [
-      { imagem: Praia },
-      { imagem: Kill_bill },
-      { imagem: Fogueira }
+    const cadastroImages = [
+      { imagem: Samurai },
+      { imagem: Predio },
+      { imagem: Bateria }
     ];
 
-    const imageLinks = loginImages;
+    const imageLinks = cadastroImages;
     const randomIndex = Math.floor(Math.random() * imageLinks.length);
     const selectedImage = imageLinks[randomIndex];
+
     setRandomImage(selectedImage.imagem);
   }, []);
 
@@ -40,31 +42,34 @@ function Login({isLogged, setIsLogged}) {
   };
   const handleCloseError = () => setErrorMessage("");
 
-  const loginUsuario = async () => {
-    if (!user.username || !user.password) return setErrorMessage("Preencha todos os campos!");
 
+  const goToLogin = async () => {
+    navigate("/login"); 
+  }
+
+  const verificarUsuario = async () => {
     try {
-      const authResponse = await axios.post(`${baseURL}/verificar-login`, { username: user.username, password: user.password });
-      console.log("Resposta do backend:", authResponse.data);
-      if (!authResponse.data.success) {
-        return setErrorMessage(authResponse.data.message || "Usuário ou senha incorretos!");
-      }
-  
-      if (user.username && user.password) {
-        localStorage.setItem("username", user.username);
-        setIsLogged(true);
-        navigate("/filtros");
-      } else {
-        setErrorMessage("Preencha todos os campos corretamente!");
-      }
-    } catch (error) {
-      setErrorMessage("Erro ao enviar dados: " + error.response?.data?.error || error.message);
+      const { data } = await axios.get(`${baseURL}/verificar-usuario`, { params: { username: user.username } });
+      if (data.usuario_existe) setErrorMessage("Este usuário já existe. Tente outro.");
+      return data.usuario_existe;
+    } catch {
+      setErrorMessage("Erro ao verificar o usuário.");
+      return true;
     }
   };
 
-  const goToRegister = async () => {
-    navigate("/register"); 
-  }
+  const registrarUsuario = async () => {
+    if (!user.username || !user.password || !user.confirmPassword) return setErrorMessage("Preencha todos os campos!");
+    if (user.password !== user.confirmPassword) return setErrorMessage("As senhas não coincidem!");
+    if (await verificarUsuario()) return;
+
+    try {
+      const { data } = await axios.post(`${baseURL}/registrar-usuario`, { username: user.username, password: user.password, });
+      if (data.message) setIsRegistering(false);
+    } catch {
+      setErrorMessage("Erro ao registrar o usuário.");
+    }
+  };
 
   return (
     <div className="container_login">
@@ -72,12 +77,14 @@ function Login({isLogged, setIsLogged}) {
       <div className="container_image_film">
           <img src= {randomImage}/>
       </div>
-      <div className="container_informations">
-        <div className="title-login">
-            Login
-            <p>Venha descobrir novos filmes!</p>
+      <div className= "container_register" >
+        <div className="title-register" >
+            Cadastre-se
+            <p className="toggle_form_login" style={{ cursor: "pointer" }} onClick = {goToLogin}>
+            Já possui uma conta? Login
+          </p>
           </div>
-          {[{ label: "Usuário", name: "username", type: "text" }, { label: "Senha", name: "password", type: showPassword.password ? "text" : "password" }].map(({ label, name, type }) => (
+          {[{ label: "Usuário", name: "username", type: "text" }, { label: "Senha", name: "password", type: showPassword.password ? "text" : "password" }, ...([{ label: "Confirmar Senha", name: "confirmPassword", type: showPassword.confirmPassword ? "text" : "password" }])].map(({ label, name, type }) => (
           <div className="container_title_input" key={name}>
             <p className="mt-2">{label}</p>
             <div className="field_with_eye">
@@ -97,16 +104,12 @@ function Login({isLogged, setIsLogged}) {
               </div>
             </div>
           ))}
-          <button className="button_config_login" onClick={loginUsuario}>
-            Entre
-          </button> 
-          <p className="toggle_form_register" style={{ cursor: "pointer" }} onClick={goToRegister} >
-            Não tem uma conta? Registre-se
-          </p>
+          <button className= "button_config_register" onClick= "registrarUsuario">
+            Cadastre-se
+          </button>
       </div>
     </div>
   );
 }
 
-export default Login;
-
+export default Register;

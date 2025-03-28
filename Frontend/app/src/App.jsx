@@ -10,7 +10,8 @@ import InfoMovies from "./pages/InfoMovies/InfoMovies.jsx";
 import LastPage from "./pages/LastPage/LastPage.jsx";
 import EmptyLine from './pages/EmptyLine/EmptyLine.jsx'; 
 import Myfilms from './pages/Myfilms/Myfilms.jsx';
-import "./App.css";
+import Register from './pages/Register/Register.jsx'
+import "./App.css"
 
 const App = () => {
   const [isLogged, setIsLogged] = useState(false); 
@@ -21,7 +22,8 @@ const App = () => {
       <Navbar isLogged={isLogged} setIsLogged={setIsLogged}/> 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login setIsLogged={setIsLogged}/>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/filtros" element={<FiltersPage />} />
         <Route path="/carregamento" element={<Loading />} />
         <Route path="/info_filmes" element={<InfoMovies />} />

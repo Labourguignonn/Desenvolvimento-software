@@ -10,6 +10,7 @@ function Navbar({ isLogged }) {
 
   return (
     <nav id="navBar">
+
       {isLogged ? (
         <>
           <div className="buttons-left">
