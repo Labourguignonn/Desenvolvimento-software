@@ -135,7 +135,7 @@ const Myfilms = () => {
                     src={movie.img}
                     alt={movie.title}
                     className="movie-image"
-                    style={filmesAssistidos ? { height: '80%' } : { height: '75%' }}
+                    style={filmesAssistidos ? { height: '80%' } : { height: '80%' }}
                   />
                   <div className="movie-info-myfilms">
                     <p id="myfilms-movie-title" style={{ fontSize: adjustFontSize(movie.title_br) }}>

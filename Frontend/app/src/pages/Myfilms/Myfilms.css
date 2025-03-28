@@ -83,14 +83,9 @@
     background-color: white;
 }
 
-.movie-card:hover {
-    transform: scale(1.05);
-}
-
 /* Imagem do filme */
 .movie-image {
     width: 100%;
-    height: 85%;
     object-fit: cover;
     border-radius: (12px, 12px, 0, 0);
     display: block;
@@ -119,6 +114,11 @@
     font-weight: bold;
 }
 
+.SelectSet:hover{
+    background-color: var(--color-1);
+    color: var(--color-2);
+}
+
 .movie-info-myfilms {
     display: flex;
     flex-direction: column;
@@ -129,4 +129,37 @@
 
 #movie-title-myfilms {
     font-size: calc(1ch + 1vw);
+}
+
+.remove-movie-button, .add-movie-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: var(--color-1) 2px solid;
+    border-radius: 5px;
+    height: 45px;
+    width: 110px;
+    font-family: Poppins, sans-serif;
+    color: var(--color-1);
+    background-color:  var(--color-2);
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.2; /* Ajuste o valor conforme necessário */
+}
+
+.remove-movie-button:hover, .add-movie-button:hover {
+    background-color: var(--color-1);
+    color: var(--color-2);
+}
+
+
+.movie-buttons{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    border-radius: 5px;
+    width: 100%;
+    gap: 10px;
 }
