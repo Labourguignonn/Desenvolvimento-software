@@ -90,9 +90,9 @@
 /* Imagem do filme */
 .movie-image {
     width: 100%;
-    height: 100%;
+    height: 85%;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: (12px, 12px, 0, 0);
     display: block;
 }
 
@@ -119,3 +119,14 @@
     font-weight: bold;
 }
 
+.movie-info-myfilms {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 10px 10px 10px 10px;
+}
+
+#movie-title-myfilms {
+    font-size: calc(1ch + 1vw);
+}
