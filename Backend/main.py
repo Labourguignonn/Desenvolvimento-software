@@ -26,6 +26,8 @@ class MovieAPI:
     def __init__(self):
         crud.inicializar_banco()
         load_dotenv()
+        self.api_key = os.getenv("API_KEY")
+
 
     def process_movies(self):
         if any(value is None for value in [self.api_key, self.selected_rating, self.selected_runtime, self.selected_genres]):
