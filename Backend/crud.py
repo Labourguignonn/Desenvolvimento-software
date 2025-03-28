@@ -270,3 +270,61 @@ def buscar_filmes_selecionados(usuario):
         print("Usuário não encontrado. Verifique o username e tente novamente.")
         conn.close()
         return {}
+    
+import json
+
+def remover_filme_assistido(usuario, filme):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    print("fui chamada no crud")
+
+    cursor.execute("SELECT watched_movies FROM usuarios WHERE username = ?", (usuario,))
+    resultado = cursor.fetchone()
+
+    if resultado:
+        filmes_assistidos = json.loads(resultado[0])
+
+        if filme in filmes_assistidos:
+            del filmes_assistidos[filme]  
+
+            filmes_atualizados = json.dumps(filmes_assistidos)  
+            cursor.execute("UPDATE usuarios SET watched_movies = ? WHERE username = ?", (filmes_atualizados, usuario))
+
+            conn.commit() 
+            conn.close()
+            return True  # Filme removido com sucesso
+        else:
+            conn.close()
+            return False  
+    else:
+        conn.close()
+        return False  
+
+def remover_filme_selecionado(usuario, filme):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT selected_movies FROM usuarios WHERE username = ?", (usuario,))
+    resultado = cursor.fetchone()
+
+    if resultado:
+        filmes_selecionados = json.loads(resultado[0])
+
+        if filme in filmes_selecionados:
+            del filmes_selecionados[filme]  
+
+            filmes_atualizados = json.dumps(filmes_selecionados)  
+            cursor.execute("UPDATE usuarios SET selected_movies = ? WHERE username = ?", (filmes_atualizados, usuario))
+
+            conn.commit() 
+            conn.close()
+            return True  # Filme removido com sucesso
+        else:
+            conn.close()
+            return False  
+    else:
+        conn.close()
+        return False
+    
+
+
