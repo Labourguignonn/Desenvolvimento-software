@@ -4,12 +4,6 @@
     box-sizing: border-box; /* Evitar que padding aumente o tamanho dos elementos */
 }
 
-html, body {
-    height: 100%;
-    width: 100%;
-    overflow: hidden; /* Impede o scroll */
-}
-
 .container_informations {
     color: white;
     display: flex;
@@ -28,7 +22,7 @@ html, body {
 
 .container_image_film {
     width: 50%; /* Metade da tela */
-    height: 100vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;

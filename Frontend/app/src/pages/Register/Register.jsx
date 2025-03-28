@@ -104,7 +104,7 @@ function Register() {
               </div>
             </div>
           ))}
-          <button className= "button_config_register" onClick= "registrarUsuario">
+          <button className="button_config_register" onClick={registrarUsuario}>
             Cadastre-se
           </button>
       </div>

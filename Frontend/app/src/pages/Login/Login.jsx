@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import CryptoJS from "crypto-js";
 import axios from "axios";
 import "./Login.css";
 import { baseURL } from "../../services/config";
@@ -44,23 +43,29 @@ function Login({isLogged, setIsLogged}) {
     if (!user.username || !user.password) return setErrorMessage("Preencha todos os campos!");
 
     try {
-      const authResponse = await axios.post(`${baseURL}/verificar-login`, { username: user.username, password: user.password });
-      console.log("Resposta do backend:", authResponse.data);
-      if (!authResponse.data.success) {
-        return setErrorMessage(authResponse.data.message || "Usuário ou senha incorretos!");
-      }
-  
-      if (user.username && user.password) {
+        const authResponse = await axios.post(`${baseURL}/verificar-login`, {
+            username: user.username,
+            password: user.password
+        });
+        
+        console.log("Resposta do backend:", authResponse.data);
+
+        if (!authResponse.data.success) {
+            return setErrorMessage(authResponse.data.message || "Usuário ou senha incorretos!");
+        }
+    
+        // Armazenando o nome do usuário e redirecionando
         localStorage.setItem("username", user.username);
         setIsLogged(true);
         navigate("/filtros");
-      } else {
-        setErrorMessage("Preencha todos os campos corretamente!");
-      }
+        
     } catch (error) {
-      setErrorMessage("Erro ao enviar dados: " + error.response?.data?.error || error.message);
+        // Log detalhado para entender o erro
+        console.error("Erro ao enviar dados:", error);  // Log do erro
+        const errorMessage = error.response?.data?.error || error.message || "Erro desconhecido";
+        setErrorMessage("Erro ao enviar dados: " + errorMessage);
     }
-  };
+};
 
   const goToRegister = async () => {
     navigate("/register"); 

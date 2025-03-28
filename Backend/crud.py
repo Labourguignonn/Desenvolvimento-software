@@ -4,7 +4,6 @@ import json
 import bcrypt
 import shutil
 
-
 # Detecta se está rodando no Vercel
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
 LOCAL_DB = os.path.join(BASE_DIR, "usuarios.db")  # Banco local

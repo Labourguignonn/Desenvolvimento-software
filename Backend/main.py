@@ -25,8 +25,9 @@ class MovieAPI:
 
     def __init__(self):
         crud.inicializar_banco()
+        
         load_dotenv()
-        self.api_key = os.getenv("REACT_API_KEY")
+        self.api_key = os.getenv("REACT_APP_API_KEY")
 
     def process_movies(self):
         if any(value is None for value in [self.api_key, self.selected_rating, self.selected_runtime, self.selected_genres]):
@@ -159,7 +160,6 @@ def send_watched_movie():
 @app.route("/mandar-filmes-selecionado", methods=["GET"])
 def send_selected_movie():
     update_movies()
-    print(movie_api.selected_movies)
     return jsonify({"selected_movies": movie_api.selected_movies}), 200
 
 @app.route("/adicionar-filme-assistido", methods=["POST"])
@@ -176,6 +176,7 @@ def add_selected_movie():
     crud.adicionar_filme_selecionado(movie_api.user, movie)
     print(movie)
     return jsonify({"message": "Filme adicionado com sucesso!"})
+
 
 @app.route("/registrar-usuario", methods=["POST"])
 def register_user():
@@ -208,6 +209,36 @@ def update_movies():
     else:
         return jsonify({"error": resultado.get("message", "Erro desconhecido")}), 400
 
+@app.route("/remover-filme-assistido", methods=["DELETE"])
+def remover_filme_assistido():
+    data = request.get_json()  
+    print(data)
+    print("fui chamada na main")
+    
+    if 'title' not in data:
+        return jsonify({"error": "O título do filme é obrigatório"}), 400
+    
+    movie_title = data['title']
+    
+    if crud.remover_filme_assistido(movie_api.user ,movie_title):
+        return jsonify({"message": "Filme removido com sucesso!"}), 200
+    else:
+        return jsonify({"error": "Filme não encontrado ou erro ao remover"}), 404
+    
+@app.route("/remover-filme-selecionado", methods=["DELETE"])
+def remover_filme_selecionado():
+    data = request.get_json()
+    
+    if 'title' not in data:
+        return jsonify({"error": "O título do filme é obrigatório"}), 400
+    
+    movie_title = data['title']
+    
+    if crud.remover_filme_selecionado(movie_api.user, movie_title):
+        return jsonify({"message": "Filme removido com sucesso!"}), 200
+    else:
+        return jsonify({"error": "Filme não encontrado ou erro ao remover"}), 404
+
 
 @app.route("/verificar-login", methods=["POST"])
 def verify_login():
@@ -228,6 +259,14 @@ def verify_login():
         return jsonify(resultado)
     else:
         return jsonify({"error": resultado.get("message", "Erro desconhecido")}), 400
+    
+@app.route("/mover-filme-para-assistido", methods=["POST"])
+def move_watched_movie():
+    data = request.get_json()
+    print(data)
+    movie = data.get("movie")
+    crud.mover_filme_assistido(movie_api.user, movie)
+    return jsonify({"message": "Filme movido com sucesso!"})
     
         
 if __name__ == "__main__":
