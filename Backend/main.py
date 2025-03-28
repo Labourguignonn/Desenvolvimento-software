@@ -27,6 +27,7 @@ class MovieAPI:
         crud.inicializar_banco()
                 
         load_dotenv()
+        
         self.api_key = os.getenv("REACT_APP_API_KEY")
 
     def process_movies(self):

@@ -34,7 +34,7 @@ function Navbar({ isLogged }) {
           {location.pathname === "/" && (
             <div className="buttons-right">
               <button className="button-login" onClick={() => navigate("/login")}>Login</button>
-              <button className="button-cadastro" onClick={() => navigate("/login")}>Cadastre-se</button>
+              <button className="button-cadastro" onClick={() => navigate("/register")}>Cadastre-se</button>
             </div>
           )}
         </>
