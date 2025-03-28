@@ -19,7 +19,7 @@ function Navbar({ isLogged }) {
           </div>
           <div className="cinematch">cinematch</div>
           
-          {(location.pathname === "/filtros" || location.pathname === "/carregamento" || location.pathname === "/seleção" || location.pathname === "/final_da_fila" || location.pathname === "/ultima_pagina" || location.pathname === "/meus_filmes") && (
+          {(location.pathname === "/" || location.pathname === "/filtros" || location.pathname === "/carregamento" || location.pathname === "/seleção" || location.pathname === "/final_da_fila" || location.pathname === "/ultima_pagina" || location.pathname === "/meus_filmes") && (
             <button className={`username ${location.pathname === "/meus_filmes" ? "active" : ""}`} onClick={() => navigate("/meus_filmes")}>{localStorage.getItem("username")}</button>
           )}
         </>
