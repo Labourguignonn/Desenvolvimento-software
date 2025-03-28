@@ -178,15 +178,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
 }
 
 .carousel-btn {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border: solid 1px var(--color-7);
   border-radius: 50%;
-  font-size: 1.5rem;
+  font-size: 1rem;
   background-color: var(--color-2);
   cursor: pointer;
   color: var(--color-7);
@@ -206,35 +206,60 @@
   height: 25vh;
   width: 10vw;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: var(--color-7);
   border-radius: 6px;
   cursor: pointer;
+  top: 50%;
 }
 
-.refazer-card:hover {
-  background: #073193;
+.plus-icon {
+  display: flex;
+  justify-content: center; /* Alinha os itens ao centro no eixo X */
+  align-items: center; /* Alinha os itens ao centro no eixo Y */
+  flex-direction: column;
+  position: absolute;
+  transform: translateY(-50%); /* Ajusta o contêiner para que o centro dele esteja no meio da tela */
+  margin: 0;
+  padding: 0;
 }
 
- .plus-icon {
-  font-size: 50px;
+
+.plus-icon > * {
+  margin: 0; /* Remove as margens dos itens filhos */
+}
+
+.plus {
+  font-size: 30px;
   font-weight: bold;
-  color: var(--color-2);
+  margin: 0; /* Remove qualquer margem da classe .plus */
 }
+
+.filmes-text {
+  font-size: 18px;
+  font-family: Poppins;
+  text-align: center;
+  font-weight: bold;
+  margin-top: -5px; /* Ajuste o espaço entre o + e "filmes" */
+}
+
 
 .refazer-text {
   font-size: 18px;
   font-family: Poppins;
   text-align: center;
   font-weight: bold;
-  color: white;
   position: absolute;
+  transform: translateY(-50%);
+  justify-content: center;
+}
+
+.plus-icon, .refazer-text {
+  color: var(--color-3);
 }
 
 .like-button {
-  width: 47px;
-  height: 47px;
+  width: 40px;
+  height: 40px;
   border: solid 1px var(--color-7);
   border-radius: 50%;
   font-size: 1.5rem;
@@ -244,6 +269,24 @@
 }
 
 .like-button:hover {
+  background-color: var(--color-7);
+  color: var(--color-2);
+}
+
+.movie-watch-button{
+  height: 40px;
+  background-color: var(--color-2);
+  cursor: pointer;
+  color: var(--color-7);
+  font-size: 0.8rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  border: solid 1px var(--color-7);
+}
+
+.movie-watch-button:hover {
   background-color: var(--color-7);
   color: var(--color-2);
 }

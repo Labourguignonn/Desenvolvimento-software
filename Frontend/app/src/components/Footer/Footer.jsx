@@ -4,7 +4,7 @@ import './footer.css'
 function Footer() {
   return (
     <footer id="footer">
-      <p>&copy; 2024 IndicaAI.</p>
+      <p>&copy; 2024 cinematch.</p>
     </footer>
   );
 }

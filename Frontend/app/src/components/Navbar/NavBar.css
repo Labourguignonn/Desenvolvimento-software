@@ -48,6 +48,11 @@
     color: #747171;
 }
 
+.button-home:hover, .button-selecao:hover {
+    color: black;
+    font-weight: bold;
+}
+
 .button-home.active, .button-selecao.active {
     color: black;
     font-weight: bold;
@@ -73,5 +78,19 @@
     font-size: 16px;
     font-weight: 500;
     margin-right: 20px;
-    color: #EE375E;
+    color: #ff4d4d;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+  
+.username:hover {
+    font-weight: bold;
+  }
+
+.username.active {
+    color: ff4d4d;
+    font-weight: bold;
+    border-bottom: 3px solid black; /*Linha embaixo*/
 }
