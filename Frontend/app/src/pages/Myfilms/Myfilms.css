@@ -154,11 +154,11 @@
     color: var(--color-2);
 }
 
-
 .movie-buttons{
     display: flex;
     justify-content: end;
     align-items: center;
+    padding-top: 3px;
     border-radius: 5px;
     width: 100%;
     gap: 10px;
