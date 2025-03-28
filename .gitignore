@@ -26,3 +26,11 @@ dist-ssr
 __pycache__/
 
 Backend/.env
+*.csh
+*.fish
+/Backend/venv/bin
+/Backend/venv/lib/python3.12/site-packages/_pytest
+/Backend/venv/lib/python3.12/site-packages/aiohappyeyeballs-2.4.4.dist-info
+*.py
+*.typed
+/Backend
