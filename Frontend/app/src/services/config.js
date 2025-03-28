@@ -1,6 +1,6 @@
+const isLocalhost = window.location.hostname === "localhost";
 
-// CHAVE PARA O LOCALHOST
-export const baseURL = "http://localhost:5000/";
+export const baseURL = isLocalhost
+  ? "http://localhost:5000/" // Localhost
+  : "https://desenvolvimento-software-ayeh.vercel.app"; 
 
-// CHAVE PARA O VERCEL
-// export const baseURL = "https://desenvolvimento-software-ayeh.vercel.app";

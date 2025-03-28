@@ -47,17 +47,17 @@
 }
 
 #sinopse-texto {
-  padding-left: 5%;
+  padding-right: 5%;
   font-family: Poppins;
   width: 90%;
   font-size: 17px;
-  text-align: left;;
+  text-align: justify;
   line-height: 1.6;
   color: var(--color-3);
   max-height: 300px;
   overflow-y: auto;
-  direction: rtl;
 }
+
 
 #sinopse-texto::-webkit-scrollbar {
   width: 8px;
@@ -119,12 +119,13 @@
   overflow: hidden;
   width: 100%; 
   height: 80%;
-  align-items: end;
+  align-items: center;
 }
 
 .movie-highlight {
   width: auto; 
   gap: 30px;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -133,45 +134,37 @@
 
 .movie-highlight img {
   width: auto;
-  height: 350px;
+  height: 50vh;
   border-radius: 6px;
   box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.25);
 }
 
 .movie-carousel {
-  margin-left: 5px;
-  flex-grow: 1; /* Faz com que o carrossel ocupe o espaço restante */
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  overflow: hidden;
   width: 100%;
-}
-
-.movie-list {
-  display: flex;
-  align-items: center;
-  transition: transform 0.3s ease-in-out;
+  height: 100%;
   padding-bottom: 5%;
+  flex-grow: 1; /* Faz com que o carrossel ocupe o espaço restante */
+  justify-content: flex-start;
+  align-items: end;
+  overflow: visible;
+  transition: transform 0.3s ease-in-out;
 }
 
 .movie-item {
-  height: 250px;
-  width: 200px; /* Defina uma largura fixa ou use um valor percentual */
-  aspect-ratio: 2/3;
+  display: flex;
+  width: 15vw; /* Defina uma largura fixa ou use um valor percentual */
   border-radius: 6px;
   transition: transform 0.3s ease, filter 0.3s ease;
   cursor: pointer;
-  display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 10px;
-  box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.25);
 }
-
 
 .movie-item:not(.highlighted) {
   transform: scale(0.7);
+  z-index: 1;
 }
 
 .movie-item img {
@@ -180,21 +173,20 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
 /* Botões de navegação do carrossel */
 .button-div {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
 }
 
 .carousel-btn {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border: solid 1px var(--color-7);
   border-radius: 50%;
-  font-size: 1.5rem;
+  font-size: 1rem;
   background-color: var(--color-2);
   cursor: pointer;
   color: var(--color-7);
@@ -211,37 +203,63 @@
 }
 
 .refazer-card {
-  height: 280px;
-  width: 200px;
+  height: 25vh;
+  width: 10vw;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: var(--color-7);
   border-radius: 6px;
   cursor: pointer;
-}
-
-.refazer-card:hover {
-  background: #073193;
+  top: 50%;
 }
 
 .plus-icon {
-  font-size: 50px;
-  font-weight: bold;
-  color: var(--color-2);
+  display: flex;
+  justify-content: center; /* Alinha os itens ao centro no eixo X */
+  align-items: center; /* Alinha os itens ao centro no eixo Y */
+  flex-direction: column;
+  position: absolute;
+  transform: translateY(-50%); /* Ajusta o contêiner para que o centro dele esteja no meio da tela */
+  margin: 0;
+  padding: 0;
 }
+
+
+.plus-icon > * {
+  margin: 0; /* Remove as margens dos itens filhos */
+}
+
+.plus {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0; /* Remove qualquer margem da classe .plus */
+}
+
+.filmes-text {
+  font-size: 18px;
+  font-family: Poppins;
+  text-align: center;
+  font-weight: bold;
+  margin-top: -5px; /* Ajuste o espaço entre o + e "filmes" */
+}
+
 
 .refazer-text {
   font-size: 18px;
   font-family: Poppins;
+  text-align: center;
   font-weight: bold;
-  color: white;
   position: absolute;
+  transform: translateY(-50%);
+  justify-content: center;
+}
+
+.plus-icon, .refazer-text {
+  color: var(--color-3);
 }
 
 .like-button {
-  width: 47px;
-  height: 47px;
+  width: 40px;
+  height: 40px;
   border: solid 1px var(--color-7);
   border-radius: 50%;
   font-size: 1.5rem;
@@ -251,6 +269,24 @@
 }
 
 .like-button:hover {
+  background-color: var(--color-7);
+  color: var(--color-2);
+}
+
+.movie-watch-button{
+  height: 40px;
+  background-color: var(--color-2);
+  cursor: pointer;
+  color: var(--color-7);
+  font-size: 0.8rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  border: solid 1px var(--color-7);
+}
+
+.movie-watch-button:hover {
   background-color: var(--color-7);
   color: var(--color-2);
 }

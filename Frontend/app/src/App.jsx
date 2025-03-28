@@ -1,4 +1,4 @@
-import React from "react"; 
+import React, { useState } from "react"; // Importando useState
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar.jsx";
 import HomePage from "./pages/Home/Home.jsx";
@@ -14,9 +14,12 @@ import Register from './pages/Register/Register.jsx'
 import "./App.css"
 
 const App = () => {
+  const [isLogged, setIsLogged] = useState(false); 
+  const [username, setUsername] = useState(localStorage.getItem("username") || ""); 
+
   return (
     <Router>
-      <Navbar />
+      <Navbar isLogged={isLogged} setIsLogged={setIsLogged}/> 
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
@@ -32,5 +35,6 @@ const App = () => {
     </Router>
   );
 };
+
 
 export default App;

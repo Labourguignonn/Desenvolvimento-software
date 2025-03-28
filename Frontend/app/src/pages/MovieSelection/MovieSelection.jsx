@@ -31,6 +31,7 @@ function MovieSelection() {
 
   // Dados do filme em destaque
   const filmeAtual = {
+    title_en: dataDict.title_en?.[selectedFilmIndex],
     title_pt: dataDict.title_pt[selectedFilmIndex],
     overview: dataDict.overview?.[selectedFilmIndex] || "Sinopse não disponível.",
     director: dataDict.director?.[selectedFilmIndex] || "Desconhecido",
@@ -44,6 +45,31 @@ function MovieSelection() {
   // Função para formatar a duração do filme
   const formatTime = (runtime) =>
     runtime > 0 ? `${Math.floor(runtime / 60)}h ${runtime % 60}min` : "N/A";
+
+  const marcarComoAssistido = (filme) => {
+    axios.post(`${baseURL}/adicionar-filme-assistido`, {
+      movie: filme
+    })
+    .then(response => {
+      console.log("Filme assistido enviado:", response.data.message);
+    })
+    .catch(error => {
+      console.error("Erro ao enviar o filme assistido:", error);
+    });
+  }
+
+  const movieSelect = (filme) => {
+    axios.post(`${baseURL}/adicionar-filme-selecionado`, {
+      movie: filme
+    })
+    .then(response => {
+      console.log("Filme selecionado enviado:", response.data.message);
+    })
+    .catch(error => {
+      console.error("Erro ao enviar o filme selecionado:", error);
+    });
+  }
+
 
   return (
     <div className="container_movie_selection">
@@ -76,7 +102,8 @@ function MovieSelection() {
                 {"<"}
               </button>
 
-              <button className="like-button" onClick={() => navigate("/ultima_pagina", { state: { filme: filmeAtual }})}> ❤ </button>
+              <button className="like-button" onClick={() => (movieSelect(filmeAtual), navigate("/ultima_pagina", { state: { filme: filmeAtual }}))}>❤</button>
+              <button className="movie-watch-button" onClick={() => marcarComoAssistido(filmeAtual)}> Já assisti esse filme </button>
 
               <button
                 className="carousel-btn right"
@@ -87,43 +114,35 @@ function MovieSelection() {
               </button>
             </div>
           </div>
-          <div className="movie-carousel">
+          <div className="movie-carousel" 
+            style={{
+              transform: `translateX(-${selectedFilmIndex * 21}%)`, // Aplicar a rolagem
+            }}
+          >
+            {dataDict.title_pt.map((title, index) => {
+              // Exclui o filme atual do carrossel
+              if (index === selectedFilmIndex) return null;
+              return (
+                <div
+                  key={index}
+                  className={`movie-item ${index === selectedFilmIndex ? "highlighted" : ""}`}
+                  onClick={() => setSelectedFilmIndex(index)}
+                >
+                  <img src={posterBaseURL + dataDict.poster_path[index]} alt={title} />
+                </div>
+              );
+            })}
             <div
-              className="movie-list"
-              style={{
-                transform: `translateX(-${selectedFilmIndex * 210}px)`,
-                display: 'flex', // Garante que todos os filmes se alinhem horizontalmente
-                flexDirection: 'row',
-              }}
+              className="movie item refazer-card"
+              onMouseEnter={() => setShowRefazerText(true)}
+              onMouseLeave={() => setShowRefazerText(false)}
+              onClick={() => navigate("/filtros")}
             >
-              {dataDict.title_pt.map((title, index) => {
-                // Exclui o filme atual do carrossel
-                if (index === selectedFilmIndex) return null;
-                return (
-                  <div
-                    key={index}
-                    className={`movie-item ${index === selectedFilmIndex ? "highlighted" : ""}`}
-                    onClick={() => setSelectedFilmIndex(index)}
-                  >
-                    <img src={posterBaseURL + dataDict.poster_path[index]} alt={title} />
-                  </div>
-                );
-              })}
-              <div
-                className="movie-item refazer-card"
-                onMouseEnter={() => setShowRefazerText(true)}
-                onMouseLeave={() => setShowRefazerText(false)}
-                onClick={() => navigate("/filtros")}
-              >
-                {showRefazerText ? <span className="refazer-text">Refazer seleção?</span> : <span className="plus-icon">+</span>}
-              </div>
+              {showRefazerText ? <span className="refazer-text">Refazer seleção?</span> : <span className="plus-icon"> <div className="plus">+</div><div className="filmes-text">filmes</div></span>}
             </div>
           </div>
         </div>
-
       </div>
-
-
     </div>
 
   );
