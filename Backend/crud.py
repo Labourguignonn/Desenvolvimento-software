@@ -327,4 +327,45 @@ def remover_filme_selecionado(usuario, filme):
         return False
     
 
+import json
+
+def mover_filme_assistido(usuario, filme):
+    try:
+        # Obtendo a conexão e o cursor
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        # Buscando filmes selecionados do usuário
+        cursor.execute("SELECT selected_movies FROM usuarios WHERE username = ?", (usuario,))
+        resultado = cursor.fetchone()
+
+        if resultado:
+            filmes_selecionados = json.loads(resultado[0])
+
+            # Verificando se o filme está na lista de filmes selecionados
+            if filme in filmes_selecionados:
+                toMove = filmes_selecionados.pop(filme)  # Remove e pega o filme
+                # Atualizando a lista de filmes assistidos
+                cursor.execute("SELECT watched_movies FROM usuarios WHERE username = ?", (usuario,))
+                resultado = cursor.fetchone()
+                filmes_assistidos = json.loads(resultado[0]) if resultado else {}
+
+                filmes_assistidos[filme] = toMove
+                filmes_assistidos_json = json.dumps(filmes_assistidos)
+
+                # Atualizando no banco de dados
+                cursor.execute("UPDATE usuarios SET selected_movies = ?, watched_movies = ? WHERE username = ?", 
+                               (json.dumps(filmes_selecionados), filmes_assistidos_json, usuario))
+                conn.commit()
+                return True
+            else:
+                return False
+        else:
+            return False
+    except Exception as e:
+        print(f"Erro: {e}")
+        return False
+    finally:
+        if conn:
+            conn.close()
 

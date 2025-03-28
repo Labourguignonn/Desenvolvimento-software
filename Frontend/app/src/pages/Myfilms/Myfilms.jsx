@@ -24,6 +24,19 @@ const Myfilms = () => {
     }
     return '0.6em';
   };
+
+  const handleSelectedToWatchesMovie = (movieTitle) => {
+    axios
+      .post(`${baseURL}/mover-filme-para-assistido`, { movie: movieTitle })
+      .then(() => {
+        setMovies((prevMovies) => prevMovies.filter((movie) => movie.title_en !== movieTitle));
+        carregarFilmes();
+      })
+      .catch((error) => {
+        console.error("Erro ao adicionar o filme assistido:", error);
+      });
+  }
+
   
   const handleRemoveMovie = (movieTitle) => {
     const endpoint = filmesAssistidos ? "/remover-filme-assistido" : "/remover-filme-selecionado";
@@ -40,7 +53,6 @@ const Myfilms = () => {
 
   const carregarFilmes = () => {
     const endpoint = filmesAssistidos ? "/mandar-filmes-assistido" : "/mandar-filmes-selecionado";
-    setLoading(true);
     axios
       .get(`${baseURL}${endpoint}`)
       .then((response) => {
@@ -58,7 +70,6 @@ const Myfilms = () => {
         }
       })
       .catch((error) => console.error("Erro ao buscar filmes:", error))
-      .finally(() => setLoading(false));
   };
 
 
