@@ -26,7 +26,6 @@ def get_db_connection():
     Retorna uma conexão com o banco de dados usando o caminho correto.
     """
     return sqlite3.connect(get_db_path(), check_same_thread=False)
-
 # ========== INICIALIZAÇÃO ==========
 def inicializar_banco():
     """ Cria o banco de dados e a tabela 'usuarios' se não existirem. """
@@ -57,7 +56,6 @@ def buscar_usuario(username):
 
     cursor.execute("SELECT * FROM usuarios WHERE username = ?", (username,))
     usuario = cursor.fetchone()
-
     conn.close()
 
     if usuario:
@@ -250,7 +248,6 @@ def buscar_filmes_assistidos(usuario):
         conn.close()
         return {}
 
-
 def buscar_filmes_selecionados(usuario):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -371,4 +368,3 @@ def mover_filme_assistido(usuario, filme):
     finally:
         if conn:
             conn.close()
-
