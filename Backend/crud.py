@@ -26,6 +26,7 @@ def get_db_connection():
     Retorna uma conexão com o banco de dados usando o caminho correto.
     """
     return sqlite3.connect(get_db_path(), check_same_thread=False)
+    
 # ========== INICIALIZAÇÃO ==========
 def inicializar_banco():
     """ Cria o banco de dados e a tabela 'usuarios' se não existirem. """
