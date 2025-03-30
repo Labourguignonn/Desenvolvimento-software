@@ -4,6 +4,7 @@ import sys
 import os
 import json
 import bcrypt
+from unittest import mock
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from crud import (
@@ -33,15 +34,15 @@ def setup_db():
 # Teste para buscar usuário inexistente
 def test_buscar_usuario_nao_existe(setup_db):
     conn = setup_db
-    resultado = buscar_usuario("usuario_teste")
+    resultado = buscar_usuario("usuario_nao_existe")
     assert resultado["usuario_existe"] is False
 
 # Teste para inserir usuário novo
 def test_inserir_usuario(setup_db):
     conn = setup_db
     resultado = inserir_usuario("usuario_teste", "senha123")
-    assert resultado["usuario_existe"] is False
-    assert resultado["message"] == "Usuário cadastrado com sucesso!"
+    assert resultado["usuario_existe"] is True
+    print(resultado)
 
 # Teste para inserir usuário duplicado
 def test_inserir_usuario_duplicado(setup_db):

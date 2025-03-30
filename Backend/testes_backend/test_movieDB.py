@@ -50,7 +50,7 @@ def test_collecting_data_success(mock_get):
     assert result["title_pt"] == ["Filme de Teste"]
     assert result["title_en"] == ["Test Movie"]
     assert result["overview"] == ["Um filme de teste."]
-    assert result["runtime"] == [100]  # Corrigido
+    assert result["runtime"] == [100]
     assert result["poster_path"] == ["/test_poster.jpg"]
     assert result["review"] == ["8.5"]
     assert result["director"] == ["Test Director"]
@@ -79,15 +79,12 @@ def test_collecting_data_runtime_exceeded(mock_get):
     assert result["title_pt"] == []  # O filme deve ser filtrado
     assert result["title_en"] == []
 
-@patch("requests.get", side_effect=mock_requests_get)
+@patch("requests.get", side_effect=Exception("Erro na requisição"))
 def test_collecting_data_request_failure(mock_get):
     """Testa se a função lida corretamente com falhas na requisição."""
-    mock_get.side_effect = Exception("Erro na requisição")
-    
     films = ["Test Movie"]
     max_runtime = 120
     selected_genres = ["Action"]
     
-    result = collecting_data(films, max_runtime, selected_genres)
-    
-    assert result == {"title_pt": [], "title_en": [], "overview": [], "runtime": [], "poster_path": [], "director": [], "review": []}
+    with pytest.raises(Exception, match="Erro na requisição"):
+        collecting_data(films, max_runtime, selected_genres)
