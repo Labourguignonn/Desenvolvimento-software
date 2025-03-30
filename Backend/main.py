@@ -155,14 +155,17 @@ def send_movies():
 
 @app.route("/mandar-filmes-assistido", methods=["GET"])
 def send_watched_movie():
-    update_movies()
+    resultado = update_movies()
+    if "error" in resultado:
+        return jsonify(resultado), 400
     return jsonify({"watched_movies": movie_api.watched_movies}), 200
 
 @app.route("/mandar-filmes-selecionado", methods=["GET"])
 def send_selected_movie():
-    update_movies()
+    resultado = update_movies()
+    if "error" in resultado:
+        return jsonify(resultado), 400
     return jsonify({"selected_movies": movie_api.selected_movies}), 200
-
 @app.route("/adicionar-filme-assistido", methods=["POST"])
 def add_watched_movie():
     data = request.json
@@ -201,12 +204,12 @@ def verify_user():
     return jsonify(resultado)
 
 def update_movies():
-    resultado = crud.autalizar_filmes(movie_api.user)
+    resultado = crud.atualizar_filmes(movie_api.user)
 
     if "dados" in resultado:
         movie_api.watched_movies = resultado["dados"]["watched_movies"]
         movie_api.selected_movies = resultado["dados"]["selected_movies"]
-        return jsonify(resultado)
+        return resultado
     else:
         return jsonify({"error": resultado.get("message", "Erro desconhecido")}), 400
 

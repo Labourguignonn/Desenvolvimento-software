@@ -110,7 +110,7 @@ def buscar_login(username, password):
         }
     return {"success": False, "message": "Usuário ou senha incorretos."}
 
-def autalizar_filmes(username):
+def atualizar_filmes(username):
     conn = get_db_connection()
     cursor = conn.cursor()
     
