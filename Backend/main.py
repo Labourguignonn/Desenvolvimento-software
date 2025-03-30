@@ -201,17 +201,13 @@ def verify_user():
         return jsonify({"error": "O parâmetro 'username' é obrigatório!"}), 400
 
     resultado = crud.buscar_usuario(username)
-    return jsonify(resultado)
+    
+    print("Resultado da busca:", resultado)
 
-def update_movies():
-    resultado = crud.atualizar_filmes(movie_api.user)
-
-    if "dados" in resultado:
-        movie_api.watched_movies = resultado["dados"]["watched_movies"]
-        movie_api.selected_movies = resultado["dados"]["selected_movies"]
-        return resultado
+    if resultado.get("usuario_existe", False):
+        return jsonify({"usuario_existe": True})
     else:
-        return jsonify({"error": resultado.get("message", "Erro desconhecido")}), 400
+        return jsonify({"usuario_existe": False})
 
 @app.route("/remover-filme-assistido", methods=["DELETE"])
 def remover_filme_assistido():

@@ -50,14 +50,17 @@ function Register() {
   const verificarUsuario = async () => {
     try {
       const { data } = await axios.get(`${baseURL}/verificar-usuario`, { params: { username: user.username } });
-      if (data.usuario_existe) setErrorMessage("Este usuário já existe. Tente outro.");
+      console.log("Resposta da API:", data);  // Log para ver a resposta da API
+      if (data.usuario_existe) {
+        setErrorMessage("Este usuário já existe. Tente outro.");
+      }
       return data.usuario_existe;
-    } catch {
+    } catch (error) {
+      console.error("Erro ao verificar usuário:", error);
       setErrorMessage("Erro ao verificar o usuário.");
-      return true;
+      return false;
     }
   };
-
   const registrarUsuario = async () => {
     if (!user.username || !user.password || !user.confirmPassword) return setErrorMessage("Preencha todos os campos!");
     if (user.password !== user.confirmPassword) return setErrorMessage("As senhas não coincidem!");
