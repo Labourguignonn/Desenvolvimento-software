@@ -69,6 +69,7 @@ function Register() {
     try {
       const { data } = await axios.post(`${baseURL}/registrar-usuario`, { username: user.username, password: user.password, });
       if (data.message) setIsRegistering(false);
+      navigate("login");
     } catch {
       setErrorMessage("Erro ao registrar o usuário.");
     }

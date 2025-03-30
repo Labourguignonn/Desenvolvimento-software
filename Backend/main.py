@@ -193,6 +193,16 @@ def register_user():
 
     resultado = crud.inserir_usuario(username, password)
     return jsonify(resultado)
+    
+def update_movies():
+    resultado = crud.atualizar_filmes(movie_api.user)
+
+    if "dados" in resultado:
+        movie_api.watched_movies = resultado["dados"]["watched_movies"]
+        movie_api.selected_movies = resultado["dados"]["selected_movies"]
+        return resultado
+    else:
+        return jsonify({"error": resultado.get("message", "Erro desconhecido")}), 400
 
 @app.route("/verificar-usuario", methods=["GET"])
 def verify_user():
