@@ -28,7 +28,7 @@ O projeto é desenvolvido utilizando as seguintes tecnologias:
 - **React Router DOM** – Gerenciamento de rotas  
 - **Axios** – Requisições HTTP para APIs  
 
-####**Ambiente de Desenvolvimento**  
+####   **Ambiente de Desenvolvimento**  
 - **Node.js** (Versão 16 ou superior) – Gerenciamento de pacotes e execução do frontend  
 - **Vite API** (^6.0.3) – Build otimizado do projeto  
 - **Vite Test** (^3.0.6) – Testes do frontend  
