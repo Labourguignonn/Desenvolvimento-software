@@ -47,7 +47,6 @@ Antes de rodar o projeto, certifique-se de ter instalado:
 ## **1-Como Rodar o Projeto**  
 
 ### **Clonar o Repositório**
-```sh
 git clone https://github.com/Labourguignonn/cinematch/.git
 cd cinematch
 
